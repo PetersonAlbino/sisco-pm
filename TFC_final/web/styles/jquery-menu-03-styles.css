@@ -56,7 +56,7 @@ div#wrapper-menu div#big-menu-hidden,div#big-menu-hidden-stores{
  	display:none;
 	text-align:left;
 	position:absolute;
-	background:url(../images/back-big.menu-hidden-2.png) no-repeat;
+	background:url(../images/back-big.menu-hidden.png) no-repeat;
 	font-size:12px;
 	width:910px;
 	height:244px;
@@ -92,7 +92,7 @@ div#wrapper-menu div#big-menu-hidden div#cart div#counter-cart p#btn-go-cart a{
 	display:block;
 	width:130px;
 	height:35px;
-	line-heightpx;
+	line-height:38px;
 	text-decoration:none;
 	color:#FFF;
 	margin-bottom:10px;
@@ -122,20 +122,9 @@ div#wrapper-menu div#big-menu-hidden div#product-list h2{
 	-moz-border-radius:5px;
 	-webkit-border-radius:5px;
 	}
-div#wrapper-menu div#big-menu-hidden div#product-list span.btn-close, div#big-menu-hidden-stores span.btn-close{display:block;position:absolute;left:400px;margin-top:12px;}
+div#wrapper-menu div#big-menu-hidden div#product-list span.btn-close, div#big-menu-hidden-stores span.btn-close{display:block;position:absolute;left:875px;margin-top:12px;}
 div#wrapper-menu div#big-menu-hidden div#product-list span.btn-close a, div#big-menu-hidden-stores span.btn-close a{display:block;width:17px;height:18px;background:url(../images/btn-close.png) no-repeat;color:#474747;font-size:1em;line-height:15px; text-indent:-35px;}
 div#wrapper-menu div#big-menu-hidden div#product-list span.btn-close a:hover, div#big-menu-hidden-stores span.btn-close a:hover{color:#6C6E6E;}
-
-
-
-<!--begin-btn-close-2-->
-div#wrapper-menu div#big-menu-hidden div#product-list span.btn-close-2, div#big-menu-hidden-stores span.btn-close-2{display:block;position:absolute;left:872px;margin-top:12px;}
-div#wrapper-menu div#big-menu-hidden div#product-list span.btn-close-2 a, div#big-menu-hidden-stores span.btn-close-2 a{display:block;width:17px;height:18px;background:url(../images/btn-close.png) no-repeat;color:#474747;font-size:1em;line-height:15px; text-indent:-35px;}
-div#wrapper-menu div#big-menu-hidden div#product-list span.btn-close-2 a:hover, div#big-menu-hidden-stores span.btn-close-2 a:hover{color:#6C6E6E;}
-
-
-<!--begin-btn-close-2-->
-
 div#wrapper-menu div#big-menu-hidden div#product-list h2#li-item1{left: 210px;}
 div#wrapper-menu div#big-menu-hidden div#product-list h2#li-item2{left: 445px;}
 div#wrapper-menu div#big-menu-hidden div#product-list h2#li-item3{left: 680px;}
