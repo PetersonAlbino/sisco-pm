@@ -37,7 +37,7 @@ div#wrapper-menu ul#nav li#item1 a{margin:0  10px 0 0px;_margin-left:100px;}/*sp
 div#wrapper-menu ul#nav li#item2 a{margin:0  10px 0 0px;}/*space between this option and follow*/
 div#wrapper-menu ul#nav li#item3 a{
 	width:150px;/*special width for this option*/
-	margin:0 10px 0 0;/*space between this option and follow*/
+	margin:0 30px 0 0;/*space between this option and follow*/
 	text-align:left;
 	/*background:url(../images/arrow-down.png) no-repeat 128px;/*this set the arrow as a background*/
 	}
@@ -55,16 +55,17 @@ div#wrapper-menu ul#nav li a.current{color:#b4005b;}
 div#wrapper-menu div#big-menu-hidden,div#big-menu-hidden-stores{
  	display:none;
 	text-align:left;
-	position:absolute;
+	position:relative;
 	background:url(../images/back-big.menu-hidden.png) no-repeat;
 	font-size:12px;
-	width:910px;
+	left:1px;
+	width:1020px;
 	height:244px;
-	margin:95px 0 0 226px;
+	margin:95px 0 100 100px;
 	margin-left:220px\9;/*hack for IE8 and below*/
 	#margin-left:230px;/*hack for IE7*/
 	-moz-border-radius:5px;
-	-webkit-border-radius:5px;
+	-webkit-border-radius:10px;
 	}
 div#wrapper-menu div#big-menu-hidden-stores{
 	background:url(../images/back-big.menu-hidden-sotores.png) no-repeat;
@@ -89,8 +90,8 @@ div#wrapper-menu div#big-menu-hidden div#cart div#counter-cart p{
 	color:#FFF; 
 	}
 div#wrapper-menu div#big-menu-hidden div#cart div#counter-cart p#btn-go-cart a{
-	display:block;
-	width:130px;
+	display:inherit;
+	width:250px;
 	height:35px;
 	line-height:38px;
 	text-decoration:none;
@@ -125,11 +126,11 @@ div#wrapper-menu div#big-menu-hidden div#product-list h2{
 div#wrapper-menu div#big-menu-hidden div#product-list span.btn-close, div#big-menu-hidden-stores span.btn-close{display:block;position:absolute;left:875px;margin-top:12px;}
 div#wrapper-menu div#big-menu-hidden div#product-list span.btn-close a, div#big-menu-hidden-stores span.btn-close a{display:block;width:17px;height:18px;background:url(../images/btn-close.png) no-repeat;color:#474747;font-size:1em;line-height:15px; text-indent:-35px;}
 div#wrapper-menu div#big-menu-hidden div#product-list span.btn-close a:hover, div#big-menu-hidden-stores span.btn-close a:hover{color:#6C6E6E;}
-div#wrapper-menu div#big-menu-hidden div#product-list h2#li-item1{left: 210px;}
+div#wrapper-menu div#big-menu-hidden div#product-list h2#li-item1{left: 300px; width:200px; height:35px; }
 div#wrapper-menu div#big-menu-hidden div#product-list h2#li-item2{left: 445px;}
 div#wrapper-menu div#big-menu-hidden div#product-list h2#li-item3{left: 680px;}
 /*starting with lists*/
-div#wrapper-menu div#big-menu-hidden div#product-list ul{float:left;width:214px;_width:200px;height:auto;margin:50px 0px 5px 20px;}
+div#wrapper-menu div#big-menu-hidden div#product-list ul{float:left:;width:214px;_width:200px;height:auto;margin:50px 0px 5px 20px;}
 div#wrapper-menu div#big-menu-hidden div#product-list ul li{
 	width:180px;
 	height:20px;
