@@ -61,7 +61,7 @@ div#wrapper-menu div#big-menu-hidden,div#big-menu-hidden-stores{
 	left:1px;
 	width:1020px;
 	height:244px;
-	margin:95px 0 100 100px;
+	margin:50px 0px 0px 0px;
 	margin-left:220px\9;/*hack for IE8 and below*/
 	#margin-left:230px;/*hack for IE7*/
 	-moz-border-radius:5px;
