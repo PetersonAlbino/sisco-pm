@@ -18,7 +18,7 @@
 
 
 <title>Cadastro de Ocorrências</title>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
+<!--<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
         <%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%> 
 
         <%@ include file="conexao.jsp" %>
@@ -30,7 +30,7 @@
                 where COD_MUN = ${param.Cod_ocor}
             </sql:query>
         </c:if>
-
+-->
 </head>
 
 	<body>
@@ -45,11 +45,11 @@
 	<!--Following code is all you need for the menu-->
 			<div id="wrapper-menu"><!--container for this menu. With this container you can position it where you want in your layaout-->
 			  <ul id="nav" name="nav">
-					<li id="item1" class="fade"><a class="big-menu-launcher" <a href="#" title="keywords for SEO">Cadastro</a></li>
-					<li id="item2" class="fade"><a href="#" title="keywords for SEO">Consulta</a></li>
-					<li id="item3" class="fade"><a class="big-menu-launcher-2" href="#" title="keywords for SEO">Relatórios</a></li>
-					<li id="item4" class="fade"><a class="big-menu-launcher-stores" href="#" title="keywords for SEO">Materiais</a></li>
-					<li id="item5" class="fade"><a href="#" title="keywords for SEO">Contato</a></li>
+					<li id="item1" class="fade"><a class="big-menu-launcher" <a href="#" title="Cadastros Básicos"><img src="images/woofunction-icons/folder_add_32.png" width="20" height="20" alt="cadastro" /> Cadastro</a></li>
+					<li id="item2" class="fade"><a href="consulta.jsp" title="Consultas Gerenciais"><img src="images/woofunction-icons/folder_chart_32.png" width="20" height="20" alt="consulta" /> Consultas</a></li>
+					<li id="item3" class="fade"><a class="big-menu-launcher" title="Impressão de Relatórios"><img src="images/woofunction-icons/folder_page_32.png" width="20" height="20" alt="relatorio" /> Relatorios</a></li>
+					<li id="item4" class="fade"><a href="materiais.jsp" title="Cadastro de Materiais"><img src="images/woofunction-icons/basket_add_32.png" width="20" height="20" alt="materiais" /> Materiais</a></li>
+					<li id="item5" class="fade"><a href="ajuda.jsp" title="Portal de Ajuda"><img src="images/woofunction-icons/folder_warning_32.png" width="20" height="20" alt="ajuda" />Ajuda</a></li>
 				</ul><!--end nav-->
 				
 			<!--here starts hiden menus-->
@@ -57,30 +57,29 @@
 				<div id="cart">
 					<div id="counter-cart">
     					<div id="btn-go-cart">	                
-                    	<h3 id="li-item1" title="SEO KEYWORDS"> Cadastro de Ocorrências</h3>
+                    	<h3 id="li-item1" > Cadastro de Ocorrências</h3>
                         </div>
-						<p id="btn-go-cart"><a href="" title="Keywords for SEO">Flora</a></p>
-						<p id="btn-go-cart"><a href="" title="keywords for SEO">Fauna</a></p>
-                        <p id="btn-go-cart"><a href="" title="Keywords for SEO">Ordem</a></p>
-						<span id="planeta_terra"><img src="images/planeta_terra.png" alt="keyword for SEO" width="200" height="131"/></span>
+						<p id="btn-go-cart"><a href="" title="Cadastro referente a Flora">Flora</a></p>
+						<p id="btn-go-cart"><a href="" title="Cadastro referente a Fauna">Fauna</a></p>
+                        <p id="btn-go-cart"><a href="" title="Cadastro referente a Ordem Publica">Ordem</a></p>
+						<span id="planeta_terra"><img src="images/planeta_terra.png" width="200" height="131"/></span>
 					</div>
 				</div>
                 
                 
 			  <div id="product-list">
                 
-					<h2 id="li-item1" title="SEO KEYWORDS">Outros <strong>Cadastros:</strong></h2>
+					<h2 id="li-item1" >Outros <strong>Cadastros:</strong></h2>
                     <span class="btn-close"><a class="big-menu-launcher"href="#">close</a></span>
 					<ul id="list-cameras">
 
-						<li><a href="#" title="Cadastro de Localidade">Localidade</a></li>
-						<li><a href="#" title="Cadastro de Materiais">Materiais</a></li>
-						<li><a href="#" title="Cadastro de Constatação de Ordem de Serviço">Constatação</a></li>
+						<li><a href="endereco.jsp" title="Cadastro de Localidade">Localidade</a></li>
+						<li><a href="materiais.jsp" title="Cadastro de Materiais">Materiais</a></li>
+						<li><a href="os.jsp" title="Cadastro de Constatação de Ordem de Serviço">Constatação</a></li>
                         <li><a href="#" title="Cadastro de Infração">Auto de Infração</a></li>
                         <li><a href="#" title="Cadastro de Recolhimento">Recolhimento</a></li>
-                        <li><a href="#" title="Cadastro de Ordem de Serviço">Ordem de Serviço</a></li>
-						
-						<li class="view-all"><span><a href="#" title="keywords for SEO">view all</a></span></li>
+                        <li><a href="os.jsp" title="Cadastro de Ordem de Serviço">Ordem de Serviço</a></li>
+						<li class="view-all"><span><a href="#"></a></span></li>
 					</ul>
 
 				</div>
@@ -125,37 +124,14 @@
       <div id="content">
        <div id="content_head"></div>
                 <div id="content_main">
+		<div class="tmplapps">
+			<div class="floatsection col0"><a href="ocorrencias.jsp" title="" style="background-image: url(img/apps_page_synotes__1339059658.png)"></a></span></div>
+                        <div class="floatsection col1"><a href="materiais.jsp"title="" style="background-image:url(img/apps_page_birder__1339081919.png)"></a></div>
 
-
-                   <div id="content_data">
-                        <h1>Cadastro de Ocorrência</h1>
-
-                        <div >
-
-
-                            <form  name="form1" method="post" action="">
-                                <ul>
-                                    <li>
-
-                                        <label for="email" >Codigo da Ocorrência </label> 
-                                        	<input type="text" disabled="disabled" name="Cod_ocor" id="Cod_ocor" value="${MUNICIPIO.rows[0].DES_MUN}">
-                                        <label for="email" >Natureza da Ocorrência </label>
-                                        	<input type="text" name="Nat_ocor" id="Nat_ocor"  />
-
-
-
-
-                                            <input class="buttonGradientSubmit"   type="submit" />
-                                    </li>
-                                </ul>
-
-
-                            </form>  
-                        </div>
-
-                    </div>
-
-                </div>		
+			<div class="clear"></div>
+			<div class="floatsection col0"><a href="os.jsp" title="" style="background-image:url(img/swapped_coming_soon_1343809493.png)"></a></div>
+			<div class="floatsection col1"><span title="" style="background-image: url(files/blank_coming_soon_1343809769.png)"></span></div>
+			<div class="clear"></div>
 		</div>
 		</div>	
 
