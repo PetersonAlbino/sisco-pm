@@ -52,7 +52,7 @@ div#wrapper-menu ul#nav li#item5 a{
 div#wrapper-menu ul#nav li a:hover,div#wrapper-menu ul#nav li#item3 a:hover,div#wrapper-menu ul#nav li#item4 a:hover{background-color:#698800;color:#FFF;-moz-border-radius:5px;-webkit-border-radius:5px;}
 div#wrapper-menu ul#nav li a.current{color:#b4005b;}
 /*First of all we need to hide the big product and locate menu, establish a size for it and use some CSS3 properties for rounded corners. IE don´t show this*/
-div#wrapper-menu div#big-menu-hidden,div#big-menu-hidden-stores{
+div#wrapper-menu div#big-menu-hidden, div#big-menu-hidden2{
  	display:none;
 	text-align:left;
 	position:relative;
@@ -74,13 +74,13 @@ div#wrapper-menu div#big-menu-hidden-stores{
 	#margin-left:197px;/*hack for IE7*/
 	}
 /*Set and positioning cart section in the big menu*/
-div#wrapper-menu div#big-menu-hidden div#cart{float:left;width:204px;_width:203px;height:245px;}
-div#wrapper-menu div#big-menu-hidden div#cart div#counter-cart{
+div#wrapper-menu div#big-menu-hidden div#cart, div#big-menu-hidden2 div#cart{float:left;width:204px;_width:203px;height:245px;}
+div#wrapper-menu div#big-menu-hidden div#cart div#counter-cart, div#big-menu-hidden2 div#cart div#counter-cart{
 	width:122px;
 	height:auto;
 	margin:20px 0 0 35px; 
 	}
-div#wrapper-menu div#big-menu-hidden div#cart div#counter-cart p{
+div#wrapper-menu div#big-menu-hidden div#cart div#counter-cart p,div#big-menu-hidden2 div#cart div#counter-cart p{
 	font-family:Helvetica,arial,sans;
 	font-size:1.7em;
 	font-weight:regular;
@@ -89,7 +89,7 @@ div#wrapper-menu div#big-menu-hidden div#cart div#counter-cart p{
 	line-height:25px;
 	color:#FFF; 
 	}
-div#wrapper-menu div#big-menu-hidden div#cart div#counter-cart p#btn-go-cart a{
+div#wrapper-menu div#big-menu-hidden div#cart div#counter-cart p#btn-go-cart a, div#big-menu-hidden2 div#cart div#counter-cart p#btn-go-cart a{
 	display:inherit;
 	width:250px;
 	height:35px;
@@ -101,10 +101,10 @@ div#wrapper-menu div#big-menu-hidden div#cart div#counter-cart p#btn-go-cart a{
 	-moz-border-radius:5px;
 	-webkit-border-radius:5px;
 	}
-div#wrapper-menu div#big-menu-hidden div#cart div#counter-cart p#btn-go-cart a:hover{color:#263100;}
+div#wrapper-menu div#big-menu-hidden div#cart div#counter-cart p#btn-go-cart a:hover, div#big-menu-hidden2 div#cart div#counter-cart p#btn-go-cart a:hover{color:#263100;}
 /*Now let set the product-list with its size, positioning and type*/
-div#wrapper-menu div#big-menu-hidden div#product-list{float:right;width:706px;height:235px;padding-top:10px;}
-div#wrapper-menu div#big-menu-hidden div#product-list h2{
+div#wrapper-menu div#big-menu-hidden div#product-list, div#big-menu-hidden2 div#product-list{float:right;width:706px;height:235px;padding-top:10px;}
+div#wrapper-menu div#big-menu-hidden div#product-list h2, div#big-menu-hidden2 div#product-list h2{
 	display:block;
 	position:absolute;
 	width:auto;
@@ -123,15 +123,15 @@ div#wrapper-menu div#big-menu-hidden div#product-list h2{
 	-moz-border-radius:5px;
 	-webkit-border-radius:5px;
 	}
-div#wrapper-menu div#big-menu-hidden div#product-list span.btn-close, div#big-menu-hidden-stores span.btn-close{display:block;position:absolute;left:875px;margin-top:12px;}
-div#wrapper-menu div#big-menu-hidden div#product-list span.btn-close a, div#big-menu-hidden-stores span.btn-close a{display:block;width:17px;height:18px;background:url(../images/btn-close.png) no-repeat;color:#474747;font-size:1em;line-height:15px; text-indent:-35px;}
-div#wrapper-menu div#big-menu-hidden div#product-list span.btn-close a:hover, div#big-menu-hidden-stores span.btn-close a:hover{color:#6C6E6E;}
-div#wrapper-menu div#big-menu-hidden div#product-list h2#li-item1{left: 300px; width:200px; height:35px; }
-div#wrapper-menu div#big-menu-hidden div#product-list h2#li-item2{left: 445px;}
-div#wrapper-menu div#big-menu-hidden div#product-list h2#li-item3{left: 680px;}
+div#wrapper-menu div#big-menu-hidden  div#product-list span.btn-close, div#big-menu-hidden2 span.btn-close{display:block;position:absolute;left:875px;margin-top:12px;}
+div#wrapper-menu div#big-menu-hidden  div#product-list span.btn-close a, div#big-menu-hidden2 span.btn-close a{display:block;width:17px;height:18px;background:url(../images/btn-close.png) no-repeat;color:#474747;font-size:1em;line-height:15px; text-indent:-35px;}
+div#wrapper-menu div#big-menu-hidden  div#product-list span.btn-close a:hover, div#big-menu-hidden2 span.btn-close a:hover{color:#6C6E6E;}
+div#wrapper-menu div#big-menu-hidden div#product-list h2#li-item1, div#big-menu-hidden2 div#product-list h2#li-item1{left: 300px; width:200px; height:35px; }
+div#wrapper-menu div#big-menu-hidden div#product-list h2#li-item2, div#big-menu-hidden2 div#product-list h2#li-item2{left: 445px;}
+div#wrapper-menu div#big-menu-hidden div#product-list h2#li-item3, div#big-menu-hidden2 div#product-list h2#li-item3{left: 680px;}
 /*starting with lists*/
-div#wrapper-menu div#big-menu-hidden div#product-list ul{float:left:;width:214px;_width:200px;height:auto;margin:50px 0px 5px 20px;}
-div#wrapper-menu div#big-menu-hidden div#product-list ul li{
+div#wrapper-menu div#big-menu-hidden div#product-list ul, div#big-menu-hidden2 div#product-list ul{float:left:;width:214px;_width:200px;height:auto;margin:50px 0px 5px 20px;}
+div#wrapper-menu div#big-menu-hidden div#product-list ul li, div#big-menu-hidden2 div#product-list ul li{
 	width:180px;
 	height:20px;
 	_height:15px;
@@ -142,10 +142,10 @@ div#wrapper-menu div#big-menu-hidden div#product-list ul li{
 	-moz-border-radius:5px;
 	-webkit-border-radius:5px;
 	}
-div#wrapper-menu div#big-menu-hidden div#product-list ul li:last-child{list-style:none;background-color:transparent;text-align:right;color:#474747;text-decoration:underline;}
-div#wrapper-menu div#big-menu-hidden div#product-list ul li:last-child:hover{list-style:none;background-color:#2D2D2D;}
-div#wrapper-menu div#big-menu-hidden div#product-list ul li:hover{list-style-image: url(../images/ico-list-hover.png);#list-style:none;}
-div#wrapper-menu div#big-menu-hidden div#product-list ul li a{
+div#wrapper-menu div#big-menu-hidden div#product-list ul li:last-child, div#big-menu-hidden2 div#product-list ul li:last-child{list-style:none;background-color:transparent;text-align:right;color:#474747;text-decoration:underline;}
+div#wrapper-menu div#big-menu-hidden div#product-list ul li:last-child:hover, div#big-menu-hidden2 div#product-list ul li:last-child:hover{list-style:none;background-color:#2D2D2D;}
+div#wrapper-menu div#big-menu-hidden div#product-list ul li:hover, div#big-menu-hidden2 div#product-list ul li:hover{list-style-image: url(../images/ico-list-hover.png);#list-style:none;}
+div#wrapper-menu div#big-menu-hidden div#product-list ul li a, div#big-menu-hidden2 div#product-list ul li a{
 	display:block;
 	width:auto;
 	height:25px;
@@ -159,14 +159,14 @@ div#wrapper-menu div#big-menu-hidden div#product-list ul li a{
 	-moz-border-radius:5px;
 	-webkit-border-radius:5px;
 	}
-div#wrapper-menu div#big-menu-hidden div#product-list ul li a:hover{background-color:#262626;}
-div#wrapper-menu div#big-menu-hidden div#product-list ul li:last-child a:hover{background-color:transparent;color:#698800;text-decoration:underline;}
+div#wrapper-menu div#big-menu-hidden div#product-list ul li a:hover, div#big-menu-hidden2 div#product-list ul li a:hover{background-color:#262626;}
+div#wrapper-menu div#big-menu-hidden div#product-list ul li:last-child a:hover, div#big-menu-hidden2 div#product-list ul li:last-child a:hover{background-color:transparent;color:#698800;text-decoration:underline;}
 /*view-all class is needed because IE don´t interprets correctly pseudo class last-child for select last item in a list (in this case)*/
 /*Furthemore you can see some properties with a # caracter or _ They are ways to hack for IE7 and IE6 respectivly in cases that this browsers don´t render correctly the properties we are using in each case*/  
-div#wrapper-menu div#big-menu-hidden div#product-list ul li.view-all{#list-style-image:none;background-color:transparent;text-align:right;color:#474747;text-decoration:underline;}
-div#wrapper-menu div#big-menu-hidden div#product-list ul li.view-all:hover{#list-style-image:none;}
-div#wrapper-menu div#big-menu-hidden div#product-list ul li.view-all a:hover{#list-style-image:none;background-color:transparent;color:#698800;text-decoration:underline;}
-div#wrapper-menu div#big-menu-hidden div#product-list ul li span{display:block;list-style:none;}
+div#wrapper-menu div#big-menu-hidden div#product-list ul li.view-all, div#big-menu-hidden2 div#product-list ul li.view-all{#list-style-image:none;background-color:transparent;text-align:right;color:#474747;text-decoration:underline;}
+div#wrapper-menu div#big-menu-hidden div#product-list ul li.view-all:hover, div#big-menu-hidden2 div#product-list ul li.view-all:hover{#list-style-image:none;}
+div#wrapper-menu div#big-menu-hidden div#product-list ul li.view-all a:hover, div#big-menu-hidden2 div#product-list ul li.view-all a:hover{#list-style-image:none;background-color:transparent;color:#698800;text-decoration:underline;}
+div#wrapper-menu div#big-menu-hidden div#product-list ul li span, div#big-menu-hidden2 div#product-list ul li span{display:block;list-style:none;}
 /*Styles for big-menu stores*/
 /*First we set width for each block with maps and data location*/
 div#wrapper-menu div#big-menu-hidden-stores div#stores{width:900px;height:230px;margin:10px 0 0 33px;}

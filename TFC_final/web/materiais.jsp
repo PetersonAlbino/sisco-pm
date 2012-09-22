@@ -17,7 +17,7 @@
 <script src="js/functions.js" type="text/javascript"></script>
 
 
-<title>Cadastro de Ocorrências</title>
+<title>Cadastro de Ocorr�ncias</title>
 <!--<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
         <%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%> 
 
@@ -47,14 +47,12 @@
 			  <ul id="nav" name="nav">
 					<li id="item1" class="fade"><a class="big-menu-launcher" <a href="#" title="Cadastros Básicos"><img src="images/woofunction-icons/folder_add_32.png" width="20" height="20" alt="cadastro" /> Cadastro</a></li>
 					<li id="item2" class="fade"><a href="consulta.jsp" title="Consultas Gerenciais"><img src="images/woofunction-icons/folder_chart_32.png" width="20" height="20" alt="consulta" /> Consultas</a></li>
-					<li id="item3" class="fade"><a href="relatorio.jsp" title="Impressãoo de Relatórios"><img src="images/woofunction-icons/folder_page_32.png" width="20" height="20" alt="relatorio" /> Relatorios</a></li>
+					<li id="item3" class="fade"><a class="big-menu-launcher-2" title="Impressão de Relatórios"><img src="images/woofunction-icons/folder_page_32.png" width="20" height="20" alt="relatorio" /> Relatorios</a></li>
 					<li id="item4" class="fade"><a href="materiais.jsp" title="Cadastro de Materiais"><img src="images/woofunction-icons/basket_add_32.png" width="20" height="20" alt="materiais" /> Materiais</a></li>
 					<li id="item5" class="fade"><a href="ajuda.jsp" title="Portal de Ajuda"><img src="images/woofunction-icons/folder_warning_32.png" width="20" height="20" alt="ajuda" />Ajuda</a></li>
-				
-			<!--here starts hiden menus-->
-                        <!--endBigMenuHidden-stores--><!--end wrapper-menu-->
-		<!--end HTML code for this menu-->
-	
+				</ul><!--end nav-->
+		
+
 	</div>
       </header>
       <div id="content">
