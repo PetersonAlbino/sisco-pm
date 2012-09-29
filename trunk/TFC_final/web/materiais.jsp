@@ -42,15 +42,19 @@
                                         
   
 		
-	<!--Following code is all you need for the menu-->
-			<div id="wrapper-menu"><!--container for this menu. With this container you can position it where you want in your layaout-->
-			  <ul id="nav" name="nav">
-					<li id="item1" class="fade"><a class="big-menu-launcher" <a href="#" title="Cadastros Básicos"><img src="images/woofunction-icons/folder_add_32.png" width="20" height="20" alt="cadastro" /> Cadastro</a></li>
-					<li id="item2" class="fade"><a href="consulta.jsp" title="Consultas Gerenciais"><img src="images/woofunction-icons/folder_chart_32.png" width="20" height="20" alt="consulta" /> Consultas</a></li>
-					<li id="item3" class="fade"><a class="big-menu-launcher-2" title="Impressão de Relatórios"><img src="images/woofunction-icons/folder_page_32.png" width="20" height="20" alt="relatorio" /> Relatorios</a></li>
-					<li id="item4" class="fade"><a href="materiais.jsp" title="Cadastro de Materiais"><img src="images/woofunction-icons/basket_add_32.png" width="20" height="20" alt="materiais" /> Materiais</a></li>
-					<li id="item5" class="fade"><a href="ajuda.jsp" title="Portal de Ajuda"><img src="images/woofunction-icons/folder_warning_32.png" width="20" height="20" alt="ajuda" />Ajuda</a></li>
-				</ul><!--end nav-->
+  <!--Following code is all you need for the menu-->
+          <div id="wrapper-menu"><!--container for this menu. With this container you can position it where you want in your layaout-->
+            <ul id="nav" name="nav">
+                  <li id="item1" class="fade"><a class="cadastro-basico"  href="#" title="Cadastros Básicos"><img src="images/woofunction-icons/folder_add_32.png" width="20" height="20" alt="cadastro" /> Cadastro</a></li>
+                  
+                  <li id="item2" class="fade"><a  class="cadastro-basico2" href="#" title="Consultas Gerenciais"><img src="images/woofunction-icons/folder_chart_32.png" width="20" height="20" alt="consulta" /> Consultas</a></li>
+                  
+                  <li id="item3" class="fade"><a class="big-menu-launcher" href="#" title="Impressão de Relatórios"><img src="images/woofunction-icons/folder_page_32.png" width="20" height="20" alt="relatorio" /> Relatorios</a></li>
+                  
+                  <li id="item4" class="fade"><a  class="big-menu-launcher" href="#" title="Cadastro de Materiais"><img src="images/woofunction-icons/basket_add_32.png" width="20" height="20" alt="materiais" /> Materiais</a></li>
+                  
+                  <li id="item5" class="fade"><a href="ajuda.jsp" title="Portal de Ajuda"><img src="images/woofunction-icons/folder_warning_32.png" width="20" height="20" alt="ajuda" />Ajuda</a></li>
+              </ul><!--end nav-->
 		
 
 	</div>
