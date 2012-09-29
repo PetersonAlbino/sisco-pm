@@ -10,5 +10,12 @@ $(document).ready(function () {
         $("#big-menu-hidden").hide();
 		
     });
+	
+	$(".cadastro-basico3").click(function () {
+        $("#big-menu-hidden3").toggle("fast");
+        $("#big-menu-hidden").hide();
+		
+    });
+	
 });
 //The code is very easy. When user click (you can change it to .hover) a button with a "big-menu-launcher" class the div with id=big-menu-hidden is show and if the user clik other time or in close button the box is hidden
