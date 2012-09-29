@@ -2,18 +2,21 @@ $(document).ready(function () {
     $(".cadastro-basico").click(function () {
         $("#big-menu-hidden").toggle("fast");
         $("#big-menu-hidden2").hide();
+		$("#big-menu-hidden3").hide();
 		
     });
 
     $(".cadastro-basico2").click(function () {
         $("#big-menu-hidden2").toggle("fast");
         $("#big-menu-hidden").hide();
+		$("#big-menu-hidden3").hide();
 		
     });
 	
 	$(".cadastro-basico3").click(function () {
         $("#big-menu-hidden3").toggle("fast");
         $("#big-menu-hidden").hide();
+		$("#big-menu-hidden2").hide();
 		
     });
 	
