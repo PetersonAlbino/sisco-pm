@@ -1,8 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <link rel="shortcut icon" href="images/favicon.ico" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="shortcut icon" href="images/favicon.ico" />
         <link href="style.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" type="text/css" href="account_styles.css" />
         <link rel="stylesheet" type="text/css" media="all" href="styles/jquery-menu-03-styles.css" />					<!--jquery-menu-03styles-->
@@ -39,7 +40,7 @@
 
                             <li id="item2" class="fade"><a  class="cadastro-basico2" href="#" title="Consultas Gerenciais"><img src="images/woofunction-icons/folder_chart_32.png" width="20" height="20" alt="consulta" /> Consultas</a></li>
 
-                            <li id="item3" class="fade"><a class="cadastro-basico3" href="#" title="Impressão de Relatórios"><img src="images/woofunction-icons/folder_page_32.png" width="20" height="20" alt="relatorio" /> Relatorios</a></li>
+                          <li id="item3" class="fade"><a class="cadastro-basico3" href="#" title="Impressão de Relatórios"><img src="images/woofunction-icons/folder_page_32.png" width="20" height="20" alt="relatorio" /> Relatorios</a></li>
 
                             <li id="item4" class="fade"><a  class="big-menu-launcher" href="#" title="Cadastro de Materiais"><img src="images/woofunction-icons/basket_add_32.png" width="20" height="20" alt="materiais" /> Materiais</a></li>
 
@@ -56,15 +57,12 @@
                                     <p id="btn-go-cart"><a href="" title="Cadastro referente a Flora">Flora</a></p>
                                     <p id="btn-go-cart"><a href="" title="Cadastro referente a Fauna">Fauna</a></p>
                                     <p id="btn-go-cart"><a href="" title="Cadastro referente a Ordem Publica">Ordem</a></p>
-
                                 </div>
                             </div>
                             <div id="product-list">
-
                                 <h2 id="li-item1" >Outros <strong>Cadastros:</strong></h2>
                                 <span class="btn-close"><a class="cadastro-basico"href="#">close</a></span>
                                 <ul id="list-cameras">
-
                                     <li><a href="endereco.jsp" title="Cadastro de Localidade">Localidade</a></li>
                                     <li><a href="materiais.jsp" title="Cadastro de Materiais">Materiais</a></li>
                                     <li><a href="os.jsp" title="Cadastro de Constata��oo de Ordem de Servi�o">Constatação</a></li>
@@ -73,42 +71,41 @@
                                     <li><a href="os.jsp" title="Cadastro de Ordem de Serviço">Ordem de Serviço</a></li>
                                     <li class="view-all"><span><a href="#"></a></span></li>
                                 </ul>
-
                             </div>
                         </div><!--Fim Menu de Cadastros-->
 
                         <!--Inicio Menu de Relatórios-->
 
                         <div id="big-menu-hidden3">
-                            <div id="cart">
-                                <div id="counter-cart">
-                                    <div id="btn-go-cart">	                
-                                        <h3 id="li-item1" >Consultas</h3>
-                                    </div>
-                                    <p id="btn-go-cart"><a href="" title="Cadastro referente a Flora">11Flora</a></p>
-                                    <p id="btn-go-cart"><a href="" title="Cadastro referente a Fauna">11Fauna</a></p>
-                                    <p id="btn-go-cart"><a href="" title="Cadastro referente a Ordem Publica">11Ordem</a></p>
-
-                                </div>
+                        <div id="cart">
+                            <div id="counter-cart">
+                            <div id="btn-go-cart">
+                            <h3 id="li-item1" >Tipo de Ocorrência</h3>
                             </div>
-                            <div id="product-list">
-
-                                <h2 id="li-item1" >Outros <strong>Cadastros:</strong></h2>
-                                <span class="btn-close"><a class="cadastro-basico3"href="#">close</a></span>
-                                <ul id="list-cameras">
-
-                                    <li><a href="endereco.jsp" title="Cadastro de Localidade">Localidade</a></li>
-                                    <li><a href="materiais.jsp" title="Cadastro de Materiais">Materiais</a></li>
-                                    <li><a href="os.jsp" title="Cadastro de Constata��oo de Ordem de Servi�o">Constatação</a></li>
-                                    <li><a href="#" title="Cadastro de Infra��o">Auto de Infração</a></li>
-                                    <li><a href="#" title="Cadastro de Recolhimento">Recolhimento</a></li>
-                                    <li><a href="os.jsp" title="Cadastro de Ordem de Serviço">Ordem de Serviço</a></li>
-                                    <li class="view-all"><span><a href="#"></a></span></li>
-                                </ul>
-
+                            <ul id="list-cameras">
+                            	<li><a href="" title="">Fauna99</a></li>
+                                <li><a href="" title="">Flora99</a></li>
+                            </ul>
                             </div>
+							</div>
+                            	
+                         <div id="product-list">
+                         <div id="cart">
+                            <div id="counter-cart">
+                         	<div id="btn-go-cart">
+                         	<h3 id="li-item1" >Atendimentos</h3>
+                            <ul id="list-cameras">
+                            	<li><a href="" title="teste">Pendentes</a></li>
+                            	<li><a href="" title="teste">Atendidos</a></li>
+                                <li class="view-all"><span><a href="#"></a></span></li>
+                            	
+                            </ul>
+                            </div>
+                            </div>
+                        	</div>
+
+                        </div>
                         </div><!--Fim Menu de relatórios-->
-
                         <!--Inicio menu de Consultas-->
                         <div id="big-menu-hidden2">
                             <div id="cart">

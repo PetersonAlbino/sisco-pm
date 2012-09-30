@@ -17,7 +17,7 @@
 <script src="js/functions.js" type="text/javascript"></script>
 
 
-<title>Cadastro de Ocorrências</title>
+<title>Cadastro de Ocorrï¿½ncias</title>
 <!--<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
         <%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%> 
 
@@ -38,7 +38,7 @@
      <header>
                 <div id="header">
 
-                    <div id="logo"><a href="inicio.jsp"><img src="images/logo.png" alt="peterson" /></a></div>
+                    <div id="logo"><a href="Principal.jsp"><img src="images/logo.png" alt="peterson" /></a></div>
                                         
   
 		
@@ -67,7 +67,7 @@
                 <div id="content_main">
 
                     <div id="content_data">
-                        <h1>Cadastro Bairro</h1>
+                        <h1>Como podemos te ajudar:</h1>
 
                         <div >
 
@@ -75,17 +75,14 @@
                             <form  name="form1" method="post" action="">
                                 <ul>
                                     <li>
+                                    <div >
+<h1><a href="mailto:peh.ty2@gmail.com"> <img src="images/woofunction-icons/email_forward_32.png"/> Email</a> </h1> 
+<h1><a href="https://facebook.com"> <img src="images/woofunction-icons/twitter_32.png"/> Facebook </a> 		</h1>
+<h1><a href="https://twitter.com" > <img src="images/woofunction-icons/twitter_32.png"/> Twitter </a>  		</h1>
 
-                                       
-                                        <label for="email" ><Strong>Codigo</Strong></label>
-					<input type="text" name="cod_bairro" id="cod_bairro">
-					<label for="email" ><strong>Descricao</strong></label>
-                                        <input type="text" name="des_bairro" id="des_bairro">
-                                        <input name="Ok"  type="submit" class="buttonGradientSubmit" id="Ok" />
+									</div>                                        
                                   </li>
                               </ul>
-
-
                             </form>  
                         </div>
 
