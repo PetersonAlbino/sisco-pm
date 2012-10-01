@@ -42,7 +42,7 @@
 
                           <li id="item3" class="fade"><a class="cadastro-basico3" href="#" title="Impressão de Relatórios"><img src="images/woofunction-icons/folder_page_32.png" width="20" height="20" alt="relatorio" /> Relatorios</a></li>
 
-                            <li id="item4" class="fade"><a  class="big-menu-launcher" href="#" title="Cadastro de Materiais"><img src="images/woofunction-icons/basket_add_32.png" width="20" height="20" alt="materiais" /> Materiais</a></li>
+                            <li id="item4" class="fade"><a  class="cadastro-basico4" href="#" title="Cadastro de Materiais"><img src="images/woofunction-icons/basket_add_32.png" width="20" height="20" alt="materiais" /> Materiais</a></li>
 
                             <li id="item5" class="fade"><a href="ajuda.jsp" title="Portal de Ajuda"><img src="images/woofunction-icons/folder_warning_32.png" width="20" height="20" alt="ajuda" />Ajuda</a></li>
                         </ul><!--end nav-->
@@ -135,7 +135,30 @@
                                 </ul>
 
                             </div>
-                        </div><!--Fim Mendu de Consultas-->
+                        </div><!--Fim Menu de Consultas-->
+                        
+                        <!-- Inicio Menu de Materiais-->
+                        <div id="big-menu-hidden4">
+                            <div id="cart">
+                                <div id="counter-cart">
+                                    <div id="btn-go-cart">	                
+                                        <h3 id="li-item1" > Consultas</h3>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div id="product-list">
+
+                                <h2 id="li-item1" >Outros <strong>Cadastros:</strong></h2>
+                                <span class="btn-close"><a class="cadastro-basico4"href="#">close</a></span>
+                                <ul id="list-cameras">
+
+                                    
+                                </ul>
+
+                            </div>
+                        </div>
+                        <!-- Fim Menu de Materiais-->                        
 
                     </div>
                     </div>
