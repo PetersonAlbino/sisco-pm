@@ -1,36 +1,34 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml">
-
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-
-
-<link rel="shortcut icon" href="images/favicon.ico" />
-
-   <link href="style.css" rel="stylesheet" type="text/css" />
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="shortcut icon" href="images/favicon.ico" />
+        <link href="style.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" type="text/css" href="account_styles.css" />
+        <link rel="stylesheet" type="text/css" media="all" href="styles/jquery-menu-03-styles.css" />					<!--jquery-menu-03styles-->
 
-<link rel="stylesheet" type="text/css" media="all" href="styles/jquery-menu-03-styles.css" /><!--jquery-menu-03 styles-->
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+        <script src="js/functions.js" type="text/javascript"></script>
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-<script src="js/functions.js" type="text/javascript"></script>
-
-
-<title>Cadastro de Ocorr�ncias</title>
-<!--<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
+        
+        <title>Cadastro de Materiais</title>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
         <%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%> 
 
         <%@ include file="conexao.jsp" %>
 
-        <c:if test="${not empty param.Cod_Mun}">
-
-            <sql:query var="MUNICIPIO" dataSource="${conexao}">
-                SELECT COD_MUN,DES_MUNICIPIO FROM MUNICIPIO
-                where COD_MUN = ${param.Cod_Mu}
-            </sql:query>
+         <c:if test="${not empty param.cod_material}">
+             <sql:update dataSource="${conexao}">
+                INSERT INTO MATERIAL (COD_MATERIAL,DES_MATERIAL,STATUS_MATERIAL) 
+            VALUES (?,?,?)
+                <sql:param value="${param.cod_material}" />
+                <sql:param value="${param.des_material}" />
+                <sql:param value="${param.status_material}" />
+               
+            </sql:update> 
         </c:if>
--->
+
 </head>
 
 	<body>
@@ -55,11 +53,8 @@
                   
                   <li id="item5" class="fade"><a href="ajuda.jsp" title="Portal de Ajuda"><img src="images/woofunction-icons/folder_warning_32.png" width="20" height="20" alt="ajuda" />Ajuda</a></li>
               </ul><!--end nav-->
-				
-			<!--here starts hiden menus-->
-                        <!--endBigMenuHidden-stores--><!--end wrapper-menu-->
-		<!--end HTML code for this menu-->
-	
+		
+
 	</div>
       </header>
       <div id="content">
@@ -67,7 +62,7 @@
                 <div id="content_main">
 
                     <div id="content_data">
-                        <h1>Cadastro Bairro</h1>
+                        <h1>Cadastro de Materiais</h1>
 
                         <div >
 
@@ -77,12 +72,17 @@
                                     <li>
 
                                        
-                                        <label for="email" ><Strong>Codigo</Strong></label>
-					<input type="text" name="cod_bairro" id="cod_bairro">
-					<label for="email" ><strong>Descricao</strong></label>
-                                        <input type="text" name="des_bairro" id="des_bairro">
-                                        <input name="Ok"  type="submit" class="buttonGradientSubmit" id="Ok" />
-                                  </li>
+                    <label for="código" ><Strong>Código</Strong></label>
+                    
+                    <input type="codigo" name="cod_material" id="cod_material"  value="${material.rows[0].COD_MATERIAL}">
+                    <label for="radioButton1"> <input type="radio" name="radioButton" id="radioButton1" />Tipo</label> 
+					<label for="email" ><strong>Descricao</strong></label> <input type="text" name="des_material" id="des_material" value="${material.rows[0].DES_MATERIAL}">
+                    <label for="email" ><strong>Status</strong></label> <input type="text" name="status_material" id="status_material" value="${material.row[0].STATUS_MATERIAL}">
+                    <input name="Salvar"  type="submit" class="buttonGradientSubmit" id="salvar" />
+                    <input name="Salvar"  type="submit" class="buttonGradientSubmit" id="salvar" />
+                    <input name="Salvar"  type="submit" class="buttonGradientSubmit" id="salvar" />
+                    
+                            </li>
                               </ul>
 
 
