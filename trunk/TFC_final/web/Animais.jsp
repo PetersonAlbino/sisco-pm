@@ -20,11 +20,14 @@
 
          <c:if test="${not empty param.cod_material}">
              <sql:update dataSource="${conexao}">
-                INSERT INTO MATERIAL (COD_MATERIAL,DES_MATERIAL,STATUS_MATERIAL) 
-            VALUES (?,?,?)
+                INSERT INTO MATERIAL (COD_MATERIAL,ESPECIE,STATUS_MATERIAL,RACA,SEXO,DES_MATERIAL) 
+            VALUES (?,?,?,?,?,?)
                 <sql:param value="${param.cod_material}" />
-                <sql:param value="${param.des_material}" />
+                <sql:param value="${param.especie}" />
                 <sql:param value="${param.status_material}" />
+                <sql:param value="${param.raca}" />
+                <sql:param value="${param.sexo}" />
+                <sql:param value="${param.des_material}" />
                
             </sql:update> 
         </c:if>
@@ -62,27 +65,25 @@
                 <div id="content_main">
 
                     <div id="content_data">
-                        <h1>Cadastro de Materiais</h1>
-
+                        <h1>Cadastro de Animais Apreendidos</h1>
                         <div >
-
-
                             <form  name="form1" method="post" action="">
                                 <ul>
                                     <li>
+                                        <label for="codigo" ><Strong>Código</Strong></label> <input type="codigo" name="cod_material" id="cod_material"  value="${material.rows[0].COD_MATERIAL}">
+                                            <label for="email" ><strong>Especie</strong></label> <input type="text" name="especie" id="especie" value="${material.rows[0].ESPECIE}">
+                                                <label for="email" ><strong>Raça</strong></label> <input type="text" name="raca" id="raca" value="${material.row[0].RACA}">
+                                                    <label for="email" ><strong>Sexo</strong></label> <input type="text" name="sexo" id="sexo" value="${material.row[0].SEXO}">
+                                                        <label for="email" ><Strong>Status</Strong></label><input type="text" name="status_material" value="${material.rows[0].STATUS_MATERIAL}">
+                                                            <label for="email" ><strong>Descrição</strong></label><input type="textarea" name="des_material" id="des_material" value="${material.rows[0].DES_MATERIAL}"  </input>
+                        <p >${ request.setAttributes("mensagem","Aqui vem a mensagem!!!")}</p>
+             
+                    <input name="Salvar" value="Aceitar" type="submit" class="buttonGradientSubmit" id="salvar" />
+                    <input name="Salvar"  value="clear" type="submit" class="buttonGradientSubmit" id="limpar" />
+                    <input name="Salvar"  value="Cancelar" type="submit" class="buttonGradientSubmit" id="Cancelar" />
+                    
 
-                                       
-                    <label for="cÃ³digo" ><Strong>CÃ³digo</Strong></label>
-                    
-                    <input type="codigo" name="cod_material" id="cod_material"  value="${material.rows[0].COD_MATERIAL}">
-                    <label for="radioButton1"> <input type="radio" name="radioButton" id="radioButton1" />Tipo</label> 
-					<label for="email" ><strong>Descricao</strong></label> <input type="text" name="des_material" id="des_material" value="${material.rows[0].DES_MATERIAL}">
-                    <label for="email" ><strong>Status</strong></label> <input type="text" name="status_material" id="status_material" value="${material.row[0].STATUS_MATERIAL}">
-                    <input name="Salvar"  type="submit" class="buttonGradientSubmit" id="salvar" />
-                    <input name="Salvar"  type="submit" class="buttonGradientSubmit" id="salvar" />
-                    <input name="Salvar"  type="submit" class="buttonGradientSubmit" id="salvar" />
-                    
-                            </li>
+                                  </li>
                               </ul>
 
 

@@ -75,9 +75,9 @@
                     <label for="codigo" ><Strong>Código</Strong></label> <input type="codigo" name="cod_material" id="cod_material"  value="${material.rows[0].COD_MATERIAL}">
 					<label for="email" ><strong>Descricao</strong></label> <input type="text" name="des_material" id="des_material" value="${material.rows[0].DES_MATERIAL}">
                     <label for="email" ><strong>Status</strong></label> <input type="text" name="status_material" id="status_material" value="${material.row[0].STATUS_MATERIAL}">
-                    <input name="Salvar"  type="submit" class="buttonGradientSubmit" id="salvar" />
-                    <input name="Salvar"  type="submit" class="buttonGradientSubmit" id="salvar" />
-                    <input name="Salvar"  type="submit" class="buttonGradientSubmit" id="salvar" />
+                    <input name="Select"  type="submit" class="buttonGradientSubmit" id="salvar" />
+                    <input name="Salvar"  value="Limpar" type="submit" class="buttonGradientSubmit" id="salvar" />
+                    <input name="Salvar"  value="Cancelar" type="submit" class="buttonGradientSubmit" id="salvar" />
 
                                   </li>
                               </ul>
