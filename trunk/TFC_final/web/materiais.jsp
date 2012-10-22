@@ -25,6 +25,7 @@
                 <sql:param value="${param.cod_material}" />
                 <sql:param value="${param.des_material}" />
                 <sql:param value="${param.status_material}" />
+                
                
             </sql:update> 
         </c:if>
