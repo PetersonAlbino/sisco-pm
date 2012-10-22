@@ -16,7 +16,7 @@
         <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
         <%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%> 
 
-        <!--Conexão
+
         <%@ include file="conexao.jsp" %>
   
         <c:if test="${not empty param.Cod_ocor}">
@@ -26,7 +26,7 @@
                 where COD_MUN = ${param.Cod_ocor}
             </sql:query>
         </c:if>
-        <!--fim - conexão-->
+
     </head>
     <body>
         <div id="container">
@@ -167,9 +167,35 @@
                 <div id="content_head"></div>
                 <div id="content_main">
                     <div class="tmplapps">
-                        <div class="floatsection col0"><a href="ocorrencias.jsp" title="" style="background-image: url(img/apps_page_synotes__1339059658.png)"></a></span></div>
-                        <div class="floatsection col1"><a href="materiais.jsp"title="" style="background-image:url(img/apps_page_birder__1339081919.png)"></a></div>
-
+                        <c:forEach var="municipio" begin="0" items="${MUNICIPIO.rows}">
+                <form name="teste" action="index.jsp"><ol>
+                        <table border="1">
+                            <thead>
+                                <tr>
+                                    <th>C�digo</th>
+                                    <th>MUNICIPIO</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>${municipio.COD_MUN}</td>
+                                    <td>${municipio.DES_MUN}</td>
+                                </tr>
+                                <tr>
+                                    <td>${municipio.COD_MUN}</td>
+                                    <td>${municipio.DES_MUN}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                     
+                    </ol>
+                                     
+                </form>
+                
+            
+        </c:forEach>
+                        
+                        
                         <div class="clear"></div>
                         <div class="floatsection col0"></div>
                         <div class="clear"></div>
