@@ -31,6 +31,9 @@
                 <sql:param value="${param.des_cidade}" />
             </sql:update> 
         </c:if>
+                <sql:query var="municipios" dataSource="${conexao}">
+                SELECT COD_MUN,DES_MUN FROM MUNICIPIO
+            </sql:query>
 
 </head>
 
@@ -68,7 +71,7 @@
                 <div id="content_main">
 
                     <div id="content_data">
-                        <h1>Cadastro de Municipios</h1>
+                        <h1>Cadastro de Ordens de Serviços</h1>
                         <div >
                             <form  name="form1" method="post" action="">
                                 <ul>
@@ -77,6 +80,12 @@
 					<input type="text" name="cod_cidade" id="cod_cidade" value="${MUNICIPIO.rows[0].COD_MUN}">
 					<label for="email" ><strong>Nome da Cidade</strong></label>
                                         <input type="text" name="des_cidade" id="des_cidade" value="${MUNICIPIO.rows[0].DES_MUN}">
+                                            <select name="des_municipio"> 
+                                               <c:forEach items="${municipios.rows}" var="municipio">
+                                                  
+                                                   <option value="${municipio.COD_MUN}" >${municipio.DES_MUN} </option>
+                                               </c:forEach>
+                                           </select>
                                     </li>
                                         <input name="Ok" value="Enviar" type="submit" class="buttonGradientSubmit" id="Ok" />
                                         <input name="Ok" value="Limpar" type="submit" class="buttonGradientSubmit" id="Ok" />
