@@ -23,15 +23,20 @@
 
        <%@ include file="conexao.jsp" %>
 
-         <c:if test="${not empty param.cod_bairro}">
+         <c:if test="${not empty param.cod_mun}">
              <sql:update dataSource="${conexao}">
-                INSERT INTO BAIRRO (COD_BAIRRO,COD_MUN,NOME_BAIRRO) 
-            VALUES (?,?,?)
-                <sql:param value="${param.cod_bairro}" />
+                INSERT INTO BAIRRO (COD_MUN,NOME_BAIRRO) 
+            VALUES (?,?)
+                
                 <sql:param value="${param.nome_bairro}" />
                 <sql:param value="${param.cod_mun}" />
             </sql:update> 
         </c:if>
+        
+            <sql:query var="municipios" dataSource="${conexao}">
+                SELECT COD_MUN,DES_MUN FROM MUNICIPIO
+            </sql:query>
+        
 
 </head>
 
@@ -74,20 +79,21 @@
                             <form  name="form1" method="post" action="">
                                 <ul>
                                     <li>
-                                        <label for="email" ><Strong>Código</Strong></label>
-					<input type="text" name="cod_bairro" id="cod_bairro" value="${BAIRRO.rows[0].COD_BAIRRO}">
-                     					<label  "for="email"><strong>Bairros</strong></label>
+                     					<label  "for="email"><strong>Bairro</strong></label>
                                        <input type="text" name="nome_bairro" id="nome_bairro" value="${BAIRRO.rows[0].NOME_BAIRRO}">
                      					<label  "for="email"><strong>Cidade</strong></label>
-                                       <input type="text" name="cod_municipio" id="cod_municipio" value="${BAIRRO.rows[0].COD_MUN}">                                       
+                                       
+                                           <select name="cod_municipio"> 
+                                               <c:forEach items="${municipios.rows}" var="municipio">
+                                                  
+                                                   <option value="${municipio.COD_MUN}" >${municipio.DES_MUN} </option>
+                                               </c:forEach>
+                                           </select>
                                     </li>
                                         <input name="Ok" value="Enviar" type="submit" class="buttonGradientSubmit" id="Ok" />
                                         <input name="Ok" value="Limpar" type="submit" class="buttonGradientSubmit" id="Ok" />
-                                        <input name="Ok" value="Cancelar" type="submit" class="buttonGradientSubmit" id="Ok" />
-                                 
+                                        <input name="Ok" value="Cancelar" type="submit" class="buttonGradientSubmit" id="Cancelar"/>
                               </ul>
-
-
                             </form>  
                         </div>
 
