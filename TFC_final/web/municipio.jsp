@@ -27,6 +27,7 @@
 
 
     </head>
+        
     <c:if test="${not empty param.des_cidade}">
         <c:catch var="erro">
             <sql:update dataSource="${conexao}">
