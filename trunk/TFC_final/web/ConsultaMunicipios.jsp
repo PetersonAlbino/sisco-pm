@@ -1,9 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="shortcut icon" href="images/favicon.ico" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="shortcut icon" href="images/favicon.ico" />
         <link href="style.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" type="text/css" href="account_styles.css" />
         <link rel="stylesheet" type="text/css" media="all" href="styles/jquery-menu-03-styles.css" />					<!--jquery-menu-03styles-->
@@ -18,15 +18,34 @@
 
 
         <%@ include file="conexao.jsp" %>
-  
-        <c:if test="${not empty param.Cod_ocor}">
-  
-            <sql:query var="MUNICIPIO" dataSource="${conexao}">
-                SELECT COD_MUN,DES_MUNICIPIO FROM MUNICIPIO
-                where COD_MUN = ${param.Cod_ocor}
-            </sql:query>
+
+        <c:if test="${not empty param.mensagem}">
+            <script>
+                alert('${param.mensagem}')
+            </script>
         </c:if>
 
+        <c:if test="${param.acao=='delete'}">
+            <c:catch var="erro">
+                <sql:update dataSource="${conexao}">
+                    DELETE FROM MUNICIPIO WHERE COD_MUN = ${param.id}
+
+                </sql:update>
+                <script> alert('Munic韕io Removido')</script>
+            </c:catch>
+
+            <c:if test="${not empty erro}">
+                <script> alert('N鉶 foi possivel remover Munic韕io')</script>    
+            </c:if>
+
+
+        </c:if>
+
+
+        <sql:query var="municipio" dataSource="${conexao}">
+            SELECT * FROM MUNICIPIO
+            order by DES_MUN
+        </sql:query>
     </head>
     <body>
         <div id="container">
@@ -40,7 +59,7 @@
 
                             <li id="item2" class="fade"><a  class="cadastro-basico2" href="#" title="Consultas Gerenciais"><img src="images/woofunction-icons/folder_chart_32.png" width="20" height="20" alt="consulta" /> Consultas</a></li>
 
-                          <li id="item3" class="fade"><a class="cadastro-basico3" href="#" title="Impress茫o de Relat贸rios"><img src="images/woofunction-icons/folder_page_32.png" width="20" height="20" alt="relatorio" /> Relatorios</a></li>
+                            <li id="item3" class="fade"><a class="cadastro-basico3" href="#" title="Impress茫o de Relat贸rios"><img src="images/woofunction-icons/folder_page_32.png" width="20" height="20" alt="relatorio" /> Relatorios</a></li>
 
                             <li id="item4" class="fade"><a  class="cadastro-basico4" href="#" title="Cadastro de Materiais"><img src="images/woofunction-icons/basket_add_32.png" width="20" height="20" alt="materiais" /> Materiais</a></li>
 
@@ -77,34 +96,34 @@
                         <!--Inicio Menu de Relat贸rios-->
 
                         <div id="big-menu-hidden3">
-                        <div id="cart">
-                            <div id="counter-cart">
-                            <div id="btn-go-cart">
-                            <h3 id="li-item1" >Tipo de Ocorr锚ncia</h3>
+                            <div id="cart">
+                                <div id="counter-cart">
+                                    <div id="btn-go-cart">
+                                        <h3 id="li-item1" >Tipo de Ocorr锚ncia</h3>
+                                    </div>
+                                    <ul id="list-cameras">
+                                        <li><a href="" title="">Fauna99</a></li>
+                                        <li><a href="" title="">Flora99</a></li>
+                                    </ul>
+                                </div>
                             </div>
-                            <ul id="list-cameras">
-                            	<li><a href="" title="">Fauna99</a></li>
-                                <li><a href="" title="">Flora99</a></li>
-                            </ul>
-                            </div>
-							</div>
-                            	
-                         <div id="product-list">
-                         <div id="cart">
-                            <div id="counter-cart">
-                         	<div id="btn-go-cart">
-                         	<h3 id="li-item1" >Atendimentos</h3>
-                            <ul id="list-cameras">
-                            	<li><a href="" title="teste">Pendentes</a></li>
-                            	<li><a href="" title="teste">Atendidos</a></li>
-                                <li class="view-all"><span><a href="#"></a></span></li>
-                            	
-                            </ul>
-                            </div>
-                            </div>
-                        	</div>
 
-                        </div>
+                            <div id="product-list">
+                                <div id="cart">
+                                    <div id="counter-cart">
+                                        <div id="btn-go-cart">
+                                            <h3 id="li-item1" >Atendimentos</h3>
+                                            <ul id="list-cameras">
+                                                <li><a href="" title="teste">Pendentes</a></li>
+                                                <li><a href="" title="teste">Atendidos</a></li>
+                                                <li class="view-all"><span><a href="#"></a></span></li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div><!--Fim Menu de relat贸rios-->
                         <!--Inicio menu de Consultas-->
                         <div id="big-menu-hidden2">
@@ -136,7 +155,7 @@
 
                             </div>
                         </div><!--Fim Menu de Consultas-->
-                        
+
                         <!-- Inicio Menu de Materiais-->
                         <div id="big-menu-hidden4">
                             <div id="cart">
@@ -144,7 +163,7 @@
                                     <div id="btn-go-cart">	                
                                         <h3 id="li-item1" > Consultas</h3>
                                     </div>
-                                    
+
                                 </div>
                             </div>
                             <div id="product-list">
@@ -153,7 +172,7 @@
                                 <span class="btn-close"><a class="cadastro-basico4"href="#">close</a></span>
                                 <ul id="list-cameras">
 
-                                    
+
                                 </ul>
 
                             </div>
@@ -161,70 +180,89 @@
                         <!-- Fim Menu de Materiais-->                        
 
                     </div>
-                    </div>
+                </div>
             </header>
             <div id="content">
                 <div id="content_head"></div>
                 <div id="content_main">
-                    <div class="tmplapps">
-                        <c:forEach var="municipio" begin="0" items="${MUNICIPIO.rows}">
-                <form name="teste" action="index.jsp"><ol>
-                        <table border="1">
-                            <thead>
-                                <tr>
-                                    <th>C骴igo</th>
-                                    <th>MUNICIPIO</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>${municipio.COD_MUN}</td>
-                                    <td>${municipio.DES_MUN}</td>
-                                </tr>
-                                <tr>
-                                    <td>${municipio.COD_MUN}</td>
-                                    <td>${municipio.DES_MUN}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                     
-                    </ol>
-                                     
-                </form>
-                
-            
-        </c:forEach>
-                        
-                        
-                        <div class="clear"></div>
-                        <div class="floatsection col0"></div>
-                        <div class="clear"></div>
-                    </div>
-                </div>	
+                   <div id="content_data">
+                        <div >
+                            <form  name="form1" method="post" action="">
+                                <ul>
+                                    <li>
+                                        <table width="100%" height="100%" border="0">
+                                            <caption class="TableTitle1">
+                                                <br/>
+                                                <br/>
+                                                <br/>
+                                            </caption>
+                                        </table>  
+                                        <table width="100%" border="0">
+                                            <caption class="TableTitle2">
+                                                <br/>
+                                                <br/>
+                                            </caption>
+                                        </table>
+                                        <p><img src="images/woofunction-icons/add_16.png" value="submit" width="20" height="20"/><a href="municipio.jsp">Novo Municipio</a></p>
+                                        <table width="100%" border="0">
 
-                <footer>
-                    <div id="footer">
-                        <div id="icons">
-                            <a href="https://www.facebook.com/">
-                                <img src="https://www.syncode.co.uk/img/facebook_icon.png" alt="Facebook" />
-                            </a>
-                            <a href="https://twitter.com">
-                                <img src="https://www.syncode.co.uk/img/footer_twitter.png" alt="Twitter" />
-                            </a>
-                            <a href="mailto:peh.ty2@gmail.com.br">
-                                <img src="https://www.syncode.co.uk/img/footer_email.png" alt="Email Syncode" />
-                            </a>
-                         </div>
-                        <div id="links">
-                           
-                        </div>
-                        <div id="copy">
-                            &copy; 2012 <a href="https://www.ace.br">SISCO</a>
-                        </div>
-                    </div>
-                </footer>
+                                            <tr>
+                                                <th>Edita</th>
+                                                <th>Deleta</th>
+                                                <th>C骴igo</th>
+                                                <th>Nome</th>
+                                            </tr>
+                                            <c:forEach var="municipio" items="${municipio.rows}">
+                                                <tr>
+                                                    <td class="td1"><a href="municipio.jsp?id=${municipio.COD_MUN}"><img src="images/woofunction-icons/pencil_32.png" value="submit" width="20" height="20"/></a></td>
+                                                    <td class="td1"><a href="ConsultaMunicipios.jsp?id=${municipio.COD_MUN}&acao=delete"><img src="images/woofunction-icons/close_16.png" value="submit" width="20" height="20"/></a></td>
+                                                    <td class="td1"><c:out value="${municipio.COD_MUN}"/></td>
+                                                    <td class="td1"><c:out value="${municipio.DES_MUN}"/></td>
 
+                                                </tr>
+                                            </c:forEach> 
+
+                                        </table>   
+                                        <table>
+                                            <tr>
+                                                <td class="td2"><a href="Principal.jsp"><img src="images/woofunction-icons/arrow_left_16.png" value="submit" width="20" height="20"/></a></td>
+                                            </tr>
+                                        </table>
+                                        <table width="100%" border="0">
+                                        </table>
+                                    </li>
+                                </ul>
+                            </form>
+                        </div>
+                   </div>
+                </div>
             </div>
-    </body>
+            <div id="content_foot"></div>
+        </div>
+                    <footer>
+                        <div id="footer">
+                            <div id="icons">
+                                <a href="https://www.facebook.com/">
+                                    <img src="https://www.syncode.co.uk/img/facebook_icon.png" alt="Facebook" />
+                                </a>
+                                <a href="https://twitter.com">
+                                    <img src="https://www.syncode.co.uk/img/footer_twitter.png" alt="Twitter" />
+                                </a>
+                                <a href="mailto:peh.ty2@gmail.com.br">
+                                    <img src="https://www.syncode.co.uk/img/footer_email.png" alt="Email Syncode" />
+                                </a>
+                            </div>
+                            <div id="links">
 
-</html>
+                            </div>
+                            <div id="copy">
+                                &copy; 2012 <a href="https://www.ace.br">SISCO</a>
+                            </div>
+                        </div>
+                    </footer>
+        
+
+        
+                </body>
+
+                </html>
