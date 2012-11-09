@@ -315,3 +315,16 @@ div.loginRight input[type="email"], div.loginRight input[type="password"]
 .inputFocus { /* Este está genérico nos para radio e checkbox, mas também pode ser uma classe para cada */
    border:dotted 1px #CCC;
 }
+
+.styleCombobox {
+  width:150px;
+  background:gray;
+}
+.styleCombobox span {
+  position:absolute;
+}
+.styleCombobox select {
+  width:100%;
+  opacity:0;
+  filter:alpha(opacity=0);
+}

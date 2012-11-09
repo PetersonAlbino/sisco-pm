@@ -112,6 +112,8 @@ pre { background: #ffffff; text-align: left; }
 .btnshome { position: absolute; z-index: 999; top: 248px; right: 190px; width: 230px; text-align: center; }
 .btnshome img { margin: 0 10px; }
 
+
+
 .tmplapps {}
 .tmplapps .col0 { float: left; margin-left: 30px; }
 .tmplapps .col1 { float: right; margin-right: 30px; }

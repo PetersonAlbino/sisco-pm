@@ -84,7 +84,7 @@
                                 <ul id="list-cameras">
                                     <li><a href="endereco.jsp" title="Cadastro de Localidade">Localidade</a></li>
                                     <li><a href="materiais.jsp" title="Cadastro de Materiais">Materiais</a></li>
-                                    <li><a href="os.jsp" title="Cadastro de Constata��oo de Ordem de Servi�o">Constatação</a></li>
+                                    <li><a href="os.jsp" title="Cadastro de Constata��o de Ordem de Servi�o">Constatação</a></li>
                                     <li><a href="#" title="Cadastro de Infra��o">Auto de Infração</a></li>
                                     <li><a href="#" title="Cadastro de Recolhimento">Recolhimento</a></li>
                                     <li><a href="os.jsp" title="Cadastro de Ordem de Serviço">Ordem de Serviço</a></li>

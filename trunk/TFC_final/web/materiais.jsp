@@ -32,23 +32,27 @@
                     <sql:param value="${param.tipo_material}"/>
 
                 </sql:update>
-                <script> alert('Município Cadastrado')</script>
+                <script> alert('Municï¿½pio Cadastrado')</script>
             </c:catch>
 
             <c:if test="${not empty erro}">
-                <script> alert('Erro ao cadastrar Município')</script>    
+                <script> alert('Erro ao cadastrar Municï¿½pio')</script>    
             </c:if>
 
 
         </c:if>
-        <sql:query var="material" dataSource="${conexao}">
+                <sql:query var="material" dataSource="${conexao}">
             SELECT COD_MATERIAL,DES_MATERIAL,STATUS_MATERIAL,RACA,ESPECIE,SEXO,TIPO_MATERIAL FROM MATERIAL
+            where COD_MATERIAL = ${param.id}
+        </sql:query>
 
+        <sql:query var="status" dataSource="${conexao}">
+            SELECT COD_MATERIAL,DES_MATERIAL,STATUS_MATERIAL,RACA,ESPECIE,SEXO,TIPO_MATERIAL FROM MATERIAL
         </sql:query>
-        <sql:query var="material" dataSource="${conexao}">
-            SELECT * FROM MATERIAL
-            order by COD_MATERIAL
+        <sql:query var="sexo" dataSource="${conexao}">
+            SELECT COD_MATERIAL,DES_MATERIAL,STATUS_MATERIAL,RACA,ESPECIE,SEXO,TIPO_MATERIAL FROM MATERIAL
         </sql:query>
+
 
 
     </head>
@@ -73,7 +77,7 @@
 
                             <li id="item4" class="fade"><a  class="big-menu-launcher" href="#" title="Cadastro de Materiais"><img src="images/woofunction-icons/basket_add_32.png" width="20" height="20" alt="materiais" /> Materiais</a></li>
 
-                            <li id="item5" class="fade"><a href="ajuda.jsp" title="Portal de Ajuda"><img src="images/woofunction-icons/folder_warning_32.png" width="20" height="20" alt="ajuda" />Ajuda</a></li>
+                            <li id="item5" class="fade"><a href="Principal.jsp" title="Portal de Ajuda"><img src="images/woofunction-icons/folder_warning_32.png" width="20" height="20" alt="ajuda" />Ajuda</a></li>
                         </ul><!--end nav-->
 
 
@@ -95,24 +99,26 @@
 
                                         <label for="email" ><strong>Descricao</strong></label> <input type="text" name="des_material" id="des_material" value="${material.rows[0].DES_MATERIAL}">
                                             <label for="email" ><strong>Status</strong></label>
-                                            <select name="cod_material"> 
-                                                <c:forEach items="${material.rows}" var="material">
+                                            <div class="styleCombobox">
+                                                <select name="cod_material"> 
+                                                    <c:forEach items="${status.rows}" var="status">
+                                                        <option value="${status.COD_MATERIAL}" >${status.STATUS_MATERIAL} </option>
+                                                    </c:forEach>
+                                                </select>
+                                            </div>
 
-
-                                                    <option value="${material.COD_MATERIAL}" >${material.STATUS_MATERIAL} </option>
-                                                </c:forEach>
-                                            </select>
-
-                                            <label for="email" ><strong>Raça</strong></label> <input type="text" name="raca" id="raca" value="${material.rows[0].RACA}">
+                                            <label for="email" ><strong>Raca</strong></label> <input type="text" name="raca" id="raca" value="${material.rows[0].RACA}">
                                                 <label for="email" ><strong>Especie</strong></label> <input type="text" name="especie" id="especie" value="${material.rows[0].ESPECIE}">
                                                     <label for="email" ><strong>Sexo</strong></label>
-                                                    <select name="sexo"> 
-                                                        <c:forEach items="${material.rows}" var="material">
+                                                    <div class="styleCombobox">
+                                                        <select name="sexo"> 
+                                                            <c:forEach items="${sexo.rows}" var="sexo">
 
-                                                            <option value="${material.STATUS_MATERIAL}" >${material.SEXO} </option>
-                                                        </c:forEach>
 
-                                                    </select>
+                                                                <option value="${sexo.COD_MATERIAL}" >${sexo.SEXO} </option>
+                                                            </c:forEach>
+                                                        </select>
+                                                    </div>
                                                     <label for="email" ><strong>Tipo</strong></label> <input type="text" name="tipo_material" id="tipo_material" value="${material.rows[0].TIPO_MATERIAL}">    
                                                         <input name="Select"  type="submit" class="buttonGradientSubmit" id="salvar" />
                                                         <input name="Salvar"  value="Limpar" type="submit" class="buttonGradientSubmit" id="salvar" />

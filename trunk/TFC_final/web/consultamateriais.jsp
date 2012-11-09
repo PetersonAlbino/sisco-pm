@@ -17,9 +17,10 @@
         <%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%> 
 
         <%@ include file="conexao.jsp" %>
+
         <c:if test="${not empty param.mensagem}">
             <script>
-            alert('${param.mensagem}')
+                alert('${param.mensagem}')
             </script>
         </c:if>
 
@@ -29,20 +30,21 @@
                     DELETE FROM MATERIAL WHERE COD_MATERIAL = ${param.id}
 
                 </sql:update>
-                <script> alert('Material Removido')</script>
+                <script> alert('Material  Removido')</script>
             </c:catch>
 
             <c:if test="${not empty erro}">
-                <script> alert('Não foi possivel remover Materiais')</script>    
+                <script> alert('Não foi possivel remover o material selecionado')</script>    
             </c:if>
 
 
         </c:if>
+
+
         <sql:query var="material" dataSource="${conexao}">
             SELECT * FROM MATERIAL
-            order by COD_MATERIAL
+            order by DES_MATERIAL
         </sql:query>
-
     </head>
 
     <body>
@@ -97,21 +99,21 @@
                                             <tr>
                                                 <th>Edita</th>
                                                 <th>Deleta</th>
-                                                <th>Código</th>
                                                 <th>Nome</th>
                                                 <th>Código</th>
                                                 <th>Nome</th>
-                                                <th>STATUS</th>
-                                                <th>RACA</th>
-                                                <th>ESPECIE</th>
-                                                <th>SEXO</th>
-                                                <th>TIPO</th>
+                                                <th>Status</th>
+                                                <th>Raça</th>
+                                                <th>Espécie</th>
+                                                <th>Sexo</th>
+                                                <th>Tipo</th>
                                             </tr>
                                             <c:forEach var="material" items="${material.rows}">
                                                 <tr>
-                                                    <td class="td1"><a href="material.jsp?id=${material.COD_MATERIAL}"><img src="images/woofunction-icons/pencil_32.png" value="submit" width="20" height="20"/></a></td>
-                                                    <td class="td1"><a href="material.jsp?id=${material.COD_MATERIAL}&acao=delete"><img src="images/woofunction-icons/close_16.png" value="submit" width="20" height="20"/></a></td>
-                                                    <td class="td1"><c:out value="${material.COD_MATERIAL}"/></td>
+                                                    <td class="td1"><a href="materiais.jsp?id=${material.COD_MATERIAL}"><img src="images/woofunction-icons/pencil_32.png" value="submit" width="20" height="20"/></a></td>
+                                                    <td class="td1"><a href="consultamateriais.jsp?id=${material.COD_MATERIAL}&acao=delete"><img src="images/woofunction-icons/close_16.png" value="submit" width="20" height="20"/></a></td>
+                                                   
+                                                    
                                                     <td class="td1"><c:out value="${material.DES_MATERIAL}"/></td>
                                                     <td class="td1"><c:out value="${material.STATUS_MATERIAL}"/></td>
                                                     <td class="td1"><c:out value="${material.RACA}"/></td>
