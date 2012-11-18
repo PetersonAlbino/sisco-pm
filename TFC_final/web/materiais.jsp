@@ -22,17 +22,14 @@
         <c:if test="${not empty param.des_material}">
             <c:catch var="erro">
                 <sql:update dataSource="${conexao}">
-                    INSERT INTO MATERIAL (DES_MATERIAL,STATUS_MATERIAL,RACA,ESPECIE,SEXO,TIPO_MATERIAL) 
-                    VALUES (?,?,?,?,?,?)
+                    INSERT INTO MATERIAL (DES_MATERIAL,STATUS_MATERIAL,TIPO_MATERIAL) 
+                    VALUES (?,?,?)
                     <sql:param value="${param.des_material}" />
                     <sql:param value="${param.status_material}"/>
-                    <sql:param value="${param.raca}"/>
-                    <sql:param value="${param.especie}"/>
-                    <sql:param value="${param.sexo}"/>
                     <sql:param value="${param.tipo_material}"/>
 
                 </sql:update>
-                <script> alert('Munic�pio Cadastrado')</script>
+                <script> alert('Municipio Cadastrado')</script>
             </c:catch>
 
             <c:if test="${not empty erro}">
@@ -41,19 +38,14 @@
 
 
         </c:if>
-                <sql:query var="material" dataSource="${conexao}">
-            SELECT COD_MATERIAL,DES_MATERIAL,STATUS_MATERIAL,RACA,ESPECIE,SEXO,TIPO_MATERIAL FROM MATERIAL
-            where COD_MATERIAL = ${param.id}
-        </sql:query>
-
         <sql:query var="status" dataSource="${conexao}">
             SELECT COD_MATERIAL,DES_MATERIAL,STATUS_MATERIAL,RACA,ESPECIE,SEXO,TIPO_MATERIAL FROM MATERIAL
         </sql:query>
-        <sql:query var="sexo" dataSource="${conexao}">
-            SELECT COD_MATERIAL,DES_MATERIAL,STATUS_MATERIAL,RACA,ESPECIE,SEXO,TIPO_MATERIAL FROM MATERIAL
-        </sql:query>
-
-
+            <c:if>
+                <sql:query var="editar" dataSource="${conexao}">
+                SELECT COD_MATERIAL,DES_MATERIAL,STATUS_MATERIAL,RACA,ESPECIE,SEXO,TIPO_MATERIAL FROM MATERIAL
+                WHERE COD_MATERIAL = ${param.id}
+                </sql:query>
 
     </head>
 
@@ -109,16 +101,6 @@
 
                                             <label for="email" ><strong>Raca</strong></label> <input type="text" name="raca" id="raca" value="${material.rows[0].RACA}">
                                                 <label for="email" ><strong>Especie</strong></label> <input type="text" name="especie" id="especie" value="${material.rows[0].ESPECIE}">
-                                                    <label for="email" ><strong>Sexo</strong></label>
-                                                    <div class="styleCombobox">
-                                                        <select name="sexo"> 
-                                                            <c:forEach items="${sexo.rows}" var="sexo">
-
-
-                                                                <option value="${sexo.COD_MATERIAL}" >${sexo.SEXO} </option>
-                                                            </c:forEach>
-                                                        </select>
-                                                    </div>
                                                     <label for="email" ><strong>Tipo</strong></label> <input type="text" name="tipo_material" id="tipo_material" value="${material.rows[0].TIPO_MATERIAL}">    
                                                         <input name="Select"  type="submit" class="buttonGradientSubmit" id="salvar" />
                                                         <input name="Salvar"  value="Limpar" type="submit" class="buttonGradientSubmit" id="salvar" />
