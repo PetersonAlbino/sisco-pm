@@ -12,22 +12,51 @@
         <script src="js/functions.js" type="text/javascript"></script>
 
 
-        <title>Cadastro de Materiais</title>
+        <title>Cadastro de Animais</title>
         <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
         <%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%> 
 
         <%@ include file="conexao.jsp" %>
+        <c:if test="${not empty param.mensagem}">
+            <script>
+                alert('${param.mensagem}')
+            </script>
+        </c:if>
+
+        <c:if test="${param.acao=='delete'}">
+            <c:catch var="erro">
+                <sql:update dataSource="${conexao}">
+                    DELETE FROM MATERIAL WHERE COD_MATERIAL = ${param.id}
+
+                </sql:update>
+                <script> alert('Animal  Removido')</script>
+            </c:catch>
+
+            <c:if test="${not empty erro}">
+                <script> alert('Não foi possivel remover o animal selecionado')</script>    
+            </c:if>
+        </c:if>
+
+        <c:if test="${param.acao=='edit'}">
+            <sql:query var="editar" dataSource="${conexao}">
+                SELECT COD_MATERIAL,DES_MATERIAL,STATUS_MATERIAL,RACA,ESPECIE,SEXO,TIPO_MATERIAL FROM MATERIAL
+                WHERE COD_MATERIAL = ${param.id}
+            </sql:query>
+
+        </c:if>
+
 
         <c:if test="${not empty param.cod_material}">
             <c:catch var="erro">
                 <sql:update dataSource="${conexao}">
-                    INSERT INTO MATERIAL (COD_MATERIAL,ESPECIE,STATUS_MATERIAL,RACA,SEXO,DES_MATERIAL) 
-                    VALUES (?,?,?,?,?)
-                    <sql:param value="${param.especie}" />
+                    INSERT INTO MATERIAL (DES_MATERIAL,STATUS_MATERIAL,RACA,ESPECIE,SEXO,TIPO_MATERIAL) 
+                    VALUES (?,?,?,?,?,?)
+                    <sql:param value="${param.des_material}" />
                     <sql:param value="${param.status_material}" />
                     <sql:param value="${param.raca}" />
+                    <sql:param value="${param.especie}" />
                     <sql:param value="${param.sexo}" />
-                    <sql:param value="${param.des_material}" />
+                    <sql:param value="${param.tipo_material}" />
                 </sql:update>
                 <script> alert('Municipio Cadastrado')</script>
             </c:catch>
@@ -35,14 +64,14 @@
                 <script> alert('Erro ao cadastrar Municipio')</script>    
             </c:if>
         </c:if>
-        <sql:query var="material" dataSource="${conexao}">
-            SELECT COD_MATERIAL,DES_MATERIAL,STATUS_MATERIAL,RACA,ESPECIE,SEXO,TIPO_MATERIAL FROM MATERIAL
-            where COD_MATERIAL = ${param.id}
-        </sql:query>
 
         <sql:query var="status" dataSource="${conexao}">
             SELECT COD_MATERIAL,DES_MATERIAL,STATUS_MATERIAL,RACA,ESPECIE,SEXO,TIPO_MATERIAL FROM MATERIAL
         </sql:query>
+
+        <sql:query var="tipo" dataSource="${conexao}">
+            SELECT COD_MATERIAL,DES_MATERIAL,STATUS_MATERIAL,RACA,ESPECIE,SEXO,TIPO_MATERIAL FROM MATERIAL
+        </sql:query>            
 
     </head>
 
@@ -82,64 +111,71 @@
                             <form  name="form1" method="post" action="">
                                 <ul>
                                     <li>
-                                        <label for="email" ><strong>Especie</strong></label> <input type="text" name="especie" id="especie" value="${material.rows[0].ESPECIE}">
+                                        <label for="email" ><strong>Descrição</strong></label><input type="textarea" name="des_material" id="des_material" value="${material.rows[0].DES_MATERIAL}"  </input>
+                                        <label for="email" ><Strong>Status</Strong></label><input type="text" name="status_material" value="${material.rows[0].STATUS_MATERIAL}">
                                             <label for="email" ><strong>Raça</strong></label> <input type="text" name="raca" id="raca" value="${material.row[0].RACA}">
-                                                <label for="email" ><strong>Sexo</strong></label>
-                                                <div class="styleCombobox">
-                                                    <select name="cod_material"> 
-                                                        <c:forEach items="${status.rows}" var="status">
-                                                            <option value="${status.COD_MATERIAL}" >${status.SEXO} </option>
-                                                        </c:forEach>
-                                                    </select>
-                                                    <div    
-
-                                                        <label for="email" ><Strong>Status</Strong></label><input type="text" name="status_material" value="${material.rows[0].STATUS_MATERIAL}">
-                                                            <label for="email" ><strong>Descrição</strong></label><input type="textarea" name="des_material" id="des_material" value="${material.rows[0].DES_MATERIAL}"  </input>
-
-                                                            <input name="Salvar" value="Aceitar" type="submit" class="buttonGradientSubmit" id="salvar" />
-                                                            <input name="Salvar"  value="clear" type="submit" class="buttonGradientSubmit" id="limpar" />
-                                                            <input name="Salvar"  value="Cancelar" type="submit" class="buttonGradientSubmit" id="Cancelar" />
-
-
-                                                            </li>
-                                                            </ul>
-
-
-                                                            </form>  
+                                                <label for="email" ><strong>Especie</strong></label> <input type="text" name="especie" id="especie" value="${material.rows[0].ESPECIE}">
+                                                    <label for="email" ><strong>Sexo</strong></label>
+                                                    <div class="styleCombobox">
+                                                        <select name="cod_material"> 
+                                                            <c:forEach items="${status.rows}" var="status">
+                                                                <option value="${status.COD_MATERIAL}" >${status.SEXO} </option>
+                                                            </c:forEach>
+                                                        </select>
+                                                    </div>
+                                                    <label for="email" ><strong>Tipo</strong></label>
+                                                    <div class="styleCombobox">
+                                                         <select name="cod_material">
+                                                            <c:forEach items="${tipo.rows}" var="tipo">
+                                                                <option value="${tipo.COD_MATERIAL}" >${tipo.TIPO_MATERIAL}</option>
+                                                            </c:forEach>
+                                                        </select>
                                                     </div>
 
-                                                </div>
+                                                    <input name="Salvar" value="Aceitar" type="submit" class="buttonGradientSubmit" id="salvar" />
+                                                    <input name="Salvar"  value="clear" type="submit" class="buttonGradientSubmit" id="limpar" />
+                                                    <input name="Salvar"  value="Cancelar" type="submit" class="buttonGradientSubmit" id="Cancelar" />
 
-                                                </div>
-                                                </div>
-                                                <div id="content_foot"></div>
-                                                </div>
-                                                <footer>
-                                                    <div id="footer">
-                                                        <div id="icons">
-                                                            <a href="https://www.facebook.com/pages/Syncode/118722130954">
-                                                                <img src="https://www.syncode.co.uk/img/facebook_icon.png" alt="Facebook" />
-                                                            </a>
-                                                            <a href="https://twitter.com/petersonalbino">
-                                                                <img src="https://www.syncode.co.uk/img/footer_twitter.png" alt="Twitter" />
-                                                            </a>
-                                                            <a href="mailto:peh.ty2@gmail.com">
-                                                                <img src="https://www.syncode.co.uk/img/footer_email.png" alt="Email Syncode" />
-                                                            </a>
-                                                            <a href="https://www.syncode.co.uk/files/prkit.zip">
-                                                                <img src="https://www.syncode.co.uk/img/footer_pr.png" alt="PR Kit" />
-                                                            </a>
-                                                        </div>
-                                                        <div id="links">
-                                                            <a href="https://www.syncode.co.uk/terms.html">Terms and conditions</a> | <a href="https://www.syncode.co.uk/privacy.html">Privacy policy</a> | <a href="https://www.syncode.co.uk/cookies.html">Cookie policy</a>
-                                                        </div>
-                                                        <div id="copy">
-                                                            &copy; 2012 <a href="https://www.syncode.co.uk">Syncode</a>, a division of <a href="http://www.vpltd.com">Virtual Programming Ltd</a>
-                                                        </div>
+
+                                                    </li>
+                                                    </ul>
+
+
+                                                    </form>  
                                                     </div>
-                                                </footer>
 
-                                                </div>
-                                                </body>
+                                                    </div>
 
-                                                </html>
+                                                    </div>
+                                                    </div>
+                                                    <div id="content_foot"></div>
+                                                    </div>
+                                                    <footer>
+                                                        <div id="footer">
+                                                            <div id="icons">
+                                                                <a href="https://www.facebook.com/pages/Syncode/118722130954">
+                                                                    <img src="https://www.syncode.co.uk/img/facebook_icon.png" alt="Facebook" />
+                                                                </a>
+                                                                <a href="https://twitter.com/petersonalbino">
+                                                                    <img src="https://www.syncode.co.uk/img/footer_twitter.png" alt="Twitter" />
+                                                                </a>
+                                                                <a href="mailto:peh.ty2@gmail.com">
+                                                                    <img src="https://www.syncode.co.uk/img/footer_email.png" alt="Email Syncode" />
+                                                                </a>
+                                                                <a href="https://www.syncode.co.uk/files/prkit.zip">
+                                                                    <img src="https://www.syncode.co.uk/img/footer_pr.png" alt="PR Kit" />
+                                                                </a>
+                                                            </div>
+                                                            <div id="links">
+                                                                <a href="https://www.syncode.co.uk/terms.html">Terms and conditions</a> | <a href="https://www.syncode.co.uk/privacy.html">Privacy policy</a> | <a href="https://www.syncode.co.uk/cookies.html">Cookie policy</a>
+                                                            </div>
+                                                            <div id="copy">
+                                                                &copy; 2012 <a href="https://www.syncode.co.uk">Syncode</a>, a division of <a href="http://www.vpltd.com">Virtual Programming Ltd</a>
+                                                            </div>
+                                                        </div>
+                                                    </footer>
+
+                                                    </div>
+                                                    </body>
+
+                                                    </html>

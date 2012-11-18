@@ -18,6 +18,34 @@
 
         <%@ include file="conexao.jsp" %>
 
+        <c:if test="${not empty param.mensagem}">
+            <script>
+                alert('${param.mensagem}')
+            </script>
+        </c:if>
+
+        <c:if test="${param.acao=='delete'}">
+            <c:catch var="erro">
+                <sql:update dataSource="${conexao}">
+                    DELETE FROM MATERIAL WHERE COD_MATERIAL = ${param.id}
+
+                </sql:update>
+                <script> alert('Material  Removido')</script>
+            </c:catch>
+
+            <c:if test="${not empty erro}">
+                <script> alert('Não foi possivel remover o material selecionado')</script>    
+            </c:if>
+        </c:if>
+
+        <c:if test="${param.acao=='edit'}">
+            <sql:query var="editar" dataSource="${conexao}">
+                SELECT COD_MATERIAL,DES_MATERIAL,STATUS_MATERIAL,RACA,ESPECIE,SEXO,TIPO_MATERIAL FROM MATERIAL
+                WHERE COD_MATERIAL = ${param.id}
+            </sql:query>
+
+        </c:if>
+
 
         <c:if test="${not empty param.des_material}">
             <c:catch var="erro">
@@ -27,26 +55,14 @@
                     <sql:param value="${param.des_material}" />
                     <sql:param value="${param.status_material}"/>
                     <sql:param value="${param.tipo_material}"/>
-
                 </sql:update>
-                <script> alert('Municipio Cadastrado')</script>
+                <script> alert('material Cadastrado')</script>
             </c:catch>
-
-            <c:if test="${not empty erro}">
-                <script> alert('Erro ao cadastrar Municï¿½pio')</script>    
-            </c:if>
-
 
         </c:if>
         <sql:query var="status" dataSource="${conexao}">
             SELECT COD_MATERIAL,DES_MATERIAL,STATUS_MATERIAL,RACA,ESPECIE,SEXO,TIPO_MATERIAL FROM MATERIAL
         </sql:query>
-            <c:if>
-                <sql:query var="editar" dataSource="${conexao}">
-                SELECT COD_MATERIAL,DES_MATERIAL,STATUS_MATERIAL,RACA,ESPECIE,SEXO,TIPO_MATERIAL FROM MATERIAL
-                WHERE COD_MATERIAL = ${param.id}
-                </sql:query>
-
     </head>
 
     <body>
@@ -81,14 +97,10 @@
 
                     <div id="content_data">
                         <h1>Cadastro de Materiais</h1>
-
                         <div >
-
-
                             <form  name="form1" method="post" action="">
                                 <ul>
                                     <li>
-
                                         <label for="email" ><strong>Descricao</strong></label> <input type="text" name="des_material" id="des_material" value="${material.rows[0].DES_MATERIAL}">
                                             <label for="email" ><strong>Status</strong></label>
                                             <div class="styleCombobox">
@@ -98,53 +110,52 @@
                                                     </c:forEach>
                                                 </select>
                                             </div>
-
-                                            <label for="email" ><strong>Raca</strong></label> <input type="text" name="raca" id="raca" value="${material.rows[0].RACA}">
-                                                <label for="email" ><strong>Especie</strong></label> <input type="text" name="especie" id="especie" value="${material.rows[0].ESPECIE}">
-                                                    <label for="email" ><strong>Tipo</strong></label> <input type="text" name="tipo_material" id="tipo_material" value="${material.rows[0].TIPO_MATERIAL}">    
-                                                        <input name="Select"  type="submit" class="buttonGradientSubmit" id="salvar" />
-                                                        <input name="Salvar"  value="Limpar" type="submit" class="buttonGradientSubmit" id="salvar" />
-                                                        <input name="Salvar"  value="Cancelar" type="submit" class="buttonGradientSubmit" id="salvar" />
-
-                                                        </li>
-                                                        </ul>
+                                            <label for="email" ><strong>Tipo</strong></label> <input type="text" name="tipo_material" id="tipo_material" value="${material.rows[0].TIPO_MATERIAL}">    
+                                                <input name="Select"  type="submit" class="buttonGradientSubmit" id="salvar" />
+                                                <input name="Salvar"  value="Limpar" type="submit" class="buttonGradientSubmit" id="salvar" />
+                                                <input name="Salvar"  value="Cancelar" type="submit" class="buttonGradientSubmit" id="salvar" />
 
 
-                                                        </form>  
+
+                                                </li>
+                                                </ul>
+
+
+                                                </form>  
+                                                </div>
+
+                                                </div>
+
+                                                </div>
+                                                </div>
+                                                <div id="content_foot"></div>
+                                                </div>
+                                                <footer>
+                                                    <div id="footer">
+                                                        <div id="icons">
+                                                            <a href="https://www.facebook.com/pages/Syncode/118722130954">
+                                                                <img src="https://www.syncode.co.uk/img/facebook_icon.png" alt="Facebook" />
+                                                            </a>
+                                                            <a href="https://twitter.com/petersonalbino">
+                                                                <img src="https://www.syncode.co.uk/img/footer_twitter.png" alt="Twitter" />
+                                                            </a>
+                                                            <a href="mailto:peh.ty2@gmail.com">
+                                                                <img src="https://www.syncode.co.uk/img/footer_email.png" alt="Email Syncode" />
+                                                            </a>
+                                                            <a href="https://www.syncode.co.uk/files/prkit.zip">
+                                                                <img src="https://www.syncode.co.uk/img/footer_pr.png" alt="PR Kit" />
+                                                            </a>
                                                         </div>
+                                                        <div id="links">
+                                                            <a href="https://www.syncode.co.uk/terms.html">Terms and conditions</a> | <a href="https://www.syncode.co.uk/privacy.html">Privacy policy</a> | <a href="https://www.syncode.co.uk/cookies.html">Cookie policy</a>
+                                                        </div>
+                                                        <div id="copy">
+                                                            &copy; 2012 <a href="https://www.syncode.co.uk">Syncode</a>, a division of <a href="http://www.vpltd.com">Virtual Programming Ltd</a>
+                                                        </div>
+                                                    </div>
+                                                </footer>
 
-                                                        </div>
+                                                </div>
+                                                </body>
 
-                                                        </div>
-                                                        </div>
-                                                        <div id="content_foot"></div>
-                                                        </div>
-                                                        <footer>
-                                                            <div id="footer">
-                                                                <div id="icons">
-                                                                    <a href="https://www.facebook.com/pages/Syncode/118722130954">
-                                                                        <img src="https://www.syncode.co.uk/img/facebook_icon.png" alt="Facebook" />
-                                                                    </a>
-                                                                    <a href="https://twitter.com/petersonalbino">
-                                                                        <img src="https://www.syncode.co.uk/img/footer_twitter.png" alt="Twitter" />
-                                                                    </a>
-                                                                    <a href="mailto:peh.ty2@gmail.com">
-                                                                        <img src="https://www.syncode.co.uk/img/footer_email.png" alt="Email Syncode" />
-                                                                    </a>
-                                                                    <a href="https://www.syncode.co.uk/files/prkit.zip">
-                                                                        <img src="https://www.syncode.co.uk/img/footer_pr.png" alt="PR Kit" />
-                                                                    </a>
-                                                                </div>
-                                                                <div id="links">
-                                                                    <a href="https://www.syncode.co.uk/terms.html">Terms and conditions</a> | <a href="https://www.syncode.co.uk/privacy.html">Privacy policy</a> | <a href="https://www.syncode.co.uk/cookies.html">Cookie policy</a>
-                                                                </div>
-                                                                <div id="copy">
-                                                                    &copy; 2012 <a href="https://www.syncode.co.uk">Syncode</a>, a division of <a href="http://www.vpltd.com">Virtual Programming Ltd</a>
-                                                                </div>
-                                                            </div>
-                                                        </footer>
-
-                                                        </div>
-                                                        </body>
-
-                                                        </html>
+                                                </html>

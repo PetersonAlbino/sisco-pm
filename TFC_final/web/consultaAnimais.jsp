@@ -12,7 +12,7 @@
         <script src="js/functions.js" type="text/javascript"></script>
 
 
-        <title>Cadastro de Materiais</title>
+        <title>Cadastro de Animais Apreendidos</title>
         <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
         <%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%> 
 
@@ -30,7 +30,7 @@
                     DELETE FROM MATERIAL WHERE COD_MATERIAL = ${param.id}
 
                 </sql:update>
-                <script> alert('Material  Removido')</script>
+                <script> alert('Animal Removido')</script>
             </c:catch>
 
             <c:if test="${not empty erro}">
@@ -49,6 +49,7 @@
 
         <sql:query var="material" dataSource="${conexao}">
             SELECT * FROM MATERIAL
+            where RACA = 'animal'
             order by DES_MATERIAL
         </sql:query>
     </head>
@@ -84,7 +85,7 @@
                 <div id="content_main">
 
                     <div id="content_data">
-                        <h1>Consulta de Materiais</h1>
+                        <h1>Consulta de Animais Apreendidos</h1>
                         <div >
                             <form  name="form1" method="post" action="">
                                 <ul>
@@ -105,19 +106,17 @@
                                             <tr>
                                                 <th>Edita</th>
                                                 <th>Deleta</th>
-                                                <th>Nome</th>
-                                                <th>Código</th>
-                                                <th>Nome</th>
+                                                <th>Descrição</th>
                                                 <th>Status</th>
                                                 <th>Raça</th>
-                                                <th>Espécie</th>
+                                                <th>Especie</th>
                                                 <th>Sexo</th>
                                                 <th>Tipo</th>
                                             </tr>
                                             <c:forEach var="material" items="${material.rows}">
                                                 <tr>
-                                                    <td class="td1"><a href="materiais.jsp?id=${material.COD_MATERIAL}"><img src="images/woofunction-icons/pencil_32.png" value="submit" width="20" height="20"/></a></td>
-                                                    <td class="td1"><a href="consultamateriais.jsp?id=${material.COD_MATERIAL}&acao=delete"><img src="images/woofunction-icons/close_16.png" value="submit" width="20" height="20"/></a></td>
+                                                    <td class="td1"><a href="Animais.jsp?id=${material.COD_MATERIAL}"><img src="images/woofunction-icons/pencil_32.png" value="submit" width="20" height="20"/></a></td>
+                                                    <td class="td1"><a href="consultaAnimais.jsp?id=${material.COD_MATERIAL}&acao=delete"><img src="images/woofunction-icons/close_16.png" value="submit" width="20" height="20"/></a></td>
 
 
                                                     <td class="td1"><c:out value="${material.DES_MATERIAL}"/></td>

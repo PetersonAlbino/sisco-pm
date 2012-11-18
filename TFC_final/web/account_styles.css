@@ -306,25 +306,3 @@ div.loginRight input[type="email"], div.loginRight input[type="password"]
 	padding: 3px 10px;
 	text-align: center;
 }
-.inputRadioChecked {
-   background-position:-10px -10px;
-}
-.inputCheckboxChecked {
-   background-position:-10px 0;
-}
-.inputFocus { /* Este está genérico nos para radio e checkbox, mas também pode ser uma classe para cada */
-   border:dotted 1px #CCC;
-}
-
-.styleCombobox {
-  width:150px;
-  background:gray;
-}
-.styleCombobox span {
-  position:absolute;
-}
-.styleCombobox select {
-  width:100%;
-  opacity:0;
-  filter:alpha(opacity=0);
-}
