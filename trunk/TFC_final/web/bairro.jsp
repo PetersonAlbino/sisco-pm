@@ -80,19 +80,30 @@
                                 <ul>
                                     <li>
                      					<label  "for="email"><strong>Bairro</strong></label>
-                                       <input type="text" name="nome_bairro" id="nome_bairro" value="${BAIRRO.rows[0].NOME_BAIRRO}">
+                                      <input type="text" name="nome_bairro" id="nome_bairro" value="${BAIRRO.rows[0].NOME_BAIRRO}">
                      					<label  "for="email"><strong>Cidade</strong></label>
-                                       
-                                           <select name="cod_municipio"> 
+                           
+                                    </li>
+                                    
+                                  <div>
+                                    <select name="cod_municipio"> 
                                                <c:forEach items="${municipios.rows}" var="municipio">
                                                   
                                                    <option value="${municipio.COD_MUN}" >${municipio.DES_MUN} </option>
                                                </c:forEach>
                                            </select>
-                                    </li>
-                                        <input name="Ok" value="Enviar" type="submit" class="buttonGradientSubmit" id="Ok" />
-                                        <input name="Ok" value="Limpar" type="submit" class="buttonGradientSubmit" id="Ok" />
-                                        <input name="Ok" value="Cancelar" type="submit" class="buttonGradientSubmit" id="Cancelar"/>
+                                    
+                                    
+                                    
+                                     </div>
+                                     
+                                    
+                                        <p>&nbsp;                                        </p>
+                                        <p>
+                                          <input name="Ok" value="Enviar" type="submit" class="buttonGradientSubmit" id="Ok" />
+                                          <input name="Ok" value="Limpar" type="submit" class="buttonGradientSubmit" id="Ok" />
+                                          <input name="Ok" value="Cancelar" type="submit" class="buttonGradientSubmit" id="Cancelar"/>
+                                        </p>
                               </ul>
                             </form>  
                         </div>
