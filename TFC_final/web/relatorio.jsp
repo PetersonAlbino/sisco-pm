@@ -67,7 +67,7 @@
                 <div id="content_main">
 
                     <div id="content_data">
-                        <h1>Relatorios</h1>
+                        <h1>Relatórios</h1>
 
                         <div >
 							  <a href="#">Teste</a>	 

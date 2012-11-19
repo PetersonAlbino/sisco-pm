@@ -96,73 +96,75 @@
 
                 <div id="content_data">
                     <h1>Consulta de Ocorrências</h1>
-                        <div >
-                            <form  name="form1" method="post" action="">
-                                <ul>
-                                    <li>
-                                        <table width="100%" height="100%" border="0">
-                                            <caption class="TableTitle1">
-                                                <br/>
-                                                <br/>
-                                                <br/>
-                                            </caption>
-                                        </table>  
-                                        <table width="100%" border="0">
-                                            <caption class="TableTitle2">
-                                                <br/>
-                                                <br/>
-                                            </caption>
-                                        </table>
-                                        <p><img src="images/woofunction-icons/add_16.png" value="submit" width="20" height="20"/><a href="CadastroOcorrencias.jsp">Nova Ocorrência</a></p>
-                                        <table width="100%" border="0">
+                    <div >
+                        <form  name="form1" method="post" action="">
+                            <ul>
+                                <li>
+                                    <table width="100%" height="100%" border="0">
+                                        <caption class="TableTitle1">
+                                            <br/>
+                                            <br/>
+                                            <br/>
+                                        </caption>
+                                    </table>  
+                                    <table width="100%" border="0">
+                                        <caption class="TableTitle2">
+                                            <br/>
+                                            <br/>
+                                        </caption>
+                                    </table>
+                                    <p><img src="images/woofunction-icons/add_16.png" value="submit" width="20" height="20"/><a href="CadastroOcorrencias.jsp">Nova Ocorrência</a></p>
+                                    <table width="100%" border="0">
 
+                                        <tr>
+                                            <th>Edita</th>
+                                            <th>Deleta</th>
+                                            <th>Emitir OS</th>
+                                            <th>Código Material</th>
+                                            <th>OS</th>
+                                            <th>Tipo</th>
+                                            <th>Situação</th>
+                                            <th>Endereco</th>
+                                            <th>Data</th>
+                                            <th>Denunciante</th>
+
+                                        </tr>
+                                        <c:forEach var="ocorrencia" items="${ocorrencia.rows}">
                                             <tr>
-                                                <th>Edita</th>
-                                                <th>Deleta</th>
-                                                <th>Código Material</th>
-                                                <th>OS</th>
-                                                <th>Tipo</th>
-                                                <th>Situação</th>
-                                                <th>Endereco</th>
-                                                <th>Data</th>
-                                                <th>Denunciante</th>
-                                                
+                                                <td class="td1"><a href="CadastroOcorrencias.jsp?id=${ocorrencia.COD_OCOR}"><img src="images/woofunction-icons/pencil_32.png" value="submit" width="20" height="20"/></a></td>
+                                                <td class="td1"><a href="ConsultaOcorrencias.jsp?id=${ocorrencia.COD_OCOR}&acao=delete"><img src="images/woofunction-icons/close_16.png" value="submit" width="20" height="20"/></a></td>
+                                                <td class="td1"><a href="ordemdeservico.jsp?id=${ocorrencia.COD_OCOR}"><img src="images/woofunction-icons/page_table_add_32.png" value="submit" width="20" height="20"/></a></td>
+                                                <td class="td1"><c:out value="${ocorrencia.COD_MATERIAL}"/></td>
+                                                <td class="td1"><c:out value="${ocorrencia.COD_OS}"/></td>
+                                                <td class="td1"><c:out value="${ocorrencia.COD_TIPO}"/></td>
+                                                <td class="td1"><c:out value="${ocorrencia.COD_SITUACAO}"/></td>
+                                                <td class="td1"><c:out value="${ocorrencia.COD_ENDERECO}"/></td>
+                                                <td class="td1"><c:out value="${ocorrencia.DT_OCOR}"/></td>
+                                                <td class="td1"><c:out value="${ocorrencia.COD_DENUNCIANTE}"/></td>
+
                                             </tr>
-                                            <c:forEach var="ocorrencia" items="${ocorrencia.rows}">
-                                                <tr>
-                                                    <td class="td1"><a href="CadastroOcorrencias.jsp?id=${ocorrencia.COD_OCOR}"><img src="images/woofunction-icons/pencil_32.png" value="submit" width="20" height="20"/></a></td>
-                                                    <td class="td1"><a href="ConsultaOcorrencias.jsp?id=${ocorrencia.COD_OCOR}&acao=delete"><img src="images/woofunction-icons/close_16.png" value="submit" width="20" height="20"/></a></td>
-                                                    <td class="td1"><c:out value="${ocorrencia.COD_MATERIAL}"/></td>
-                                                    <td class="td1"><c:out value="${ocorrencia.COD_OS}"/></td>
-                                                    <td class="td1"><c:out value="${ocorrencia.COD_TIPO}"/></td>
-                                                    <td class="td1"><c:out value="${ocorrencia.COD_SITUACAO}"/></td>
-                                                    <td class="td1"><c:out value="${ocorrencia.COD_ENDERECO}"/></td>
-                                                    <td class="td1"><c:out value="${ocorrencia.DT_OCOR}"/></td>
-                                                    <td class="td1"><c:out value="${ocorrencia.COD_DENUNCIANTE}"/></td>
+                                        </c:forEach> 
 
-                                                </tr>
-                                            </c:forEach> 
-
-                                        </table>   
-                                        <table>
-                                            <tr>
-                                                <td class="td2"><a href="Principal.jsp"><img src="images/woofunction-icons/arrow_left_16.png" value="submit" width="20" height="20"/></a></td>
-                                            </tr>
-                                        </table>
-                                        <table width="100%" border="0">
-                                        </table>
-                                    </li>
-                                </ul>
-                            </form>
-                        </div>
-                   </div>
-
-
+                                    </table>   
+                                    <table>
+                                        <tr>
+                                            <td class="td2"><a href="Principal.jsp"><img src="images/woofunction-icons/arrow_left_16.png" value="submit" width="20" height="20"/></a></td>
+                                        </tr>
+                                    </table>
+                                    <table width="100%" border="0">
+                                    </table>
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
                 </div>
 
+
             </div>
+
         </div>
-        <div id="content_foot"></div>
+    </div>
+    <div id="content_foot"></div>
     </div>
     <footer>
         <div id="footer">
