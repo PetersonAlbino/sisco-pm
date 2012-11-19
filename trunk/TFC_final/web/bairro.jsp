@@ -7,7 +7,7 @@
 
 
 <link rel="shortcut icon" href="images/favicon.ico" />
-
+ 
    <link href="style.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" type="text/css" href="account_styles.css" />
 
@@ -79,9 +79,9 @@
                             <form  name="form1" method="post" action="">
                                 <ul>
                                     <li>
-                     					<label  "for="email"><strong>Bairro</strong></label>
+                     					<label  for="email"><strong>Bairro</strong></label>
                                       <input type="text" name="nome_bairro" id="nome_bairro" value="${BAIRRO.rows[0].NOME_BAIRRO}">
-                     					<label  "for="email"><strong>Cidade</strong></label>
+                     					<label for="email"><strong>Cidade</strong></label>
                            
                                     </li>
                                     
