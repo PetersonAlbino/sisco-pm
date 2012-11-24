@@ -167,8 +167,9 @@
                 <div id="content_head"></div>
                 <div id="content_main">
                     <div class="tmplapps">
-                        <div class="floatsection col0"><a href="ocorrencias.jsp" title="" style="background-image: url(img/apps_page_synotes__1339059658.png)"></a></span></div>
-                        <div class="floatsection col1"><a href="materiais.jsp"title="" style="background-image:url(img/apps_page_birder__1339081919.png)"></a></div>
+                        <div class="floatsection col0"><a href="CadastroOcorrencias.jsp" title="" style="background-image: url(img/apps_page_synotes__1339059658.png)"></a></span></div>
+                        <div class="floatsection col1"><a href="Animais.jsp"title="" style="background-image:url(img/apps_page_birder__1339081919.png)"></a></div>
+                        <div class="floatsection col1"><a href="materiais.jsp" title="" style="background-image: url(img/swapped_coming_soon_1343809493.png)"></a></span></div>
 
                         <div class="clear"></div>
                         <div class="floatsection col0"></div>

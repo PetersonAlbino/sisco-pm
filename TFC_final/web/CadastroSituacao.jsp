@@ -108,8 +108,8 @@
                                         <input type="text" name="des_situacao" id="des_situacao" value="${TIPO.rows[0].DES_SITUACAO}">
                                     </li>
                                     <input name="Ok" value="Enviar" type="submit" class="buttonGradientSubmit" id="Ok" />
-                                    <input name="Ok" value="Limpar" type="submit" class="buttonGradientSubmit" id="Ok" />
-                                    <input name="Ok" value="Cancelar" type="submit" class="buttonGradientSubmit" id="ok" />
+                                    <input name="Ok" value="Limpar" type="reset" class="buttonGradientSubmit" id="Ok" />
+                                    <input name="Ok" value="Cancelar" type="button" class="buttonGradientSubmit" id="ok" />
 
                                 </ul>
 
