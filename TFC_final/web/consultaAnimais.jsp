@@ -49,7 +49,7 @@
 
         <sql:query var="material" dataSource="${conexao}">
             SELECT * FROM MATERIAL
-            where RACA = 'animal'
+            where TIPO_MATERIAL = 'Animal'
             order by DES_MATERIAL
         </sql:query>
     </head>
@@ -71,8 +71,6 @@
                             <li id="item2" class="fade"><a  class="cadastro-basico2" href="#" title="Consultas Gerenciais"><img src="images/woofunction-icons/folder_chart_32.png" width="20" height="20" alt="consulta" /> Consultas</a></li>
 
                             <li id="item3" class="fade"><a class="big-menu-launcher" href="#" title="Impressão de Relatórios"><img src="images/woofunction-icons/folder_page_32.png" width="20" height="20" alt="relatorio" /> Relatorios</a></li>
-
-                            <li id="item4" class="fade"><a  class="big-menu-launcher" href="#" title="Cadastro de Materiais"><img src="images/woofunction-icons/basket_add_32.png" width="20" height="20" alt="materiais" /> Materiais</a></li>
 
                             <li id="item5" class="fade"><a href="ajuda.jsp" title="Portal de Ajuda"><img src="images/woofunction-icons/folder_warning_32.png" width="20" height="20" alt="ajuda" />Ajuda</a></li>
                         </ul><!--end nav-->
@@ -100,7 +98,7 @@
                                                 <br/>
                                             </caption>
                                         </table>
-                                        <p><img src="images/woofunction-icons/add_16.png" value="submit" width="20" height="20"/><a href="materiais.jsp">Novo Material</a></p>
+                                        <p><img src="images/woofunction-icons/add_16.png" value="submit" width="20" height="20"/><a href="CadastroAnimais.jsp">Novo Animal</a></p>
                                         <table width="100%" border="0">
 
                                             <tr>
@@ -115,8 +113,8 @@
                                             </tr>
                                             <c:forEach var="material" items="${material.rows}">
                                                 <tr>
-                                                    <td class="td1"><a href="Animais.jsp?id=${material.COD_MATERIAL}"><img src="images/woofunction-icons/pencil_32.png" value="submit" width="20" height="20"/></a></td>
-                                                    <td class="td1"><a href="consultaAnimais.jsp?id=${material.COD_MATERIAL}&acao=delete"><img src="images/woofunction-icons/close_16.png" value="submit" width="20" height="20"/></a></td>
+                                                    <td class="td1"><a href="CadastroAnimais.jsp?id=${material.COD_MATERIAL}"><img src="images/woofunction-icons/pencil_32.png" value="submit" width="20" height="20"/></a></td>
+                                                    <td class="td1"><a href="ConsultaAnimais.jsp?id=${material.COD_MATERIAL}&acao=delete"><img src="images/woofunction-icons/close_16.png" value="submit" width="20" height="20"/></a></td>
 
 
                                                     <td class="td1"><c:out value="${material.DES_MATERIAL}"/></td>
@@ -155,29 +153,26 @@
         <footer>
             <div id="footer">
                 <div id="icons">
-                    <a href="https://www.facebook.com/pages/Syncode/118722130954">
-                        <img src="https://www.syncode.co.uk/img/facebook_icon.png" alt="Facebook" />
+                    <a href="https://www.facebook.com/">
+                        <img src="img/facebook_icon.png" alt="Facebook" />
                     </a>
-                    <a href="https://twitter.com/petersonalbino">
-                        <img src="https://www.syncode.co.uk/img/footer_twitter.png" alt="Twitter" />
+                    <a href="https://twitter.com">
+                        <img src="img/footer_twitter.png" alt="Twitter" />
                     </a>
-                    <a href="mailto:peh.ty2@gmail.com">
-                        <img src="https://www.syncode.co.uk/img/footer_email.png" alt="Email Syncode" />
-                    </a>
-                    <a href="https://www.syncode.co.uk/files/prkit.zip">
-                        <img src="https://www.syncode.co.uk/img/footer_pr.png" alt="PR Kit" />
+                    <a href="mailto:peh.ty2@gmail.com.br">
+                        <img src="img/footer_email.png" alt="Email Syncode" />
                     </a>
                 </div>
                 <div id="links">
-                    <a href="https://www.syncode.co.uk/terms.html">Terms and conditions</a> | <a href="https://www.syncode.co.uk/privacy.html">Privacy policy</a> | <a href="https://www.syncode.co.uk/cookies.html">Cookie policy</a>
+
                 </div>
                 <div id="copy">
-                    &copy; 2012 <a href="https://www.syncode.co.uk">Syncode</a>, a division of <a href="http://www.vpltd.com">Virtual Programming Ltd</a>
+                    &copy; 2012 <a href="https://www.ace.br">SISCO</a>
                 </div>
             </div>
         </footer>
 
-        </div>
+
     </body>
 
 </html>

@@ -17,53 +17,29 @@
         <script src="js/functions.js" type="text/javascript"></script>
 
 
-        <title>Cadastro de Situação</title>
+        <title>Cadastro de Ocorrencias</title>
         <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
         <%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%> 
 
         <%@ include file="conexao.jsp" %>
 
-        <c:if test="${not empty param.mensagem}">
-            <script>
-                alert('${param.mensagem}')
-            </script>
+        <c:if test="${not empty param.cod_mun}">
+            <sql:update dataSource="${conexao}">
+                INSERT INTO BAIRRO (COD_MUN,NOME_BAIRRO) 
+                VALUES (?,?)
+
+                <sql:param value="${param.nome_bairro}" />
+                <sql:param value="${param.cod_mun}" />
+            </sql:update> 
         </c:if>
 
-        <c:if test="${param.acao=='delete'}">
-            <c:catch var="erro">
-                <sql:update dataSource="${conexao}">
-                    DELETE FROM TIPO WHERE COD_SITUACAO = ${param.id}
-
-                </sql:update>
-                <script> alert('Ocorrencia  Removido')</script>
-            </c:catch>
-
-            <c:if test="${not empty erro}">
-                <script> alert('Não foi possivel remover a ocorrencia selecionado')</script>    
-            </c:if>
-        </c:if>
-
-        <c:if test="${param.acao=='edit'}">
-            <sql:query var="editar" dataSource="${conexao}">
-                COD_SITUACAO, DES_SITUACAO FROM SITUACAO
-                WHERE COD_SITUACAO = ${param.id}
-            </sql:query>
-
-        </c:if>
-
-        <c:if test="${not empty param.des_situacao}">
-            <c:catch var="erro">
-                <sql:update dataSource="${conexao}">
-                    INSERT INTO SITUACAO (DES_SITUACAO) 
-                    VALUES (?)
-                    <sql:param value="${param.des_situacao}" />
-                </sql:update>
-                <script> alert('Situacao Cadastrada')</script>
-            </c:catch>
+        <sql:query var="municipios" dataSource="${conexao}">
+            SELECT COD_MUN,DES_MUN FROM MUNICIPIO
+        </sql:query>
 
 
-        </c:if>
     </head>
+
     <body>
         <div id="container">
             <header>
@@ -96,21 +72,37 @@
                 <div id="content_main">
 
                     <div id="content_data">
-                        <h1>Cadastro de Situação</h1>
+                        <h1>Cadastro de Bairros</h1>
                         <div >
                             <form  name="form1" method="post" action="">
                                 <ul>
                                     <li>
+                                        <label  for="email"><strong>Bairro</strong></label>
+                                        <input type="text" name="nome_bairro" id="nome_bairro" value="${BAIRRO.rows[0].NOME_BAIRRO}">
+                                            <label for="email"><strong>Cidade</strong></label>
 
-                                        <label for="email" ><strong>Descrição da Situação da Ocorrência</strong></label>
-                                        <input type="text" name="des_situacao" id="des_situacao" value="${SITUACAO.rows[0].DES_SITUACAO}">
                                     </li>
-                                    <input name="Ok" value="Enviar" type="submit" class="buttonGradientSubmit" id="Ok" />
-                                    <input name="Ok" value="Limpar" type="reset" class="buttonGradientSubmit" id="Ok" />
 
+                                    <div>
+                                        <select name="cod_municipio"> 
+                                            <c:forEach items="${municipios.rows}" var="municipio">
+
+                                                <option value="${municipio.COD_MUN}" >${municipio.DES_MUN} </option>
+                                            </c:forEach>
+                                        </select>
+
+
+
+                                    </div>
+
+
+                                    <p>&nbsp;                                        </p>
+                                    <p>
+                                        <input name="Ok" value="Enviar" type="submit" class="buttonGradientSubmit" id="Ok" />
+                                        <input name="Ok" value="Limpar" type="submit" class="buttonGradientSubmit" id="Ok" />
+                                        <input name="Ok" value="Cancelar" type="submit" class="buttonGradientSubmit" id="Cancelar"/>
+                                    </p>
                                 </ul>
-
-
                             </form>  
                         </div>
 
@@ -120,27 +112,27 @@
             </div>
             <div id="content_foot"></div>
         </div>
-        <footer>
-            <div id="footer">
-                <div id="icons">
-                    <a href="https://www.facebook.com/">
-                        <img src="img/facebook_icon.png" alt="Facebook" />
-                    </a>
-                    <a href="https://twitter.com">
-                        <img src="img/footer_twitter.png" alt="Twitter" />
-                    </a>
-                    <a href="mailto:peh.ty2@gmail.com.br">
-                        <img src="img/footer_email.png" alt="Email Syncode" />
-                    </a>
-                </div>
-                <div id="links">
+            <footer>
+                <div id="footer">
+                    <div id="icons">
+                        <a href="https://www.facebook.com/">
+                            <img src="img/facebook_icon.png" alt="Facebook" />
+                        </a>
+                        <a href="https://twitter.com">
+                            <img src="img/footer_twitter.png" alt="Twitter" />
+                        </a>
+                        <a href="mailto:peh.ty2@gmail.com.br">
+                            <img src="img/footer_email.png" alt="Email Syncode" />
+                        </a>
+                    </div>
+                    <div id="links">
 
+                    </div>
+                    <div id="copy">
+                        &copy; 2012 <a href="https://www.ace.br">SISCO</a>
+                    </div>
                 </div>
-                <div id="copy">
-                    &copy; 2012 <a href="https://www.ace.br">SISCO</a>
-                </div>
-            </div>
-        </footer>
+            </footer>
 
 
     </body>

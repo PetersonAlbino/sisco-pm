@@ -61,8 +61,6 @@
 
                             <li id="item3" class="fade"><a class="cadastro-basico3" href="#" title="Impressão de Relatórios"><img src="images/woofunction-icons/folder_page_32.png" width="20" height="20" alt="relatorio" /> Relatorios</a></li>
 
-                            <li id="item4" class="fade"><a  class="cadastro-basico4" href="#" title="Cadastro de Materiais"><img src="images/woofunction-icons/basket_add_32.png" width="20" height="20" alt="materiais" /> Materiais</a></li>
-
                             <li id="item5" class="fade"><a href="ajuda.jsp" title="Portal de Ajuda"><img src="images/woofunction-icons/folder_warning_32.png" width="20" height="20" alt="ajuda" />Ajuda</a></li>
                         </ul><!--end nav-->
 
@@ -185,7 +183,7 @@
             <div id="content">
                 <div id="content_head"></div>
                 <div id="content_main">
-                   <div id="content_data">
+                    <div id="content_data">
                         <div >
                             <form  name="form1" method="post" action="">
                                 <ul>
@@ -234,35 +232,34 @@
                                 </ul>
                             </form>
                         </div>
-                   </div>
+                    </div>
                 </div>
             </div>
             <div id="content_foot"></div>
         </div>
-                    <footer>
-                        <div id="footer">
-                            <div id="icons">
-                                <a href="https://www.facebook.com/">
-                                    <img src="https://www.syncode.co.uk/img/facebook_icon.png" alt="Facebook" />
-                                </a>
-                                <a href="https://twitter.com">
-                                    <img src="https://www.syncode.co.uk/img/footer_twitter.png" alt="Twitter" />
-                                </a>
-                                <a href="mailto:peh.ty2@gmail.com.br">
-                                    <img src="https://www.syncode.co.uk/img/footer_email.png" alt="Email Syncode" />
-                                </a>
-                            </div>
-                            <div id="links">
+        <footer>
+            <div id="footer">
+                <div id="icons">
+                    <a href="https://www.facebook.com/">
+                        <img src="img/facebook_icon.png" alt="Facebook" />
+                    </a>
+                    <a href="https://twitter.com">
+                        <img src="img/footer_twitter.png" alt="Twitter" />
+                    </a>
+                    <a href="mailto:peh.ty2@gmail.com.br">
+                        <img src="img/footer_email.png" alt="Email Syncode" />
+                    </a>
+                </div>
+                <div id="links">
 
-                            </div>
-                            <div id="copy">
-                                &copy; 2012 <a href="https://www.ace.br">SISCO</a>
-                            </div>
-                        </div>
-                    </footer>
-        
+                </div>
+                <div id="copy">
+                    &copy; 2012 <a href="https://www.ace.br">SISCO</a>
+                </div>
+            </div>
+        </footer>
 
-        
-                </body>
 
-                </html>
+    </body>
+
+</html>

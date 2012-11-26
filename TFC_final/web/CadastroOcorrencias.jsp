@@ -40,7 +40,7 @@
             </c:catch>
 
             <c:if test="${not empty erro}">
-                <script> alert('Não foi possivel remover a ocorrencia selecionado')</script>    
+                <script> alert('Não foi possível remover a ocorrência selecionado')</script>    
             </c:if>
         </c:if>
 
@@ -59,40 +59,55 @@
             SELECT  COD_SITUACAO, DES_SITUACAO FROM SITUACAO
         </sql:query>
 
+        <sql:query var="denunciante" dataSource="${conexao}">
+            SELECT COD_DENUNCIANTE,NM_DENUNCIANTE,SEXO_DENUNCIANTE,TEL_DENUNCIANTE FROM DUNCIANTE
+        </sql:query>
+
+        <c:if test="${not empty param.nm_denunciante}">
+            <%-- <c:catch var="erro"> --%>
+            <sql:update dataSource="${conexao}">
+                INSERT INTO DUNCIANTE (NM_DENUNCIANTE,SEXO_DENUNCIANTE,TEL_DENUNCIANTE) 
+                VALUES (?,?,?)
+                <sql:param value="${param.nm_denunciante}" />
+                <sql:param value="${param.sexo_denunciante}"/>
+                <sql:param value="${param.tel_denunciante}"/>
+            </sql:update>
+            <script> alert('Endereço Cadastrado')</script>
+            <%--   </c:catch>--%>
+        </c:if>
 
         <c:if test="${not empty param.municipios}">
             <%-- <c:catch var="erro"> --%>
-                <sql:update dataSource="${conexao}">
-                    INSERT INTO ENDERECO (COD_MUN,COD_BAIRRO,NM_RUA,NUM_LOCAL,DES_LOCAL,CEP_LOCAL,QUADRA_LOCAL,LOTE_LOCAL) 
-                    VALUES (?,?,?,?,?,?,?,?)
-                    <sql:param value="${param.municipios}" />
-                    <sql:param value="${param.bairros}"/>
-                    <sql:param value="${param.rua}"/>
-                    <sql:param value="${param.num_local}"/>
-                    <sql:param value="${param.des_local}"/>
-                    <sql:param value="${param.cep_local}"/>
-                    <sql:param value="${param.quadra}"/>
-                    <sql:param value="${param.local}"/>
-                </sql:update>
-                <script> alert('Endereço Cadastrado')</script>
-         <%--   </c:catch>--%>
-        </c:if>            
+            <sql:update dataSource="${conexao}">
+                INSERT INTO ENDERECO (COD_MUN,COD_BAIRRO,NM_RUA,NUM_LOCAL,DES_LOCAL,CEP_LOCAL,QUADRA_LOCAL,LOTE_LOCAL) 
+                VALUES (?,?,?,?,?,?,?,?)
+                <sql:param value="${param.municipios}" />
+                <sql:param value="${param.bairros}"/>
+                <sql:param value="${param.rua}"/>
+                <sql:param value="${param.num_local}"/>
+                <sql:param value="${param.des_local}"/>
+                <sql:param value="${param.cep_local}"/>
+                <sql:param value="${param.quadra}"/>
+                <sql:param value="${param.local}"/>
+            </sql:update>
+            <script> alert('Endereço Cadastrado')</script>
+            <%--   </c:catch>--%>
+        </c:if>
 
         <c:if test="${not empty param.consulta_tipo}">
             <%--<c:catch var="erro"> --%>
-                <sql:update dataSource="${conexao}">
+            <sql:update dataSource="${conexao}">
 
-                    INSERT INTO OCORRENCIA (COD_TIPO,COD_SITUACAO,COD_ENDERECO,DES_OCOR,DT_OCOR,COD_DENUNCIANTE) 
-                    VALUES (?,?,GEN_ID(GEN_ENDERECO_ID, 0),?,?,?)
-                    <sql:param value="${param.consulta_tipo}" />
-                    <sql:param value="${param.situacao}"/>
-                    <sql:param value="${param.des_ocor}"/>
-                    <sql:param value="${param.dt_ocor}"/>
-                    <sql:param value="${param.cod_denunciante}"/>
+                INSERT INTO OCORRENCIA (COD_TIPO,COD_SITUACAO,COD_ENDERECO,DES_OCOR,DT_OCOR,COD_DENUNCIANTE) 
+                VALUES (?,?,GEN_ID(GEN_ENDERECO_ID, 0),?,?,GEN_ID(GEN_DUNCIANTE_ID, 0))
+                <sql:param value="${param.consulta_tipo}" />
+                <sql:param value="${param.situacao}"/>
+                <sql:param value="${param.des_ocor}"/>
+                <sql:param value="${param.dt_ocor}"/>
 
-                </sql:update>
-                <script> alert('Ocorrencia Cadastrada')</script>
-           <%-- </c:catch> --%>
+            </sql:update>
+            <script> alert('Ocorrência Cadastrada')</script>
+            <%-- </c:catch> --%>
         </c:if>
 
         <sql:query var="municipios" dataSource="${conexao}">
@@ -166,13 +181,11 @@
                     <div id="wrapper-menu">
                         <ul id="nav" name="nav">
                             <li id="item1" class="fade"><a class="cadastro-basico"  href="#" 
-                                                           title="Cadastros BÃ¡sicos"><img src="images/woofunction-icons/folder_add_32.png" width="20" height="20" 							                alt="cadastro" /> Cadastro</a></li>
+                                                           title="Cadastros Básicos"><img src="images/woofunction-icons/folder_add_32.png" width="20" height="20" 							                alt="cadastro" /> Cadastro</a></li>
 
                             <li id="item2" class="fade"><a  class="cadastro-basico2" href="#" title="Consultas Gerenciais"><img src="images/woofunction-icons/folder_chart_32.png" width="20" height="20" alt="consulta" /> Consultas</a></li>
 
                             <li id="item3" class="fade"><a class="cadastro-basico3" href="#" title="ImpressÃ£o de Relatorios"><img src="images/woofunction-icons/folder_page_32.png" width="20" height="20" alt="relatorio" /> Relatorios</a></li>
-
-                            <li id="item4" class="fade"><a  class="big-menu-launcher" href="#" title="Cadastro de Materiais"><img src="images/woofunction-icons/basket_add_32.png" width="20" height="20" alt="materiais" /> Materiais</a></li>
 
                             <li id="item5" class="fade"><a href="ajuda.jsp" title="Portal de Ajuda"><img src="images/woofunction-icons/folder_warning_32.png" width="20" height="20" alt="ajuda" />Ajuda</a></li>
                         </ul><!--end nav-->
@@ -189,7 +202,7 @@
                             <form  name="form1" method="post" action="">
                                 <ul>
                                     <li>
-                                        <label for="forml" ><Strong>Tipo de Ocorrência</Strong></label>
+                                        <label for="forml" ><Strong>Tipo de Ocorrência*</Strong></label>
                                         <div class="">
                                             <select name="consulta_tipo"> 
                                                 <c:forEach items="${consulta_tipo.rows}" var="consulta_tipo">
@@ -197,8 +210,23 @@
 
                                                 </c:forEach>
                                             </select>
-                                        </div> 
-                                        <label for="form1"><strong>Municipio</strong></label>
+                                        </div>
+                                        <label for="forml" ><strong>Situação*</strong></label>
+                                        <div class="">
+                                            <select name="situacao"> 
+                                                <c:forEach items="${situacao.rows}" var="situacao">
+                                                    <option value="${situacao.COD_SITUACAO}" >${situacao.DES_SITUACAO} </option>
+                                                </c:forEach>
+                                            </select>
+                                        </div>                                         
+                                        <label for="cometario"><strong>Descrição*</strong></label> 
+                                        <textarea name="des_ocor" id="des_ocor" class="campo"></textarea> <br />
+
+                                        <label for="forml" ><strong>Data da Ocorrência</strong></label>
+                                        <input type="date" name="dt_ocor" id="dt_ocor"></input>                                        
+                                        <h3>Endereço da Ocorrência</h3>
+
+                                        <label for="form1"><strong>Município*</strong></label>
                                         <div class="">
                                             <select name="municipios" onchange="carregaBairros()">
                                                 <c:forEach items="${municipios.rows}" var="municipios">
@@ -208,51 +236,54 @@
                                         </div>
                                         <div>
                                         </div>
-                                        <label for="form1"><strong>Bairros</strong></label>
+                                        <label for="form1"><strong>Bairro*</strong></label>
                                         <div class="">
                                             <select name="bairros">
 
                                             </select>
                                         </div>
-                                        <label  for="forml" ><strong>Rua:</strong></label>
-                                        <input  type="text" name="rua" id="rua" value="${endereco.rows[0].NM_RUA}"></input>
+                                        <label  for="forml" ><strong>Rua*</strong></label>
+                                        <input  type="textarea" name="rua" id="rua" value="${endereco.rows[0].NM_RUA}"></input>
 
                                         <label for="form1" ><strong>Número</strong></label>
-                                        <input type="text" name="num_local" id="num_local" value="${endereco.rows[0].NUM_LOCAL}"></input>
+                                        <input type="textarea" name="num_local" id="num_local" value="${endereco.rows[0].NUM_LOCAL}"></input>
                                         <label for="form1" ><strong>Descrição do Local</strong></label>
-                                        <input type="text" name="des_local" id="des_local" value="${endereco.rows[0].DES_LOCAL}"></input>
-                                        <label for="form1" ><strong>CEP:</strong></label>
-                                        <input type="text" name="cep_local" id="cep_local" value="${endereco.rows[0].CEP_LOCAL}"></input>
+                                        <input type="textarea" name="des_local" id="des_local" value="${endereco.rows[0].DES_LOCAL}"></input>
+                                        <label for="form1" ><strong>CEP*</strong></label>
+                                        <input type="textarea" name="cep_local" id="cep_local" value="${endereco.rows[0].CEP_LOCAL}"></input>
                                         <label for="form1" ><strong>Quadra</strong></label>
-                                        <input type="text" name="quadra" id="quadra" value="${endereco.rows[0].QUADRA_LOCAL}"></input>
+                                        <input type="textarea" name="quadra" id="quadra" value="${endereco.rows[0].QUADRA_LOCAL}"></input>
                                         <label for="form1" ><strong>Lote</strong></label>
-                                        <input type="text" name="lote" id="lote" value="${endereco.rows[0].LOTE_LOCAL}"></input>
+                                        <input type="textarea" name="lote" id="lote" value="${endereco.rows[0].LOTE_LOCAL}"></input>
 
-                                        <label for="forml" ><strong>Situação</strong></label>
-                                        <div class="">
-                                            <select name="situacao"> 
-                                                <c:forEach items="${situacao.rows}" var="situacao">
-                                                    <option value="${situacao.COD_SITUACAO}" >${situacao.DES_SITUACAO} </option>
-                                                </c:forEach>
+
+                                        <h3>Dados do Denunciante</h3>
+                                        <label for="form1"><strong>Nome</strong></label>
+                                        <input type="textarea" name="nm_denunciante" id="nm_denunciante" value="${denunciante.rows[0].NM_DENUNCIANTE}"></input>
+                                        <label for="form1"><strong>Sexo</strong></label>
+                                        <div>
+                                            <select name="sexo_denunciante"> 
+                                                <option>Masculino</option>
+                                                <option>Feminino</option>
                                             </select>
-                                        </div>                                         
-                                        <label for="cometario"><strong>Descrição:</strong></label> 
-                                        <textarea name="des_ocor" id="des_ocor" class="campo"></textarea> <br />
-
-                                        <label for="forml" ><strong>Data da Ocorrência</strong></label>
-                                        <input type="date" name="dt_ocor" id="dt_ocor">
-                                           <input name="Ok" value="Enviar" type="submit" class="buttonGradientSubmit" id="Ok" />
-                                           <input name="Ok" value="Limpar" type="reset" class="buttonGradientSubmit" id="Ok" />
-                                           
+                                        </div>
+                                        </div>
+                                        <h4></h4>
+                                        <label for="form1"><strong>Telefone</strong></label>
+                                        <div>
+                                            <input type="tel" name="tel_denunciante" id="tel_denunciante" value="${denunciante.rows[0].TEL_DENUNCIANTE}"></input>
+                                        </div>
+                                        <h6>(*)campos obrigatórios</h6>
+                                        <h4></h4>
+                                        <div>
+                                            <input name="Ok" value="Enviar" type="submit" class="buttonGradientSubmit" id="Ok" />
+                                            <input name="Limpar" value="Limpar" type="reset" class="buttonGradientSubmit" id="Limpar" />
+                                        </div>
                                     </li>
                                 </ul>
-
-
                             </form>  
                         </div>
-
                     </div>
-
                 </div>
             </div>
             <div id="content_foot"></div>
@@ -260,29 +291,26 @@
         <footer>
             <div id="footer">
                 <div id="icons">
-                    <a href="https://www.facebook.com/pages/Syncode/118722130954">
-                        <img src="https://www.syncode.co.uk/img/facebook_icon.png" alt="Facebook" />
+                    <a href="https://www.facebook.com/">
+                        <img src="img/facebook_icon.png" alt="Facebook" />
                     </a>
-                    <a href="https://twitter.com/petersonalbino">
-                        <img src="https://www.syncode.co.uk/img/footer_twitter.png" alt="Twitter" />
+                    <a href="https://twitter.com">
+                        <img src="img/footer_twitter.png" alt="Twitter" />
                     </a>
-                    <a href="mailto:peh.ty2@gmail.com">
-                        <img src="https://www.syncode.co.uk/img/footer_email.png" alt="Email Syncode" />
-                    </a>
-                    <a href="https://www.syncode.co.uk/files/prkit.zip">
-                        <img src="https://www.syncode.co.uk/img/footer_pr.png" alt="PR Kit" />
+                    <a href="mailto:peh.ty2@gmail.com.br">
+                        <img src="img/footer_email.png" alt="Email Syncode" />
                     </a>
                 </div>
                 <div id="links">
-                    <a href="https://www.syncode.co.uk/terms.html">Terms and conditions</a> | <a href="https://www.syncode.co.uk/privacy.html">Privacy policy</a> | <a href="https://www.syncode.co.uk/cookies.html">Cookie policy</a>
+
                 </div>
                 <div id="copy">
-                    &copy; 2012 <a href="https://www.syncode.co.uk">Syncode</a>, a division of <a href="http://www.vpltd.com">Virtual Programming Ltd</a>
+                    &copy; 2012 <a href="https://www.ace.br">SISCO</a>
                 </div>
             </div>
         </footer>
 
-        </div>
+
     </body>
 
 </html>
