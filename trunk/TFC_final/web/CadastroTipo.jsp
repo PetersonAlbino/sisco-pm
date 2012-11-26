@@ -45,8 +45,9 @@
 
         <c:if test="${param.acao=='edit'}">
             <sql:query var="editar" dataSource="${conexao}">
-                COD_TIPO, DES_TIPO FROM TIPO
+                SELECT COD_TIPO, DES_TIPO FROM TIPO
                 WHERE COD_TIPO = ${param.id}
+                
             </sql:query>
 
         </c:if>
@@ -82,8 +83,6 @@
 
                             <li id="item3" class="fade"><a class="big-menu-launcher" href="#" title="ImpressÃ£o de Relatorios"><img src="images/woofunction-icons/folder_page_32.png" width="20" height="20" alt="relatorio" /> Relatorios</a></li>
 
-                            <li id="item4" class="fade"><a  class="big-menu-launcher" href="#" title="Cadastro de Materiais"><img src="images/woofunction-icons/basket_add_32.png" width="20" height="20" alt="materiais" /> Materiais</a></li>
-
                             <li id="item5" class="fade"><a href="ajuda.jsp" title="Portal de Ajuda"><img src="images/woofunction-icons/folder_warning_32.png" width="20" height="20" alt="ajuda" />Ajuda</a></li>
                         </ul><!--end nav-->
 
@@ -105,12 +104,10 @@
                                     <li>
 
                                         <label for="email" ><strong>Descrição do Tipo de Ocorrência</strong></label>
-                                        <input type="text" name="des_tipo" id="des_tipo" value="${TIPO.rows[0].DES_TIPO}">
+                                        <input type="text" name="des_tipo" id="des_tipo" value="${param.rows[0].DES_TIPO}">
                                     </li>
                                     <input name="Ok" value="Enviar" type="submit" class="buttonGradientSubmit" id="Ok" />
-                                    <input name="Ok" value="Limpar" type="submit" class="buttonGradientSubmit" id="Ok" />
-                                    <input name="Ok" value="Cancelar" type="submit" class="buttonGradientSubmit" id="ok" />
-
+                                    <input name="Ok" value="Limpar" type="reset" class="buttonGradientSubmit" id="Ok" />
                                 </ul>
 
 
@@ -126,29 +123,26 @@
         <footer>
             <div id="footer">
                 <div id="icons">
-                    <a href="https://www.facebook.com/pages/Syncode/118722130954">
-                        <img src="https://www.syncode.co.uk/img/facebook_icon.png" alt="Facebook" />
+                    <a href="https://www.facebook.com/">
+                        <img src="img/facebook_icon.png" alt="Facebook" />
                     </a>
-                    <a href="https://twitter.com/petersonalbino">
-                        <img src="https://www.syncode.co.uk/img/footer_twitter.png" alt="Twitter" />
+                    <a href="https://twitter.com">
+                        <img src="img/footer_twitter.png" alt="Twitter" />
                     </a>
-                    <a href="mailto:peh.ty2@gmail.com">
-                        <img src="https://www.syncode.co.uk/img/footer_email.png" alt="Email Syncode" />
-                    </a>
-                    <a href="https://www.syncode.co.uk/files/prkit.zip">
-                        <img src="https://www.syncode.co.uk/img/footer_pr.png" alt="PR Kit" />
+                    <a href="mailto:peh.ty2@gmail.com.br">
+                        <img src="img/footer_email.png" alt="Email Syncode" />
                     </a>
                 </div>
                 <div id="links">
-                    <a href="https://www.syncode.co.uk/terms.html">Terms and conditions</a> | <a href="https://www.syncode.co.uk/privacy.html">Privacy policy</a> | <a href="https://www.syncode.co.uk/cookies.html">Cookie policy</a>
+
                 </div>
                 <div id="copy">
-                    &copy; 2012 <a href="https://www.syncode.co.uk">Syncode</a>, a division of <a href="http://www.vpltd.com">Virtual Programming Ltd</a>
+                    &copy; 2012 <a href="https://www.ace.br">SISCO</a>
                 </div>
             </div>
         </footer>
 
-        </div>
+
     </body>
 
 </html>

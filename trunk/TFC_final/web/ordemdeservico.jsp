@@ -55,8 +55,6 @@
                   
                   <li id="item3" class="fade"><a class="big-menu-launcher" href="#" title="Impressão de Relatorios"><img src="images/woofunction-icons/folder_page_32.png" width="20" height="20" alt="relatorio" /> Relatorios</a></li>
                   
-                  <li id="item4" class="fade"><a  class="big-menu-launcher" href="#" title="Cadastro de Materiais"><img src="images/woofunction-icons/basket_add_32.png" width="20" height="20" alt="materiais" /> Materiais</a></li>
-                  
                   <li id="item5" class="fade"><a href="ajuda.jsp" title="Portal de Ajuda"><img src="images/woofunction-icons/folder_warning_32.png" width="20" height="20" alt="ajuda" />Ajuda</a></li>
               </ul><!--end nav-->
 				
@@ -76,10 +74,10 @@
                             <form  name="form1" method="post" action="">
                                 <ul>
                                     <li>
-                                        <label for="email" ><Strong>Código</Strong></label>
-					<input type="text" name="cod_cidade" id="cod_cidade" value="${MUNICIPIO.rows[0].COD_MUN}">
+                                        <label for="email" ><Strong>C�digo</Strong></label>
+					<input type="textarea" name="cod_cidade" id="cod_cidade" value="${MUNICIPIO.rows[0].COD_MUN}">
 					<label for="email" ><strong>Nome da Cidade</strong></label>
-                                        <input type="text" name="des_cidade" id="des_cidade" value="${MUNICIPIO.rows[0].DES_MUN}">
+                                       <!-- <input type="text" name="des_cidade" id="des_cidade" value="${MUNICIPIO.rows[0].DES_MUN}"> -->
                                             <select name="des_municipio"> 
                                                <c:forEach items="${municipios.rows}" var="municipio">
                                                   
@@ -103,32 +101,29 @@
             </div>
             <div id="content_foot"></div>
         </div>
-        <footer>
-            <div id="footer">
-                <div id="icons">
-                    <a href="https://www.facebook.com/pages/Syncode/118722130954">
-                        <img src="https://www.syncode.co.uk/img/facebook_icon.png" alt="Facebook" />
-                    </a>
-                    <a href="https://twitter.com/petersonalbino">
-                        <img src="https://www.syncode.co.uk/img/footer_twitter.png" alt="Twitter" />
-                    </a>
-                    <a href="mailto:peh.ty2@gmail.com">
-                        <img src="https://www.syncode.co.uk/img/footer_email.png" alt="Email Syncode" />
-                    </a>
-                    <a href="https://www.syncode.co.uk/files/prkit.zip">
-                        <img src="https://www.syncode.co.uk/img/footer_pr.png" alt="PR Kit" />
-                    </a>
-                </div>
-                <div id="links">
-                    <a href="https://www.syncode.co.uk/terms.html">Terms and conditions</a> | <a href="https://www.syncode.co.uk/privacy.html">Privacy policy</a> | <a href="https://www.syncode.co.uk/cookies.html">Cookie policy</a>
-                </div>
-                <div id="copy">
-                    &copy; 2012 <a href="https://www.syncode.co.uk">Syncode</a>, a division of <a href="http://www.vpltd.com">Virtual Programming Ltd</a>
-                </div>
-            </div>
-        </footer>
+            <footer>
+                <div id="footer">
+                    <div id="icons">
+                        <a href="https://www.facebook.com/">
+                            <img src="img/facebook_icon.png" alt="Facebook" />
+                        </a>
+                        <a href="https://twitter.com">
+                            <img src="img/footer_twitter.png" alt="Twitter" />
+                        </a>
+                        <a href="mailto:peh.ty2@gmail.com.br">
+                            <img src="img/footer_email.png" alt="Email Syncode" />
+                        </a>
+                    </div>
+                    <div id="links">
 
-        </div>
-	</body>
+                    </div>
+                    <div id="copy">
+                        &copy; 2012 <a href="https://www.ace.br">SISCO</a>
+                    </div>
+                </div>
+            </footer>
+
+
+    </body>
 
 </html>

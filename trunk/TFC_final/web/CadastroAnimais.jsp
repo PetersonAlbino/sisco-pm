@@ -12,12 +12,11 @@
         <script src="js/functions.js" type="text/javascript"></script>
 
 
-        <title>Consulta de Materiais</title>
+        <title>Cadastro de Animais</title>
         <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
         <%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%> 
 
         <%@ include file="conexao.jsp" %>
-
         <c:if test="${not empty param.mensagem}">
             <script>
                 alert('${param.mensagem}')
@@ -30,22 +29,42 @@
                     DELETE FROM MATERIAL WHERE COD_MATERIAL = ${param.id}
 
                 </sql:update>
-                <script> alert('Material  Removido')</script>
+                <script> alert('Animal  Removido')</script>
             </c:catch>
 
             <c:if test="${not empty erro}">
-                <script> alert('Não foi possivel remover o material selecionado')</script>    
+                <script> alert('Não foi possivel remover o animal selecionado')</script>    
             </c:if>
+        </c:if>
 
+        <c:if test="${param.acao=='edit'}">
+            <sql:query var="editar" dataSource="${conexao}">
+                SELECT COD_MATERIAL,DES_MATERIAL,STATUS_MATERIAL,RACA,ESPECIE,SEXO,TIPO_MATERIAL FROM MATERIAL
+                WHERE COD_MATERIAL = ${param.id}
+            </sql:query>
 
         </c:if>
 
 
-        <sql:query var="material" dataSource="${conexao}">
-            SELECT * FROM MATERIAL
-            where TIPO_MATERIAL = 'Material' 
-            order by DES_MATERIAL
-        </sql:query>
+        <c:if test="${not empty param.des_material}">
+            <c:catch var="erro">
+                <sql:update dataSource="${conexao}">
+                    INSERT INTO MATERIAL (DES_MATERIAL,STATUS_MATERIAL,RACA,ESPECIE,SEXO,TIPO_MATERIAL) 
+                    VALUES (?,?,?,?,?,?)
+                    <sql:param value="${param.des_material}" />
+                    <sql:param value="${param.status_material}" />
+                    <sql:param value="${param.raca}" />
+                    <sql:param value="${param.especie}" />
+                    <sql:param value="${param.sexo}" />
+                    <sql:param value="${param.tipo_material}" />
+                </sql:update>
+                <script> alert('Animal cadastrado')</script>
+            </c:catch>
+            <c:if test="${not empty erro}">
+                <script> alert('Erro ao cadastrar animal')</script>    
+            </c:if>
+        </c:if>
+
     </head>
 
     <body>
@@ -77,53 +96,40 @@
                 <div id="content_main">
 
                     <div id="content_data">
-                        <h1>Consulta de Materiais</h1>
-                        <div >
+                        <h1>Cadastro de Animais Apreendidos</h1>
+                        <div>
                             <form  name="form1" method="post" action="">
                                 <ul>
                                     <li>
-                                        <table width="100%" height="100%" border="0">
-                                            <caption class="TableTitle1">
-                                            </caption>
-                                        </table>  
-                                        <table width="100%" border="0">
-                                            <caption class="TableTitle2">
-                                                <br/>
-                                                <br/>
-                                            </caption>
-                                        </table>
-                                        <p><img src="images/woofunction-icons/add_16.png" value="submit" width="20" height="20"/><a href="CadastroMateriais.jsp">Novo Material</a></p>
-                                        <table width="100%" border="0">
-
-                                            <tr>
-                                                <th>Edita</th>
-                                                <th>Deleta</th>
-                                                <th>Descrição</th>
-                                                <th>Status</th>
-                                                <th>Tipo</th>
-                                            </tr>
-                                            <c:forEach var="material" items="${material.rows}">
-                                                <tr>
-                                                    <td class="td1"><a href="CadastroMateriais.jsp?id=${material.COD_MATERIAL}"><img src="images/woofunction-icons/pencil_32.png" value="submit" width="20" height="20"/></a></td>
-                                                    <td class="td1"><a href="ConsultaMateriais.jsp?id=${material.COD_MATERIAL}&acao=delete"><img src="images/woofunction-icons/close_16.png" value="submit" width="20" height="20"/></a></td>
-
-
-                                                    <td class="td1"><c:out value="${material.DES_MATERIAL}"/></td>
-                                                    <td class="td1"><c:out value="${material.STATUS_MATERIAL}"/></td>
-                                                    <td class="td1"><c:out value="${material.TIPO_MATERIAL}"/></td>
-                                                </tr>
-                                            </c:forEach> 
-
-                                        </table>   
-                                        <table>
-                                            <tr>
-                                                <td class="td2"><a href="Principal.jsp"><img src="images/woofunction-icons/arrow_left_16.png" value="submit" width="20" height="20"/></a></td>
-                                            </tr>
-                                        </table>
-                                        <table width="100%" border="0">
-                                        </table>
-
-
+                                        <label for="email" ><strong>Descrição</strong></label><input type="textarea" name="des_material" id="des_material" value="${material.rows[0].DES_MATERIAL}"  </input>
+                                        <label for="email" ><Strong>Status</Strong></label>
+                                        <select name="status_material"> 
+                                            <option>Avariado</option> 
+                                            <option>Conservado</option> 
+                                            <option>Precisa de cuidados</option> 
+                                            <option>Ótimo Estado</option> 
+                                        </select>
+                                        <label for="email" ><strong>Raça</strong></label> <input type="textarea" name="raca" id="raca" value="${material.row[0].RACA}"</input>
+                                        <label for="email" ><strong>Especie</strong></label> <input type="textarea" name="especie" id="especie" value="${material.rows[0].ESPECIE}"</input>
+                                        <label for="email" ><strong>Sexo</strong></label>
+                                        <select name="sexo"> 
+                                            <option>Masculino</option>
+                                            <option>Feminino</option>
+                                        </select>
+                                        </div>
+                                        <h4></h4>
+                                        <label for="email" ><strong>Tipo</strong></label>
+                                        <div>
+                                            <select name="tipo_material">
+                                                <option>Animal</option>
+                                                <option>Material</option>
+                                            </select>
+                                        </div>
+                                        <h4></h4>
+                                        <div>
+                                            <input name="Salvar" value="Aceitar" type="submit" class="buttonGradientSubmit" id="salvar" </input>
+                                            <input name="Salvar"  value="Limpar" type="reset" class="buttonGradientSubmit" id="limpar" </input>
+                                        </div>
 
                                     </li>
                                 </ul>
