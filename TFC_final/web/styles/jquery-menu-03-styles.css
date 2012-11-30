@@ -55,10 +55,10 @@ div#wrapper-menu ul#nav li a.current{color:#b4005b;}
 div#wrapper-menu div#big-menu-hidden, div#big-menu-hidden2, div#big-menu-hidden3, div#big-menu-hidden4{
  	display:none;
 	text-align:left;
-	position:relative;
+	position: relative;
 	background:url(../images/back-big.menu-hidden.png) no-repeat;
 	font-size:12px;
-	left:1px;
+	left:350px;
 	width:1020px;
 	height:244px;
 	margin:50px 0px 0px 0px;
@@ -78,7 +78,7 @@ div#wrapper-menu div#big-menu-hidden div#cart, div#big-menu-hidden2 div#cart, di
 div#wrapper-menu div#big-menu-hidden div#cart div#counter-cart, div#big-menu-hidden2 div#cart div#counter-cart, div#big-menu-hidden3 div#cart div#counter-cart, div#big-menu-hidden4 div#cart div#counter-cart{
 	width:122px;
 	height:auto;
-	margin:20px 0 0 35px; 
+	margin:20px 0 0 10px; 
 	}
 div#wrapper-menu div#big-menu-hidden div#cart div#counter-cart p,div#big-menu-hidden2 div#cart div#counter-cart p, div#big-menu-hidden3 div#cart div#counter-cart p, div#big-menu-hidden4 div#cart div#counter-cart p{
 	font-family:Helvetica,arial,sans;
@@ -96,10 +96,10 @@ div#wrapper-menu div#big-menu-hidden div#cart div#counter-cart p#btn-go-cart a, 
 	line-height:38px;
 	text-decoration:none;
 	color:#FFF;
-	margin-bottom:10px;
+	margin-bottom:30px;
 	background-color:#698800;
-	-moz-border-radius:5px;
-	-webkit-border-radius:5px;
+	-moz-border-radius:20px;
+	-webkit-border-radius:20px;
 	}
 div#wrapper-menu div#big-menu-hidden div#cart div#counter-cart p#btn-go-cart a:hover, div#big-menu-hidden2 div#cart div#counter-cart p#btn-go-cart a:hover, div#big-menu-hidden3 div#cart div#counter-cart p#btn-go-cart a:hove, div#big-menu-hidden4 div#cart div#counter-cart p#btn-go-cart a:hove{color:#263100;}
 /*Now let set the product-list with its size, positioning and type*/
