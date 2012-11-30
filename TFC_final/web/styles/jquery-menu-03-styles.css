@@ -55,10 +55,10 @@ div#wrapper-menu ul#nav li a.current{color:#b4005b;}
 div#wrapper-menu div#big-menu-hidden, div#big-menu-hidden2, div#big-menu-hidden3, div#big-menu-hidden4{
  	display:none;
 	text-align:left;
-	position: relative;
+	position:relative;
 	background:url(../images/back-big.menu-hidden.png) no-repeat;
 	font-size:12px;
-	left:350px;
+	left:200px;
 	width:1020px;
 	height:244px;
 	margin:50px 0px 0px 0px;
