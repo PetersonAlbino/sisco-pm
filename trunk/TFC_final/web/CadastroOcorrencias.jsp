@@ -262,7 +262,7 @@
                                         <input type="textarea" name="nm_denunciante" id="nm_denunciante" value="${denunciante.rows[0].NM_DENUNCIANTE}"></input>
                                         <label for="form1"><strong>Sexo</strong></label>
                                         <div>
-                                            <select name="sexo_denunciante"> 
+                                            <select name="sexo_denunciante" id="sexo_denunciante" value="${denunciante.rows[0].SEXO_DENUNCIANTE}"> 
                                                 <option>Masculino</option>
                                                 <option>Feminino</option>
                                             </select>

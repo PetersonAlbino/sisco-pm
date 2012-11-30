@@ -45,85 +45,92 @@
 
     </c:if>
 
-    <body>
-        <div id="container">
-            <header>
-                <div id="header">
+    <c:if test="${param.acao=='edit'}">
+        <sql:query var="editar" dataSource="${conexao}">
+            SELECT COD_MUN,DES_MUN FROM MUNICIPIO
+            WHERE COD_MUN = ${param.id}
+        </sql:query>
+    </c:if>
 
-                    <div id="logo"><a href="Principal.jsp"><img src="images/logo.png" alt="peterson" /></a></div>
+<body>
+    <div id="container">
+        <header>
+            <div id="header">
 
-
-
-                    <!--Following code is all you need for the menu-->
-                    <div id="wrapper-menu"><!--container for this menu. With this container you can position it where you want in your layaout-->
-                        <ul id="nav" name="nav">
-                            <li id="item1" class="fade"><a class="cadastro-basico"  href="#" title="Cadastros Basicos"><img src="images/woofunction-icons/folder_add_32.png" width="20" height="20" alt="cadastro" /> Cadastro</a></li>
-
-                            <li id="item2" class="fade"><a  class="cadastro-basico2" href="#" title="Consultas Gerenciais"><img src="images/woofunction-icons/folder_chart_32.png" width="20" height="20" alt="consulta" /> Consultas</a></li>
-
-                            <li id="item3" class="fade"><a class="big-menu-launcher" href="#" title="Impressão de Relatorios"><img src="images/woofunction-icons/folder_page_32.png" width="20" height="20" alt="relatorio" /> Relatorios</a></li>
-
-                            <li id="item5" class="fade"><a href="ajuda.jsp" title="Portal de Ajuda"><img src="images/woofunction-icons/folder_warning_32.png" width="20" height="20" alt="ajuda" />Ajuda</a></li>
-                        </ul><!--end nav-->
-
-                        <!--here starts hiden menus-->
-                        <!--endBigMenuHidden-stores--><!--end wrapper-menu-->
-                        <!--end HTML code for this menu-->
-
-                    </div>
-            </header>
-            <div id="content">
-                <div id="content_head"></div>
-                <div id="content_main">
-
-                    <div id="content_data">
-                        <h1>Cadastro de Municipios</h1>
-                        <div >
-                            <form  name="form1" method="post" action="">
-                                <ul>
-                                    <li>
-
-                                        <label for="email" ><strong>Nome da Cidade</strong></label>
-                                        <input type="text" name="des_cidade" id="des_cidade" value="${MUNICIPIO.rows[0].DES_MUN}">
-                                    </li>
-                                    <input name="Ok" value="Enviar" type="submit" class="buttonGradientSubmit" id="Ok" />
-                                    <input name="Ok" value="Limpar" type="reset" class="buttonGradientSubmit" id="Ok" />
-
-                                </ul>
+                <div id="logo"><a href="Principal.jsp"><img src="images/logo.png" alt="peterson" /></a></div>
 
 
-                            </form>  
-                        </div>
 
+                <!--Following code is all you need for the menu-->
+                <div id="wrapper-menu"><!--container for this menu. With this container you can position it where you want in your layaout-->
+                    <ul id="nav" name="nav">
+                        <li id="item1" class="fade"><a class="cadastro-basico"  href="#" title="Cadastros Basicos"><img src="images/woofunction-icons/folder_add_32.png" width="20" height="20" alt="cadastro" /> Cadastro</a></li>
+
+                        <li id="item2" class="fade"><a  class="cadastro-basico2" href="#" title="Consultas Gerenciais"><img src="images/woofunction-icons/folder_chart_32.png" width="20" height="20" alt="consulta" /> Consultas</a></li>
+
+                        <li id="item3" class="fade"><a class="big-menu-launcher" href="#" title="Impressão de Relatorios"><img src="images/woofunction-icons/folder_page_32.png" width="20" height="20" alt="relatorio" /> Relatorios</a></li>
+
+                        <li id="item5" class="fade"><a href="ajuda.jsp" title="Portal de Ajuda"><img src="images/woofunction-icons/folder_warning_32.png" width="20" height="20" alt="ajuda" />Ajuda</a></li>
+                    </ul><!--end nav-->
+
+                    <!--here starts hiden menus-->
+                    <!--endBigMenuHidden-stores--><!--end wrapper-menu-->
+                    <!--end HTML code for this menu-->
+
+                </div>
+        </header>
+        <div id="content">
+            <div id="content_head"></div>
+            <div id="content_main">
+
+                <div id="content_data">
+                    <h1>Cadastro de Municipios</h1>
+                    <div >
+                        <form  name="form1" method="post" action="">
+                            <ul>
+                                <li>
+
+                                    <label for="email" ><strong>Nome da Cidade</strong></label>
+                                    <input type="text" name="des_cidade" id="des_cidade" value="${MUNICIPIO.rows[0].DES_MUN}">
+                                </li>
+                                <input name="Ok" value="Enviar" type="submit" class="buttonGradientSubmit" id="Ok" />
+                                <input name="Ok" value="Limpar" type="reset" class="buttonGradientSubmit" id="Ok" />
+
+                            </ul>
+
+
+                        </form>  
                     </div>
 
                 </div>
+
             </div>
-            <div id="content_foot"></div>
         </div>
-        <footer>
-            <div id="footer">
-                <div id="icons">
-                    <a href="https://www.facebook.com/">
-                        <img src="img/facebook_icon.png" alt="Facebook" />
-                    </a>
-                    <a href="https://twitter.com">
-                        <img src="img/footer_twitter.png" alt="Twitter" />
-                    </a>
-                    <a href="mailto:peh.ty2@gmail.com.br">
-                        <img src="img/footer_email.png" alt="Email Syncode" />
-                    </a>
-                </div>
-                <div id="links">
-
-                </div>
-                <div id="copy">
-                    &copy; 2012 <a href="https://www.ace.br">SISCO</a>
-                </div>
+        <div id="content_foot"></div>
+    </div>
+    <footer>
+        <div id="footer">
+            <div id="icons">
+                <a href="https://www.facebook.com/">
+                    <img src="img/facebook_icon.png" alt="Facebook" />
+                </a>
+                <a href="https://twitter.com">
+                    <img src="img/footer_twitter.png" alt="Twitter" />
+                </a>
+                <a href="mailto:peh.ty2@gmail.com.br">
+                    <img src="img/footer_email.png" alt="Email Syncode" />
+                </a>
             </div>
-        </footer>
+            <div id="links">
+
+            </div>
+            <div id="copy">
+                &copy; 2012 <a href="https://www.ace.br">SISCO</a>
+            </div>
+        </div>
+    </footer>
 
 
-    </body>
+</body>
 
 </html>

@@ -22,7 +22,7 @@
         <%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%> 
 
         <%@ include file="conexao.jsp" %>
-        <c:if test="${not empty param.mensagem}">
+        <%-- <c:if test="${not empty param.mensagem}">
             <script>
                 alert('${param.mensagem}')
             </script>
@@ -48,6 +48,15 @@
                 WHERE COD_OCOR = ${param.id}
             </sql:query>
 
+        </c:if> --%>
+        <c:if test="${param.acao=='analise'}">
+            <sql:query var="campos" dataSource="${conexao}">
+                SELECT OCORRENCIA.COD_OCOR,OCORRENCIA.DES_OCOR,OCORRENCIA.DT_OCOR,OCORRENCIA.COD_DENUNCIANTE,
+                OCORRENCIA.COD_ENDERECO,OCORRENCIA.COD_TIPO,OCORRENCIA.COD_SITUACAO,TIPO.DES_TIPO,DUNCIANTE.NM_DENUNCIANTE,DUNCIANTE.TEL_DENUNCIANTE 
+                FROM OCORRENCIA LEFT JOIN TIPO ON OCORRENCIA.COD_TIPO = TIPO.COD_TIPO
+                LEFT JOIN DUNCIANTE ON OCORRENCIA.COD_DENUNCIANTE = DUNCIANTE.COD_DENUNCIANTE
+                WHERE COD_OCOR = ${param.id}
+            </sql:query>
         </c:if>
 
 
@@ -153,47 +162,36 @@
             <div id="content_main">
 
                 <div id="content_data">
-                    <h1>Análise</h1>
+                    <h1>Análise de Ocorrências</h1>
                     <div >
                         <form  name="form1" method="post" action="">
                             <ul>
                                 <li>
-                                    <label  for="email"><strong>Código OS</strong></label>
-                                        <div class="">
-                                            <select name="consulta_tipo"> 
-                                                <c:forEach items="${consulta_os.rows}" var="consulta_tipo">
-                                                    <option value="${consulta_os.COD_OS}" >${consulta_tipo.DES_OS} </option>
-                                                </c:forEach>
-                                            </select>
-                                        </div>
-                                    <label for="forml" ><strong>Data da Ocorrência</strong></label>
-                                    <input type="text" name="dt_ocor" id="dt_ocor"></input>
-                                    <label for="forml" ><strong>Data de Agendamento</strong></label>
-                                    <input type="text" name="dt_agenda" id="dt_agenda"></input>
-                                    <label for="forml" ><strong>Data Realizada</strong></label>
-                                    <input type="date" name="dt_realizada" id="dt_realizada"></input> 
-                                    <label for="forml" ><strong>Responsável</strong></label>
-                                    <input type="text" name="responsavel" id="responsavel"></input>                                     
+                                    <label  for="email"><strong>Código Ocorrência</strong></label>
+                                    <input type="text" name="cod_ocor" id="cod_ocor" readonly="true" value="${campos.rows[0].COD_OCOR}"></input>
+                                    <label  for="email"><strong>Tipo de Ocorrência</strong></label>
+                                    <input type="text" name="cod_tipo" id="cod_tipo" readonly="true" value="${campos.rows[0].DES_TIPO}"></input>
+                                    <label for="cometario"><strong>Descrição da Ocorrência</strong></label> 
+                                    <textarea name="des_ocor" id="des_ocor" class="campo"></textarea>
                                     <label for="forml" ><strong>Situação*</strong></label>
                                     <div class="">
-                                        <select name="situacao"> 
+                                        <select name="situacao" id="COD_SITUACAO"> 
                                             <c:forEach items="${situacao.rows}" var="situacao">
-                                                <option value="${situacao.COD_SITUACAO}" >${situacao.DES_SITUACAO} </option>
+                                                <option value="${campos.rows[0].COD_SITUACAO}" >${situacao.DES_SITUACAO} </option>
                                             </c:forEach>
                                         </select>
-                                    </div>                                         
-                                    <label for="cometario"><strong>Descrição da Ocorrência</strong></label> 
-                                    <textarea name="descricao" id="descricao" class="campo"></textarea> <br />                                    
-                                    <label for="cometario"><strong>Situação Analisada</strong></label> 
-                                    <textarea name="situacao_analisada" id="situacao_analisada" class="campo"></textarea> <br />                                    
-
+                                    </div>
+                                    <label for="forml" ><strong>Data da Ocorrência</strong></label>
+                                    <input type="text" name="dt_ocor" id="dt_ocor" readonly="true" value="${campos.rows[0].DT_OCOR}"></input>                                 
+                                    <label for="cometario"><strong>Denunciante</strong></label> 
+                                    <input name="cod_denunciante" id="cod_denunciante" readonly="true" value="${campos.rows[0].NM_DENUNCIANTE}"></input>
+                                    <label for="cometario"><strong>Telefone Denunciante</strong></label> 
+                                    <input name="tel_denunciante" id="tel_denunciante" readonly="true" value="${campos.rows[0].TEL_DENUNCIANTE}"></input></br>
                                 </li>
                             </ul>
                         </form>
                     </div>
                 </div>
-
-
             </div>
 
         </div>

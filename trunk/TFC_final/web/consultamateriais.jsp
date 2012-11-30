@@ -38,9 +38,6 @@
             </c:if>
 
 
-        </c:if>
-
-
         <sql:query var="material" dataSource="${conexao}">
             SELECT * FROM MATERIAL
             where TIPO_MATERIAL = 'Material' 
