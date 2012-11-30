@@ -55,13 +55,18 @@
             SELECT  COD_SITUACAO, DES_SITUACAO FROM SITUACAO
         </sql:query>
         <sql:query var="ocorrencia" dataSource="${conexao}">
-            SELECT * FROM OCORRENCIA
-            order by DES_OCOR
+            SELECT OCORRENCIA.COD_OCOR,OCORRENCIA.DT_OCOR,TIPO.DES_TIPO,SITUACAO.DES_SITUACAO,MUNICIPIO.DES_MUN 
+            FROM OCORRENCIA LEFT JOIN TIPO 
+            ON OCORRENCIA.COD_TIPO = TIPO.COD_TIPO
+            LEFT JOIN SITUACAO
+            ON OCORRENCIA.COD_SITUACAO = SITUACAO.COD_SITUACAO
+            LEFT JOIN ENDERECO
+            ON OCORRENCIA.COD_ENDERECO = ENDERECO.COD_ENDERECO
+            LEFT JOIN MUNICIPIO
+            ON ENDERECO.COD_MUN = MUNICIPIO.COD_MUN
+            order by COD_OCOR
         </sql:query>
 
-        <sql:query var="consulta_tipo" dataSource="${conexao}">
-            SELECT COD_TIPO, DES_TIPO FROM TIPO
-        </sql:query>
 
     </head>                
 
@@ -120,9 +125,8 @@
                                             <th>Edita</th>
                                             <th>Deleta</th>
                                             <th>Emitir OS</th>
-                                            <th>Análise</th>
+                                            <th>Analise</th>
                                             <th>Tipo</th>
-                                            <th>OS</th>
                                             <th>Situação</th>
                                             <th>Endereco</th>
                                             <th>Data</th>
@@ -133,12 +137,12 @@
                                             <tr>
                                                 <td class="td1"><a href="CadastroOcorrencias.jsp?id=${ocorrencia.COD_OCOR}"><img src="images/woofunction-icons/pencil_32.png" value="submit" width="20" height="20"/></a></td>
                                                 <td class="td1"><a href="ConsultaOcorrencias.jsp?id=${ocorrencia.COD_OCOR}&acao=delete"><img src="images/woofunction-icons/close_16.png" value="submit" width="20" height="20"/></a></td>
-                                                <td class="td1"><a href="ordemdeservico.jsp?id=${ocorrencia.COD_OCOR}&acao=edit"><img src="images/woofunction-icons/page_table_add_32.png" value="submit" width="20" height="20"/></a></td>
-                                                <td class="td1"><a href="CadastroAnalise.jsp?id=${ocorrencia.COD_OCOR}"><img src="images/woofunction-icons/book_add_32.png" value="submit" width="20" height="20"/></a></td>
-                                                <td class="td1"><c:out value="${ocorrencia.COD_TIPO}"/></td>
-                                                <td class="td1"><c:out value="${ocorrencia.COD_OS}"/></td>
-                                                <td class="td1"><c:out value="${ocorrencia.COD_SITUACAO}"/></td>
-                                                <td class="td1"><c:out value="${ocorrencia.COD_ENDERECO}"/></td>
+                                                <td class="td1"><a href="ordemdeservico.jsp?id=${ocorrencia.COD_OCOR}&acao=geraos"><img src="images/woofunction-icons/page_table_add_32.png" value="submit" width="20" height="20"/></a></td>
+                                                <td class="td1"><a href="CadastroAnalise.jsp?id=${ocorrencia.COD_OCOR}&acao=analise"><img src="images/woofunction-icons/book_add_32.png" value="submit" width="20" height="20"/></a></td>
+                                                <td class="td1"><c:out value="${ocorrencia.DES_TIPO}"/></td>
+                                                <%--<td class="td1"><c:out value="${ocorrencia.COD_OS}"/></td>--%>
+                                                <td class="td1"><c:out value="${ocorrencia.DES_SITUACAO}"/></td>
+                                                <td class="td1"><c:out value="${ocorrencia.DES_MUN}"/></td>
                                                 <td class="td1"><c:out value="${ocorrencia.DT_OCOR}"/></td>
                                                 <td class="td1"><c:out value="${ocorrencia.COD_DENUNCIANTE}"/></td>
 

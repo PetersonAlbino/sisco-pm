@@ -43,25 +43,39 @@
             </c:if>
         </c:if>
 
+
+
+        <c:if test="${not empty param.des_tipo}">
+            <c:if test="${param.alteracao=='sim'}">
+                <sql:update dataSource="${conexao}">
+                    UPDATE TIPO SET DES_TIPO = ? 
+                    WHERE COD_TIPO = ${param.id};
+                    <sql:param value="${param.des_tipo}" />
+                </sql:update>
+                <script> alert('Atualizado')</script>
+            </c:if>
+            <c:if test="${empty param.alteracao}">
+                <c:catch var="erro">
+
+                    <sql:update dataSource="${conexao}">
+                        INSERT INTO TIPO (DES_TIPO) 
+                        VALUES (?)
+                        <sql:param value="${param.des_tipo}" />
+                    </sql:update>
+                    <script> alert('Tipo Cadastrado')</script>
+                </c:catch>
+            </c:if>
+
+
+
+        </c:if>
+
         <c:if test="${param.acao=='edit'}">
             <sql:query var="editar" dataSource="${conexao}">
                 SELECT COD_TIPO, DES_TIPO FROM TIPO
                 WHERE COD_TIPO = ${param.id}
-                
+
             </sql:query>
-
-        </c:if>
-
-        <c:if test="${not empty param.des_tipo}">
-            <c:catch var="erro">
-                <sql:update dataSource="${conexao}">
-                    INSERT INTO TIPO (DES_TIPO) 
-                    VALUES (?)
-                    <sql:param value="${param.des_tipo}" />
-                </sql:update>
-                <script> alert('Tipo Cadastrado')</script>
-            </c:catch>
-
 
         </c:if>
     </head>
@@ -100,13 +114,18 @@
                         <h1>Cadastro de Tipos de Ocorrências</h1>
                         <div >
                             <form  name="form1" method="post" action="">
+                                <c:if test="${param.acao=='edit'}">
+                                    <input type="hidden" name="id" value="${param.id}"/>
+                                    <input type="hidden" name="alteracao" value="sim"/>
+                                </c:if>
                                 <ul>
                                     <li>
 
                                         <label for="email" ><strong>Descrição do Tipo de Ocorrência</strong></label>
-                                        <input type="text" name="des_tipo" id="des_tipo" value="${param.rows[0].DES_TIPO}">
+                                        <input type="text" name="des_tipo" id="des_tipo" value="${editar.rows[0].DES_TIPO}">
                                     </li>
                                     <input name="Ok" value="Enviar" type="submit" class="buttonGradientSubmit" id="Ok" />
+
                                     <input name="Ok" value="Limpar" type="reset" class="buttonGradientSubmit" id="Ok" />
                                 </ul>
 

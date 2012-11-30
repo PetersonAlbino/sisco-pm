@@ -63,102 +63,102 @@
                                 <div id="counter-cart">
                                     <p id="btn-go-cart"><a href="CadastroSituacao.jsp" title="Cadastro de Situação de Ocorrências">Situação</a></p>
                                     <p id="btn-go-cart"><a href="CadastroTipo.jsp" title="Cadastro de Tipo de Ocorrências">Tipo</a></p>
-                                    <p id="btn-go-cart"><a href="CadastroAnalise.jsp" title="Cadastro de Análise da Ocorrência">Tipo</a></p>
-
+                                    <p id="btn-go-cart"><a href="ConsultaTipo.jsp" title="Cadastro de Análise da Ocorrência">Análise</a></p>
                                 </div>
                             </div>
-                        </div>
 
-                    </div><!--Fim Menu de Cadastros-->
-
-                    <!--Inicio Menu de RelatÃ³rios-->
-
-                    <div id="big-menu-hidden3">
-                        <div id="cart">
-                            <div id="counter-cart">
-                                <div id="btn-go-cart">
-                                    <h3 id="li-item1" >Tipo de OcorrÃªncia</h3>
-                                </div>
-                                <ul id="list-cameras">
-                                    <li><a href="" title="">Fauna99</a></li>
-                                    <li><a href="" title="">Flora99</a></li>
-                                </ul>
                             </div>
-                        </div>
 
-                        <div id="product-list">
+                        </div><!--Fim Menu de Cadastros-->
+
+                        <!--Inicio Menu de RelatÃ³rios-->
+
+                        <div id="big-menu-hidden3">
                             <div id="cart">
                                 <div id="counter-cart">
                                     <div id="btn-go-cart">
-                                        <h3 id="li-item1" >Atendimentos</h3>
-                                        <ul id="list-cameras">
-                                            <li><a href="" title="teste">Pendentes</a></li>
-                                            <li><a href="" title="teste">Atendidos</a></li>
-                                            <li class="view-all"><span><a href="#"></a></span></li>
+                                        <h3 id="li-item1" >Tipo de OcorrÃªncia</h3>
+                                    </div>
+                                    <ul id="list-cameras">
+                                        <li><a href="" title="">Fauna99</a></li>
+                                        <li><a href="" title="">Flora99</a></li>
+                                    </ul>
+                                </div>
+                            </div>
 
-                                        </ul>
+                            <div id="product-list">
+                                <div id="cart">
+                                    <div id="counter-cart">
+                                        <div id="btn-go-cart">
+                                            <h3 id="li-item1" >Atendimentos</h3>
+                                            <ul id="list-cameras">
+                                                <li><a href="" title="teste">Pendentes</a></li>
+                                                <li><a href="" title="teste">Atendidos</a></li>
+                                                <li class="view-all"><span><a href="#"></a></span></li>
+
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                        </div>
-                    </div><!--Fim Menu de relatÃ³rios-->
-                    <!--Inicio menu de Consultas-->
-                    <div id="big-menu-hidden2">
-                        <div id="cart">
-                            <div id="counter-cart">
-                                <div id="btn-go-cart">	                
-                                    <h3 id="li-item1" > Consultas</h3>
+                            </div>
+                        </div><!--Fim Menu de relatÃ³rios-->
+                        <!--Inicio menu de Consultas-->
+                        <div id="big-menu-hidden2">
+                            <div id="cart">
+                                <div id="counter-cart">
+                                    <div id="btn-go-cart">	                
+                                        <h3 id="li-item1" > Consultas</h3>
+                                    </div>
+                                    <p id="btn-go-cart"><a href="" title="222Cadastro referente a Flora">222Flora</a></p>
+                                    <p id="btn-go-cart"><a href="" title="222Cadastro referente a Fauna">222Fauna</a></p>
+                                    <p id="btn-go-cart"><a href="" title="222Cadastro referente a Ordem Publica">222Ordem</a></p>
+
                                 </div>
-                                <p id="btn-go-cart"><a href="" title="222Cadastro referente a Flora">222Flora</a></p>
-                                <p id="btn-go-cart"><a href="" title="222Cadastro referente a Fauna">222Fauna</a></p>
-                                <p id="btn-go-cart"><a href="" title="222Cadastro referente a Ordem Publica">222Ordem</a></p>
+                            </div>
+                            <div id="product-list">
+
+                                <h2 id="li-item1" >Outros <strong>Cadastros:</strong></h2>
+                                <span class="btn-close"><a class="cadastro-basico2"href="#">close</a></span>
+                                <ul id="list-cameras">
+
+                                    <li><a href="endereco.jsp" title="aaaaCadastro de Localidade">222Localidade</a></li>
+                                    <li><a href="materiais.jsp" title="aaaaaCadastro de Materiais">22Materiais</a></li>
+                                    <li><a href="os.jsp" title="aaaaCadastro de Constataï¿½ï¿½oo de Ordem de Serviï¿½o">222ConstataÃ§Ã£o</a></li>
+                                    <li><a href="#" title="aaaaaCadastro de Infraï¿½ï¿½o">222Auto de Infraï¿½ï¿½o</a></li>
+                                    <li><a href="#" title="2222Cadastro de Recolhimento">222Recolhimento</a></li>
+                                    <li><a href="os.jsp" title="Cadastro de Ordem de ServiÃ§o">222Ordem de Serviï¿½ï¿½o</a></li>
+                                    <li class="view-all"><span><a href="#"></a></span></li>
+                                </ul>
 
                             </div>
-                        </div>
-                        <div id="product-list">
+                        </div><!--Fim Menu de Consultas-->
 
-                            <h2 id="li-item1" >Outros <strong>Cadastros:</strong></h2>
-                            <span class="btn-close"><a class="cadastro-basico2"href="#">close</a></span>
-                            <ul id="list-cameras">
+                        <!-- Inicio Menu de Materiais-->
+                        <div id="big-menu-hidden4">
+                            <div id="cart">
+                                <div id="counter-cart">
+                                    <div id="btn-go-cart">	                
+                                        <h3 id="li-item1" > Consultas</h3>
+                                    </div>
 
-                                <li><a href="endereco.jsp" title="aaaaCadastro de Localidade">222Localidade</a></li>
-                                <li><a href="materiais.jsp" title="aaaaaCadastro de Materiais">22Materiais</a></li>
-                                <li><a href="os.jsp" title="aaaaCadastro de Constataï¿½ï¿½oo de Ordem de Serviï¿½o">222ConstataÃ§Ã£o</a></li>
-                                <li><a href="#" title="aaaaaCadastro de Infraï¿½ï¿½o">222Auto de Infraï¿½ï¿½o</a></li>
-                                <li><a href="#" title="2222Cadastro de Recolhimento">222Recolhimento</a></li>
-                                <li><a href="os.jsp" title="Cadastro de Ordem de ServiÃ§o">222Ordem de Serviï¿½ï¿½o</a></li>
-                                <li class="view-all"><span><a href="#"></a></span></li>
-                            </ul>
-
-                        </div>
-                    </div><!--Fim Menu de Consultas-->
-
-                    <!-- Inicio Menu de Materiais-->
-                    <div id="big-menu-hidden4">
-                        <div id="cart">
-                            <div id="counter-cart">
-                                <div id="btn-go-cart">	                
-                                    <h3 id="li-item1" > Consultas</h3>
                                 </div>
+                            </div>
+                            <div id="product-list">
+
+                                <h2 id="li-item1" >Outros <strong>Cadastros:</strong></h2>
+                                <span class="btn-close"><a class="cadastro-basico4"href="#">close</a></span>
+                                <ul id="list-cameras">
+
+
+                                </ul>
 
                             </div>
                         </div>
-                        <div id="product-list">
+                        <!-- Fim Menu de Materiais-->                        
 
-                            <h2 id="li-item1" >Outros <strong>Cadastros:</strong></h2>
-                            <span class="btn-close"><a class="cadastro-basico4"href="#">close</a></span>
-                            <ul id="list-cameras">
-
-
-                            </ul>
-
-                        </div>
                     </div>
-                    <!-- Fim Menu de Materiais-->                        
-
                 </div>
-            </div>
         </header>
         <div id="content">
             <div id="content_head"></div>
@@ -166,7 +166,7 @@
                 <div id="container">
                     <div class="tmplapps">
 
-                        <div class="floatsection col0"><a href="CadastroOcorrencias.jsp"title="" style="background-image:url(img/apps_page_synotes__1339059658.png)"></a></div>
+                        <div class="floatsection col0"><a href="ConsultaOcorrencias.jsp"title="" style="background-image:url(img/apps_page_synotes__1339059658.png)"></a></div>
                         <div class="floatsection col0"><a href="Animais.jsp"title="" style="background-image:url(img/apps_page_birder__1339081919-1221.png)"></a></div>
                         <div class="floatsection col0"><a href="ConsultaTipo.jsp"title="" style="background-image:url(img/swapped_coming_soon_1343809493-outra%20opcion.png)"></a></div>
 

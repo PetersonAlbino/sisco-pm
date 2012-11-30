@@ -212,7 +212,7 @@
                                             </tr>
                                             <c:forEach var="municipio" items="${municipio.rows}">
                                                 <tr>
-                                                    <td class="td1"><a href="municipio.jsp?id=${municipio.COD_MUN}"><img src="images/woofunction-icons/pencil_32.png" value="submit" width="20" height="20"/></a></td>
+                                                    <td class="td1"><a href="CadastroMunicipio.jsp?id=${municipio.COD_MUN}&acao=edit"><img src="images/woofunction-icons/pencil_32.png" value="submit" width="20" height="20"/></a></td>
                                                     <td class="td1"><a href="ConsultaMunicipios.jsp?id=${municipio.COD_MUN}&acao=delete"><img src="images/woofunction-icons/close_16.png" value="submit" width="20" height="20"/></a></td>
                                                     <td class="td1"><c:out value="${municipio.COD_MUN}"/></td>
                                                     <td class="td1"><c:out value="${municipio.DES_MUN}"/></td>
