@@ -167,8 +167,8 @@
                     <div class="tmplapps">
 
                         <div class="floatsection col0"><a href="ConsultaOcorrencias.jsp"title="" style="background-image:url(img/apps_page_synotes__1339059658.png)"></a></div>
-                        <div class="floatsection col0"><a href="Animais.jsp"title="" style="background-image:url(img/apps_page_birder__1339081919-1221.png)"></a></div>
-                        <div class="floatsection col0"><a href="ConsultaTipo.jsp"title="" style="background-image:url(img/swapped_coming_soon_1343809493-outra%20opcion.png)"></a></div>
+                        <div class="floatsection col0"><a href="consultaAnimais.jsp"title="" style="background-image:url(img/apps_page_birder__1339081919-1221.png)"></a></div>
+                        <div class="floatsection col0"><a href="ConsultaSituacao.jsp"title="" style="background-image:url(img/swapped_coming_soon_1343809493-outra%20opcion.png)"></a></div>
 
                     </div>	
                     <div class="clear"></div>

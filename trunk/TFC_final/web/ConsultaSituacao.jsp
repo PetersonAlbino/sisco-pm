@@ -124,7 +124,7 @@
                                             </tr>
                                             <c:forEach var="situacao" items="${situacao.rows}">
                                                 <tr>
-                                                    <td class="td1"><a href="CadastroSituacao.jsp?id=${situacao.COD_SITUACAO}"><img src="images/woofunction-icons/pencil_32.png" value="submit" width="20" height="20"/></a></td>
+                                                    <td class="td1"><a href="CadastroSituacao.jsp?id=${situacao.COD_SITUACAO}&acao=edit"><img src="images/woofunction-icons/pencil_32.png" value="submit" width="20" height="20"/></a></td>
                                                     <td class="td1"><a href="ConsultaSituacao.jsp?id=${situacao.COD_SITUACAO}&acao=delete"><img src="images/woofunction-icons/close_16.png" value="submit" width="20" height="20"/></a></td>
                                                     <td class="td1"><c:out value="${situacao.DES_SITUACAO}"/></td>
 

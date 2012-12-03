@@ -39,13 +39,6 @@
 
 
         </c:if>
-        <c:if test="${param.acao=='edit'}">
-            <sql:update dataSource="${conexao}">
-                SELECT COD_MATERIAL,DES_MATERIAL,STATUS_MATERIAL,RACA,ESPECIE,SEXO,TIPO_MATERIAL FROM MATERIAL
-                where COD_MATERIAL = ${param.id}
-            </sql:update>
-        </c:if>
-
 
         <sql:query var="material" dataSource="${conexao}">
             SELECT * FROM MATERIAL
@@ -113,10 +106,8 @@
                                             </tr>
                                             <c:forEach var="material" items="${material.rows}">
                                                 <tr>
-                                                    <td class="td1"><a href="CadastroAnimais.jsp?id=${material.COD_MATERIAL}"><img src="images/woofunction-icons/pencil_32.png" value="submit" width="20" height="20"/></a></td>
+                                                    <td class="td1"><a href="CadastroAnimais.jsp?id=${material.COD_MATERIAL}&acao=edit"><img src="images/woofunction-icons/pencil_32.png" value="submit" width="20" height="20"/></a></td>
                                                     <td class="td1"><a href="ConsultaAnimais.jsp?id=${material.COD_MATERIAL}&acao=delete"><img src="images/woofunction-icons/close_16.png" value="submit" width="20" height="20"/></a></td>
-
-
                                                     <td class="td1"><c:out value="${material.DES_MATERIAL}"/></td>
                                                     <td class="td1"><c:out value="${material.STATUS_MATERIAL}"/></td>
                                                     <td class="td1"><c:out value="${material.RACA}"/></td>

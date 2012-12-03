@@ -43,6 +43,26 @@
             </c:if>
         </c:if>
 
+
+        <c:if test="${not empty param.des_situaxao}">
+            <c:if test="${param.alteracao=='sim'}">
+                <sql:update dataSource="${conexao}">
+                    UPDATE TIPO SET DES_SITUACAO = ? 
+                    WHERE COD_TIPO = ${param.id};
+                    <sql:param value="${param.des_situaxao}" />
+                </sql:update>
+                <script> alert('Situação Atualizada')</script>
+            </c:if>
+            <c:if test="${empty param.alteracao}">
+                <sql:update dataSource="${conexao}">
+                    INSERT INTO SITUACAO (DES_SITUACAO) 
+                    VALUES (?)
+                    <sql:param value="${param.des_situacao}" />
+                </sql:update>
+                <script> alert('Situacao Cadastrada')</script>
+            </c:if>
+        </c:if>
+
         <c:if test="${param.acao=='edit'}">
             <sql:query var="editar" dataSource="${conexao}">
                 COD_SITUACAO, DES_SITUACAO FROM SITUACAO
@@ -51,18 +71,6 @@
 
         </c:if>
 
-        <c:if test="${not empty param.des_situacao}">
-            <c:catch var="erro">
-                <sql:update dataSource="${conexao}">
-                    INSERT INTO SITUACAO (DES_SITUACAO) 
-                    VALUES (?)
-                    <sql:param value="${param.des_situacao}" />
-                </sql:update>
-                <script> alert('Situacao Cadastrada')</script>
-            </c:catch>
-
-
-        </c:if>
     </head>
     <body>
         <div id="container">
@@ -99,19 +107,25 @@
                         <h1>Cadastro de Situação</h1>
                         <div >
                             <form  name="form1" method="post" action="">
-                                <ul>
-                                    <li>
+                                <form  name="form1" method="post" action="">
+                                    <c:if test="${param.acao=='edit'}">
+                                        <input type="hidden" name="id" value="${param.id}"/>
+                                        <input type="hidden" name="alteracao" value="sim"/>
+                                    </c:if>
 
-                                        <label for="email" ><strong>Descrição da Situação da Ocorrência</strong></label>
-                                        <input type="text" name="des_situacao" id="des_situacao" value="${SITUACAO.rows[0].DES_SITUACAO}">
-                                    </li>
-                                    <input name="Ok" value="Enviar" type="submit" class="buttonGradientSubmit" id="Ok" />
-                                    <input name="Ok" value="Limpar" type="reset" class="buttonGradientSubmit" id="Ok" />
+                                    <ul>
+                                        <li>
 
-                                </ul>
+                                            <label for="email" ><strong>Descrição da Situação da Ocorrência</strong></label>
+                                            <input type="text" name="des_situacao" id="des_situacao" value="${editar.rows[0].DES_SITUACAO}">
+                                        </li>
+                                        <input name="Ok" value="Enviar" type="submit" class="buttonGradientSubmit" id="Ok" />
+                                        <input name="Ok" value="Limpar" type="reset" class="buttonGradientSubmit" id="Ok" />
+
+                                    </ul>
 
 
-                            </form>  
+                                </form>  
                         </div>
 
                     </div>
