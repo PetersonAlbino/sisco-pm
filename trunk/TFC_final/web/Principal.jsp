@@ -53,7 +53,7 @@
                                 <div id="btn-go-cart">	                
                                     <h3 id="li-item1" >Cadastros</h3>
                                 </div>
-                                <p id="btn-go-cart"><a href="CadastroBairro.jsp" title="Cadastro de novos Bairros">Bairro</a></p>
+                                <p id="btn-go-cart"><a href="CadastroBairro.jsp" title="Cadastro de novos Bairros">Bairros</a></p>
                                 <p id="btn-go-cart"><a href="CadastroMunicipio.jsp" title="Cadastro de Municípios">Municípios</a></p>
                             </div>
                         </div>
@@ -67,98 +67,93 @@
                                 </div>
                             </div>
 
+                        </div>
+
+                    </div><!--Fim Menu de Cadastros-->
+
+                    <!--Inicio Menu de RelatÃ³rios-->
+
+                    <div id="big-menu-hidden3">
+                        <div id="cart">
+                            <div id="counter-cart">
+                                <div id="btn-go-cart">
+                                    <h3 id="li-item1" >Tipo de OcorrÃªncia</h3>
+                                </div>
+                                <ul id="list-cameras">
+                                    <li><a href="" title="">Fauna99</a></li>
+                                    <li><a href="" title="">Flora99</a></li>
+                                </ul>
                             </div>
+                        </div>
 
-                        </div><!--Fim Menu de Cadastros-->
-
-                        <!--Inicio Menu de RelatÃ³rios-->
-
-                        <div id="big-menu-hidden3">
+                        <div id="product-list">
                             <div id="cart">
                                 <div id="counter-cart">
                                     <div id="btn-go-cart">
-                                        <h3 id="li-item1" >Tipo de OcorrÃªncia</h3>
-                                    </div>
-                                    <ul id="list-cameras">
-                                        <li><a href="" title="">Fauna99</a></li>
-                                        <li><a href="" title="">Flora99</a></li>
-                                    </ul>
-                                </div>
-                            </div>
+                                        <h3 id="li-item1" >Atendimentos</h3>
+                                        <ul id="list-cameras">
+                                            <li><a href="" title="teste">Pendentes</a></li>
+                                            <li><a href="" title="teste">Atendidos</a></li>
+                                            <li class="view-all"><span><a href="#"></a></span></li>
 
-                            <div id="product-list">
-                                <div id="cart">
-                                    <div id="counter-cart">
-                                        <div id="btn-go-cart">
-                                            <h3 id="li-item1" >Atendimentos</h3>
-                                            <ul id="list-cameras">
-                                                <li><a href="" title="teste">Pendentes</a></li>
-                                                <li><a href="" title="teste">Atendidos</a></li>
-                                                <li class="view-all"><span><a href="#"></a></span></li>
-
-                                            </ul>
-                                        </div>
+                                        </ul>
                                     </div>
                                 </div>
-
                             </div>
-                        </div><!--Fim Menu de relatÃ³rios-->
-                        <!--Inicio menu de Consultas-->
-                        <div id="big-menu-hidden2">
-                            <div id="cart">
-                                <div id="counter-cart">
-                                    <div id="btn-go-cart">	                
-                                        <h3 id="li-item1" > Consultas</h3>
-                                    </div>
-                                    <p id="btn-go-cart"><a href="" title="222Cadastro referente a Flora">222Flora</a></p>
-                                    <p id="btn-go-cart"><a href="" title="222Cadastro referente a Fauna">222Fauna</a></p>
-                                    <p id="btn-go-cart"><a href="" title="222Cadastro referente a Ordem Publica">222Ordem</a></p>
+
+                        </div>
+                    </div><!--Fim Menu de relatÃ³rios-->
+                    <!--Inicio menu de Consultas-->
+                    <div id="big-menu-hidden2">
+                        <div id="cart">
+                            <div id="counter-cart">
+                                <div id="btn-go-cart">	                
 
                                 </div>
-                            </div>
-                            <div id="product-list">
-
-                                <h2 id="li-item1" >Outros <strong>Cadastros:</strong></h2>
-                                <span class="btn-close"><a class="cadastro-basico2"href="#">close</a></span>
-                                <ul id="list-cameras">
-
-                                    <li><a href="endereco.jsp" title="aaaaCadastro de Localidade">222Localidade</a></li>
-                                    <li><a href="materiais.jsp" title="aaaaaCadastro de Materiais">22Materiais</a></li>
-                                    <li><a href="os.jsp" title="aaaaCadastro de Constataï¿½ï¿½oo de Ordem de Serviï¿½o">222ConstataÃ§Ã£o</a></li>
-                                    <li><a href="#" title="aaaaaCadastro de Infraï¿½ï¿½o">222Auto de Infraï¿½ï¿½o</a></li>
-                                    <li><a href="#" title="2222Cadastro de Recolhimento">222Recolhimento</a></li>
-                                    <li><a href="os.jsp" title="Cadastro de Ordem de ServiÃ§o">222Ordem de Serviï¿½ï¿½o</a></li>
-                                    <li class="view-all"><span><a href="#"></a></span></li>
-                                </ul>
-
-                            </div>
-                        </div><!--Fim Menu de Consultas-->
-
-                        <!-- Inicio Menu de Materiais-->
-                        <div id="big-menu-hidden4">
-                            <div id="cart">
-                                <div id="counter-cart">
-                                    <div id="btn-go-cart">	                
-                                        <h3 id="li-item1" > Consultas</h3>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div id="product-list">
-
-                                <h2 id="li-item1" >Outros <strong>Cadastros:</strong></h2>
-                                <span class="btn-close"><a class="cadastro-basico4"href="#">close</a></span>
-                                <ul id="list-cameras">
-
-
-                                </ul>
+                                <p id="btn-go-cart"><a href="ConsultaBairros.jsp" title="Consulta de Bairros cadastrados">Bairros</a></p>
+                                <p id="btn-go-cart"><a href="ConsultaMunicipios.jsp" title="Consulta de Municípios cadastrados">Municípios</a></p>
+                                <p id="btn-go-cart"><a href="ConsultaOcorrencias.jsp" title="Consulta de Ocorrências cadastrados">Ocorrências</a></p>
+                                <p id="btn-go-cart"><a href="ConsultaTipo.jsp" title="Consulta de Tipo da Ocorrência">Tipo</a></p>
 
                             </div>
                         </div>
-                        <!-- Fim Menu de Materiais-->                        
+                        <div id="product-list">
+                            <div id="cart">
+                                <span class="btn-close"><a class="cadastro-basico"href="#">close</a></span>                            
+                                <div id="counter-cart">
+                                    <p id="btn-go-cart"><a href="consultamateriais.jsp" title="Consulta de Materiais Apreendidos">Materiais</a></p>
+                                    <p id="btn-go-cart"><a href="consultaAnimais.jsp" title="Consulta de Animais Apreendidos">Animais</a></p>
+                                    <p id="btn-go-cart"><a href="ConsultaSituacao.jsp" title="Consulta da Situação da Ocorrência">Situação</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--Fim Menu de Consultas-->
 
+                    <!-- Inicio Menu de Materiais-->
+                    <div id="big-menu-hidden4">
+                        <div id="cart">
+                            <div id="counter-cart">
+                                <div id="btn-go-cart">	                
+                                    <h3 id="li-item1" > Consultas</h3>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div id="product-list">
+
+                            <h2 id="li-item1" >Outros <strong>Cadastros:</strong></h2>
+                            <span class="btn-close"><a class="cadastro-basico4"href="#">close</a></span>
+                            <ul id="list-cameras">
+
+
+                            </ul>
+
+                        </div>
                     </div>
+                    <!-- Fim Menu de Materiais-->                        
+
                 </div>
+            </div>
         </header>
         <div id="content">
             <div id="content_head"></div>
