@@ -12,7 +12,6 @@
         <script src="js/functions.js" type="text/javascript"></script>
 
         <!--Titulo-->
-        <title>Cadastro de Ocorrências</title>
         <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
         <%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%> 
 
@@ -46,6 +45,57 @@
             SELECT * FROM MUNICIPIO
             order by DES_MUN
         </sql:query>
+
+        <script>
+            var bairros = new Array();
+            var cod_bairros = new Array();
+            <c:forEach var="municipio" items="${municipios.rows}">
+                <sql:query var="bairros" dataSource="${conexao}">
+                    SELECT COD_BAIRRO,NOME_BAIRRO,COD_MUN FROM BAIRRO 
+                    WHERE COD_MUN = ${municipio.COD_MUN} 
+                    ORDER BY NOME_BAIRRO
+             
+                </sql:query>
+                    bairros['${municipio.COD_MUN}'] = new Array(
+                <c:forEach var="bairro" items="${bairros.rows}">
+                    '${bairro.NOME_BAIRRO}',
+                </c:forEach>
+                    ''); 
+                    cod_bairros['${municipio.COD_MUN}'] = new Array(
+                <c:forEach var="bairro" items="${bairros.rows}">
+                    '${bairro.COD_BAIRRO}',
+                </c:forEach>
+                    '');
+            </c:forEach>
+
+                function carregaBairros() {
+                    var selCidades = document.form1.municipios;
+                    var selBairros = document.form1.bairros;
+                   
+                    selBairros.options.length=0;
+                    var nomebairro = bairros[selCidades.value];
+                    var codbairro = cod_bairros[selCidades.value];
+                    //alert(selCidades.value);
+                    //alert(disp.length);
+                    var html = '';
+                    if (nomebairro != null){
+                        for (i = 0; i < nomebairro.length - 1 ; i++) {
+                            //alert(html);
+                            html = html + '<option value="'+codbairro[i]+'">'+nomebairro[i]+'</option>';
+                             
+                                                  
+                        }
+                        //alert(html);
+                        
+                        $(selBairros).html(html).selectmenu('refresh', true);
+                        alert(html);
+                    }else{
+                        html = html + '<option></option>';
+                        $(selBairros).html(html).selectmenu('refresh', true);     
+                    }                    
+                };
+        </script>
+            
     </head>
     <body>
         <div id="container">
@@ -184,10 +234,19 @@
                 <div id="content_head"></div>
                 <div id="content_main">
                     <div id="content_data">
+                        <h1>Consulta de Bairros</h1>
                         <div >
                             <form  name="form1" method="post" action="">
                                 <ul>
                                     <li>
+                                        <label for="form1"><strong>Escolha a cidade que deseja filtrar:</strong></label>
+                                        <div class="">
+                                            <select name="municipio" onchange="carregaBairros()">
+                                                <c:forEach items="${municipio.rows}" var="municipio">
+                                                    <option value="${municipio.COD_MUN}" >${municipio.DES_MUN} </option>
+                                                </c:forEach>
+                                            </select>
+                                        </div>
                                         <table width="100%" height="100%" border="0">
                                             <caption class="TableTitle1">
                                                 <br/>
@@ -201,7 +260,7 @@
                                                 <br/>
                                             </caption>
                                         </table>
-                                        <p><img src="images/woofunction-icons/add_16.png" value="submit" width="20" height="20"/><a href="municipio.jsp">Novo Municipio</a></p>
+                                        <p><img src="images/woofunction-icons/add_16.png" value="submit" width="20" height="20"/><a href="CadastroBairro.jsp">Novo Bairro</a></p>
                                         <table width="100%" border="0">
 
                                             <tr>
@@ -210,13 +269,12 @@
                                                 <th>Código</th>
                                                 <th>Nome</th>
                                             </tr>
-                                            <c:forEach var="municipio" items="${municipio.rows}">
+                                            <c:forEach var="municipio" items="${bairros.rows}">
                                                 <tr>
-                                                    <td class="td1"><a href="CadastroMunicipio.jsp?id=${municipio.COD_MUN}&acao=edit"><img src="images/woofunction-icons/pencil_32.png" value="submit" width="20" height="20"/></a></td>
-                                                    <td class="td1"><a href="ConsultaMunicipios.jsp?id=${municipio.COD_MUN}&acao=delete"><img src="images/woofunction-icons/close_16.png" value="submit" width="20" height="20"/></a></td>
-                                                    <td class="td1"><c:out value="${municipio.COD_MUN}"/></td>
-                                                    <td class="td1"><c:out value="${municipio.DES_MUN}"/></td>
-
+                                                    <td class="td1"><a href="CadastroBairro.jsp?id=${bairros.COD_BAIRRO}&acao=edit"><img src="images/woofunction-icons/pencil_32.png" value="submit" width="20" height="20"/></a></td>
+                                                    <td class="td1"><a href="ConsultaBairros.jsp?id=${bairros.COD_BAIRRO}&acao=delete"><img src="images/woofunction-icons/close_16.png" value="submit" width="20" height="20"/></a></td>
+                                                    <td class="td1"><c:out value="${bairros.COD_BAIRRO}"/></td>
+                                                    <td class="td1"><c:out value="${bairros.DES_BAIRRO}"/></td>
                                                 </tr>
                                             </c:forEach> 
 

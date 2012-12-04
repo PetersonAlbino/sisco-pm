@@ -44,7 +44,7 @@
         </c:if>
 
 
-        <c:if test="${not empty param.des_situaxao}">
+        <c:if test="${not empty param.des_situacao}">
             <c:if test="${param.alteracao=='sim'}">
                 <sql:update dataSource="${conexao}">
                     UPDATE TIPO SET DES_SITUACAO = ? 
@@ -65,10 +65,9 @@
 
         <c:if test="${param.acao=='edit'}">
             <sql:query var="editar" dataSource="${conexao}">
-                COD_SITUACAO, DES_SITUACAO FROM SITUACAO
+                SELECT COD_SITUACAO, DES_SITUACAO FROM SITUACAO
                 WHERE COD_SITUACAO = ${param.id}
             </sql:query>
-
         </c:if>
 
     </head>
@@ -106,7 +105,6 @@
                     <div id="content_data">
                         <h1>Cadastro de Situação</h1>
                         <div >
-                            <form  name="form1" method="post" action="">
                                 <form  name="form1" method="post" action="">
                                     <c:if test="${param.acao=='edit'}">
                                         <input type="hidden" name="id" value="${param.id}"/>

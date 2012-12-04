@@ -22,27 +22,28 @@
         <%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%> 
 
         <%@ include file="conexao.jsp" %>
-
-
-
-
     </head>
 
     <c:if test="${not empty param.des_cidade}">
-        <c:catch var="erro">
+        <c:if test="${param.alteracao=='sim'}">
+            <sql:update dataSource="${conexao}">
+                UPDATE MUNICIPIO SET DES_MUN = ? 
+                WHERE COD_MUN = ${param.id};
+                <sql:param value="${param.des_cidade}" />
+            </sql:update>
+            <script> alert('Município Atualizada')</script>
+        </c:if>
+        <c:if test="${empty param.alteracao}">
             <sql:update dataSource="${conexao}">
                 INSERT INTO MUNICIPIO (DES_MUN) 
                 VALUES (?)
                 <sql:param value="${param.des_cidade}" />
             </sql:update>
             <script> alert('Município Cadastrado')</script>
-        </c:catch>
-
-        <c:if test="${not empty erro}">
-            <script> alert('Erro ao cadastrar Município')</script>    
+            <c:if test="${not empty erro}">
+                <script> alert('Erro ao cadastrar Município')</script>    
+            </c:if>
         </c:if>
-
-
     </c:if>
 
     <c:if test="${param.acao=='edit'}">
@@ -52,85 +53,91 @@
         </sql:query>
     </c:if>
 
-<body>
-    <div id="container">
-        <header>
-            <div id="header">
 
-                <div id="logo"><a href="Principal.jsp"><img src="images/logo.png" alt="peterson" /></a></div>
+    <body>
+        <div id="container">
+            <header>
+                <div id="header">
 
-
-
-                <!--Following code is all you need for the menu-->
-                <div id="wrapper-menu"><!--container for this menu. With this container you can position it where you want in your layaout-->
-                    <ul id="nav" name="nav">
-                        <li id="item1" class="fade"><a class="cadastro-basico"  href="#" title="Cadastros Basicos"><img src="images/woofunction-icons/folder_add_32.png" width="20" height="20" alt="cadastro" /> Cadastro</a></li>
-
-                        <li id="item2" class="fade"><a  class="cadastro-basico2" href="#" title="Consultas Gerenciais"><img src="images/woofunction-icons/folder_chart_32.png" width="20" height="20" alt="consulta" /> Consultas</a></li>
-
-                        <li id="item3" class="fade"><a class="big-menu-launcher" href="#" title="ImpressÃ£o de Relatorios"><img src="images/woofunction-icons/folder_page_32.png" width="20" height="20" alt="relatorio" /> Relatorios</a></li>
-
-                        <li id="item5" class="fade"><a href="ajuda.jsp" title="Portal de Ajuda"><img src="images/woofunction-icons/folder_warning_32.png" width="20" height="20" alt="ajuda" />Ajuda</a></li>
-                    </ul><!--end nav-->
-
-                    <!--here starts hiden menus-->
-                    <!--endBigMenuHidden-stores--><!--end wrapper-menu-->
-                    <!--end HTML code for this menu-->
-
-                </div>
-        </header>
-        <div id="content">
-            <div id="content_head"></div>
-            <div id="content_main">
-
-                <div id="content_data">
-                    <h1>Cadastro de Municipios</h1>
-                    <div >
-                        <form  name="form1" method="post" action="">
-                            <ul>
-                                <li>
-
-                                    <label for="email" ><strong>Nome da Cidade</strong></label>
-                                    <input type="text" name="des_cidade" id="des_cidade" value="${MUNICIPIO.rows[0].DES_MUN}">
-                                </li>
-                                <input name="Ok" value="Enviar" type="submit" class="buttonGradientSubmit" id="Ok" />
-                                <input name="Ok" value="Limpar" type="reset" class="buttonGradientSubmit" id="Ok" />
-
-                            </ul>
+                    <div id="logo"><a href="Principal.jsp"><img src="images/logo.png" alt="peterson" /></a></div>
 
 
-                        </form>  
+
+                    <!--Following code is all you need for the menu-->
+                    <div id="wrapper-menu"><!--container for this menu. With this container you can position it where you want in your layaout-->
+                        <ul id="nav" name="nav">
+                            <li id="item1" class="fade"><a class="cadastro-basico"  href="#" title="Cadastros Basicos"><img src="images/woofunction-icons/folder_add_32.png" width="20" height="20" alt="cadastro" /> Cadastro</a></li>
+
+                            <li id="item2" class="fade"><a  class="cadastro-basico2" href="#" title="Consultas Gerenciais"><img src="images/woofunction-icons/folder_chart_32.png" width="20" height="20" alt="consulta" /> Consultas</a></li>
+
+                            <li id="item3" class="fade"><a class="big-menu-launcher" href="#" title="ImpressÃ£o de Relatorios"><img src="images/woofunction-icons/folder_page_32.png" width="20" height="20" alt="relatorio" /> Relatorios</a></li>
+
+                            <li id="item5" class="fade"><a href="ajuda.jsp" title="Portal de Ajuda"><img src="images/woofunction-icons/folder_warning_32.png" width="20" height="20" alt="ajuda" />Ajuda</a></li>
+                        </ul><!--end nav-->
+
+                        <!--here starts hiden menus-->
+                        <!--endBigMenuHidden-stores--><!--end wrapper-menu-->
+                        <!--end HTML code for this menu-->
+
+                    </div>
+            </header>
+            <div id="content">
+                <div id="content_head"></div>
+                <div id="content_main">
+
+                    <div id="content_data">
+                        <h1>Cadastro de Municipios</h1>
+                        <div >
+                            <form  name="form1" method="post" action="">
+                                <c:if test="${param.acao=='edit'}">
+                                    <input type="hidden" name="id" value="${param.id}"/>
+                                    <input type="hidden" name="alteracao" value="sim"/>
+                                </c:if>
+
+                                <ul>
+                                    <li>
+
+                                        <label for="email" ><strong>Nome da Cidade</strong></label>
+                                        <input type="text" name="des_cidade" id="des_cidade" value="${editar.rows[0].DES_MUN}">
+                                    </li>
+                                    <input name="Ok" value="Enviar" type="submit" class="buttonGradientSubmit" id="Ok" />
+                                    <input name="Ok" value="Limpar" type="reset" class="buttonGradientSubmit" id="Ok" />
+
+                                </ul>
+
+
+                            </form>  
+                        </div>
+
                     </div>
 
                 </div>
-
             </div>
+            <div id="content_foot"></div>
         </div>
-        <div id="content_foot"></div>
-    </div>
-    <footer>
-        <div id="footer">
-            <div id="icons">
-                <a href="https://www.facebook.com/">
-                    <img src="img/facebook_icon.png" alt="Facebook" />
-                </a>
-                <a href="https://twitter.com">
-                    <img src="img/footer_twitter.png" alt="Twitter" />
-                </a>
-                <a href="mailto:peh.ty2@gmail.com.br">
-                    <img src="img/footer_email.png" alt="Email Syncode" />
-                </a>
-            </div>
-            <div id="links">
+        <footer>
+            <div id="footer">
+                <div id="icons">
+                    <a href="https://www.facebook.com/">
+                        <img src="img/facebook_icon.png" alt="Facebook" />
+                    </a>
+                    <a href="https://twitter.com">
+                        <img src="img/footer_twitter.png" alt="Twitter" />
+                    </a>
+                    <a href="mailto:peh.ty2@gmail.com.br">
+                        <img src="img/footer_email.png" alt="Email Syncode" />
+                    </a>
+                </div>
+                <div id="links">
 
+                </div>
+                <div id="copy">
+                    &copy; 2012 <a href="https://www.ace.br">SISCO</a>
+                </div>
             </div>
-            <div id="copy">
-                &copy; 2012 <a href="https://www.ace.br">SISCO</a>
-            </div>
-        </div>
-    </footer>
+        </footer>
 
 
-</body>
+    </body>
 
 </html>

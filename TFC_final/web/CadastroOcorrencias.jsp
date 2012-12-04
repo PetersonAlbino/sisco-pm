@@ -239,7 +239,6 @@
                                         <label for="form1"><strong>Bairro*</strong></label>
                                         <div class="">
                                             <select name="bairros">
-
                                             </select>
                                         </div>
                                         <label  for="forml" ><strong>Rua*</strong></label>
