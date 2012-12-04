@@ -53,14 +53,14 @@ pre { background: #ffffff; text-align: left; }
 #header { height: 172px; padding-top: 30px; background: url(img/bglight.png) no-repeat center top; }
 
 #logo { width: 900px; margin: 0 auto; padding-bottom: 25px; }
-
+/*
 #navbar { width: 650px; margin: 0 auto; height: 55px; background: url(img/bgmenu.png) no-repeat; }
 #navbar ul { width: 650px; height: 100%; margin: 0; padding: 0;
 	list-style: none none;
 	background: url(img/arrow.png) no-repeat 1px 4px; }
 #navbar ul li { float: left; margin: 0; padding: 0; text-align: center; cursor: pointer; height: 51px; overflow: hidden; background: none; }
 #navbar ul li a { float: left; height: 0; overflow: hidden; padding-top: 90px; width: 100%; outline: none; list-style-image:none; }
-
+*/
 #home { margin-left: -38px; width: 93px; }
 #blog { width: 90px; }
 #aboutus { width: 120px; }
