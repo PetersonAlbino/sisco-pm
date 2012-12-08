@@ -113,13 +113,16 @@
                                 <ul>
                                     <li>
                                         <label for="email" ><strong>Descrição</strong></label><input type="textarea" name="des_material" id="des_material" value="${editar.rows[0].DES_MATERIAL}"  </input>
-                                        <label for="email" ><Strong>Status</Strong></label><input type="textarea" name="status_material" id="status_material" value="${editar.row[0].STATUS_MATERIAL}"</input>
-                                        <!--<select name="status_material">
+                                        <label for="email" ><Strong>Status</Strong></label>
+                                        <div>
+                                        <select name="status_material">
                                             <option>Avariado</option> 
                                             <option>Conservado</option> 
                                             <option>Precisa de cuidados</option> 
                                             <option>Ótimo Estado</option> 
-                                        </select>-->
+                                        </select>
+                                        </div>
+                                            
                                         <label for="email" ><strong>Raça</strong></label> <input type="textarea" name="raca" id="raca" value="${editar.row[0].RACA}"</input>
                                         <label for="email" ><strong>Especie</strong></label> <input type="textarea" name="especie" id="especie" value="${editar.rows[0].ESPECIE}"</input>
                                         <label for="email" ><strong>Sexo</strong></label>

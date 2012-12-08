@@ -23,19 +23,25 @@
 
         <%@ include file="conexao.jsp" %>
 
-        <c:if test="${not empty param.cod_mun}">
+        <c:if test="${not empty param.des_os}">
             <sql:update dataSource="${conexao}">
-                INSERT INTO BAIRRO (COD_MUN,NOME_BAIRRO) 
-                VALUES (?,?)
-
-                <sql:param value="${param.nome_bairro}" />
-                <sql:param value="${param.cod_mun}" />
+                INSERT INTO ORDEMSERVICO (DES_OS,DT_GERACAO,SITUACAO,COD_OCORRENCIA,DT_AGENDA,RESPONSAVEL)
+                VALUES (?,?,?,?,?,?)
+                <sql:param value="${param.des_os}" />
+                <sql:param value="${param.dt_geracao}"/>
+                <sql:param value="${param.situacao}"/>
+                <sql:param value="${param.cod_ocorrencia}"/>
+                <sql:param value="${param.dt_agenda}"/>
+                <sql:param value="${param.responsavel}"/>
             </sql:update> 
         </c:if>
-
-        <sql:query var="municipios" dataSource="${conexao}">
-            SELECT COD_MUN,DES_MUN FROM MUNICIPIO
-        </sql:query>
+                
+        <c:if test="${param.acao=='geraos'}">
+            <sql:query var="gerar" dataSource="${conexao}">
+                SELECT OCORRENCIA.COD_OCOR,OCORRENCIA.DES_OCOR FROM OCORRENCIA
+                WHERE COD_OCOR = ${param.id}
+            </sql:query>
+        </c:if>
 
     </head>
 
@@ -71,37 +77,43 @@
                 <div id="content_main">
 
                     <div id="content_data">
-                        <h1>Cadastro de Bairros</h1>
+                        <h1>Gráfico de Situação das Ordens de Serviço</h1>
                         <div >
                             <form  name="form1" method="post" action="">
-                                <ul>
-                                    <li>
-                                        <label  for="email"><strong>Bairro</strong></label>
-                                        <input type="text" name="nome_bairro" id="nome_bairro" value="${BAIRRO.rows[0].NOME_BAIRRO}">
-                                        <label for="email"><strong>Cidade</strong></label>
+                                String[] xAxisLabels= { "1998", "1999", "2000", "2001", "2002", "2003", "2004" };
+                                String xAxisTitle= "Years";
+                                String yAxisTitle= "Problems";
+                                String title= "Micro$oft at Work";
+                                DataSeries dataSeries = new DataSeries( xAxisLabels, 
+                                                                        xAxisTitle, 
+                                                                        yAxisTitle,
+                                                                        title );
 
-                                    </li>
+                                double[][] data= new double[][]{ { 250, 45, -36, 66, 145, 80, 55  }, 
+                                                                { 150, 15, 6, 62, -54, 10, 84  }, 
+                                                                { 250, 45, 36, 66, 145, 80, 55  } };
+                                String[] legendLabels= { "Bugs", "Security Holes", "Backdoors" };
+                                Paint[] paints= TestDataGenerator.getRandomPaints( 3 );
+                                ClusteredBarChartProperties clusteredBarChartProperties= 
+                                                                        new ClusteredBarChartProperties();
+                                AxisChartDataSet axisChartDataSet= new AxisChartDataSet( data, 
+                                                                                        legendLabels, 
+                                                                                        paints, 
+                                                                                        ChartType.BAR_CLUSTERED, 
+                                                                                        clusteredBarChartProperties );
+                                dataSeries.addIAxisPlotDataSet( axisChartDataSet );
 
-                                    <div>
-                                        <select name="cod_municipio"> 
-                                            <c:forEach items="${municipios.rows}" var="municipio">
-
-                                                <option value="${municipio.COD_MUN}" >${municipio.DES_MUN} </option>
-                                            </c:forEach>
-                                        </select>
-
-
-
-                                    </div>
+                                ChartProperties chartProperties= new ChartProperties();
+                                AxisProperties axisProperties= new AxisProperties();
+                                LegendProperties legendProperties= new LegendProperties();
+                                AxisChart axisChart= new AxisChart( dataSeries, 
+                                                                    chartProperties, 
+                                                                    axisProperties, 
+                                                                    legendProperties, 
+                                                                    AxisChartsGuide.width, 
+                                                                    AxisChartsGuide.height );
 
 
-                                    <p>&nbsp;                                        </p>
-                                    <p>
-                                        <input name="Ok" value="Enviar" type="submit" class="buttonGradientSubmit" id="Ok" />
-                                        <input name="Ok" value="Limpar" type="submit" class="buttonGradientSubmit" id="Ok" />
-                                        <input name="Ok" value="Cancelar" type="submit" class="buttonGradientSubmit" id="Cancelar"/>
-                                    </p>
-                                </ul>
                             </form>  
                         </div>
 

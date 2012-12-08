@@ -49,33 +49,28 @@
             </sql:query>
 
         </c:if> --%>
-
-        <sql:query var="situacao" dataSource="${conexao}">
-            SELECT * FROM SITUACAO
-        </sql:query>
+        <c:if test="${param.acao=='analise'}">
+            <sql:query var="consultaos" dataSource="${conexao}">
+                SELECT ORDEMSERVICO.COD_OS,ORDEMSERVICO.DES_OS,ORDEMSERVICO.DT_GERACAO,ORDEMSERVICO.COD_OCORRENCIA,
+                ORDEMSERVICO.DT_AGENDA,ORDEMSERVICO.SITUACAO,ORDEMSERVICO.DT_REALIZADA,ORDEMSERVICO.COD_MATERIAL,
+                ORDEMSERVICO.RESPONSAVEL,ORDEMSERVICO.SITUACAO_ANALIZADA
+                FROM ORDEMSERVICO WHERE COD_OS = ${param.id}
+            </sql:query>
+        </c:if>
+                
         <sql:query var="material" dataSource="${conexao}">
             SELECT * FROM MATERIAL
-        </sql:query>    
+        </sql:query> 
 
-        <c:if test="${not empty param.des_ocor}">
+        <c:if test="${not empty param.des_os}">
             <sql:update dataSource="${conexao}">
-                UPDATE OCORRENCIA SET DES_OCOR = ?, COD_SITUACAO = ?, COD_MATERIAL = ? 
+                UPDATE ORDEMSERVICO SET SITUACAO_ANALIZADA = ?, DT_REALIZADA = ?, COD_MATERIAL =? , RESPONSAVEL
                 WHERE COD_OCOR = ${param.id};
                 <sql:param value="${param.des_ocor}" />
-                <sql:param value="${param.situacao}" />
-                <sql:param value="${param.material}" />
+                <sql:param value="${param.cod_situacao}" />
+                <sql:param value="${param.cod_material}" />
             </sql:update>
-            <script> alert('Análise Alterada')</script>
-        </c:if>
-        <c:if test="${param.acao=='analise'}">
-            <sql:query var="campos" dataSource="${conexao}">
-                SELECT OCORRENCIA.COD_OCOR,OCORRENCIA.DES_OCOR,OCORRENCIA.DT_OCOR,OCORRENCIA.COD_DENUNCIANTE,
-                OCORRENCIA.COD_ENDERECO,OCORRENCIA.COD_TIPO,OCORRENCIA.COD_SITUACAO,TIPO.DES_TIPO,DUNCIANTE.NM_DENUNCIANTE,DUNCIANTE.TEL_DENUNCIANTE 
-                FROM OCORRENCIA LEFT JOIN TIPO ON OCORRENCIA.COD_TIPO = TIPO.COD_TIPO
-                LEFT JOIN DUNCIANTE ON OCORRENCIA.COD_DENUNCIANTE = DUNCIANTE.COD_DENUNCIANTE
-
-                WHERE COD_OCOR = ${param.id}
-            </sql:query>
+            <script> alert('Análise Cadastrada')</script>
         </c:if>
 
 
@@ -117,39 +112,46 @@
                         <form  name="form1" method="post" action="">
                             <ul>
                                 <li>
-                                    <label  for="email"><strong>Código Ocorrência</strong></label>
-                                    <input type="textarea" name="cod_ocor" id="cod_ocor" readonly="true" value="${campos.rows[0].COD_OCOR}"></input>
+                                    <label  for="email"><strong>Código Ordem de Serviço</strong></label>
+                                    <input type="textarea" name="cod_os" id="cod_os" readonly="true" value="${consultaos.rows[0].COD_OS}"></input>
 
-                                    <label  for="email"><strong>Tipo de Ocorrência</strong></label>
-                                    <input type="textarea" name="cod_tipo" id="cod_tipo" readonly="true" value="${campos.rows[0].DES_TIPO}"></input>
+                                    <label  for="email"><strong>Descrição da OS</strong></label>
+                                    <input type="textarea" name="des_os" id="des_os" readonly="true" value="${consultaos.rows[0].DES_OS}"></input>
 
-                                    <label for="cometario"><strong>Descrição da Ocorrência</strong></label> 
-                                    <input type="textarea" name="des_ocor" id="des_ocor"  value="${campos.rows[0].DES_OCOR}"></input>
+                                    <label for="cometario"><strong>Data de Abertura</strong></label> 
+                                    <input type="textarea" name="dt_geracao" id="dt_geracao" readonly="true" value="${consultaos.rows[0].DT_GERACAO}"></input>
 
-                                    <label for="forml" ><strong>Situação*</strong></label>
-                                    <div class="">
-                                        <select name="situacao" id="COD_SITUACAO"> 
-                                            <c:forEach items="${situacao.rows}" var="situacao">
-                                                <c:set var="selected" value="${ situacao.COD_SITUACAO == campos.rows[0].COD_SITUACAO ? 'selected' : ''}"/>
-                                                <option value="${situacao.COD_SITUACAO}" ${selected}>${situacao.DES_SITUACAO} </option>
-                                            </c:forEach>
+                                    <label for="cometario"><strong>Código da Ocorrência</strong></label> 
+                                    <input type="textarea" name="cod_ocorrencia" id="cod_ocorrencia" readonly="true" value="${consultaos.rows[0].COD_OCORRENCIA}"></input>
+                                    
+                                    <label for="cometario"><strong>Data Agendada</strong></label> 
+                                    <input type="textarea" name="dt_agenda" id="dt_agenda" readonly="true" value="${consultaos.rows[0].DT_AGENDA}"></input>
+                                    
+                                    <label for="comentario" ><strong>Situação</strong></label>
+                                    <div>
+                                        <select name="situacao"> 
+                                            <option>Pendente</option>
+                                            <option>Atrasada</option>
+                                            <option>Finalizada</option>
                                         </select>
                                     </div>
-                                    <label for="forml" ><strong>Data da Ocorrência</strong></label>
-                                    <input type="textarea" name="dt_ocor" id="dt_ocor" readonly="true" value="${campos.rows[0].DT_OCOR}"></input>                                 
-                                    <label for="cometario"><strong>Denunciante</strong></label> 
-                                    <input name="cod_denunciante" id="cod_denunciante" readonly="true" value="${campos.rows[0].NM_DENUNCIANTE}"></input>
-                                    <label for="cometario"><strong>Telefone Denunciante</strong></label> 
-                                    <input name="tel_denunciante" id="tel_denunciante" readonly="true" value="${campos.rows[0].TEL_DENUNCIANTE}"></input></br>
 
                                     <label for="forml" ><strong>Material</strong></label>
                                     <div class="">
                                         <select name="material" id="COD_MATERIAL"> 
                                             <c:forEach items="${material.rows}" var="material">
-                                                <option value="${material.COD_MATERIAL}" >${material.DES_MATERIAL} </option>
+                                                <option value="${material.rows[0].COD_MATERIAL}" >${material.DES_MATERIAL} </option>
                                             </c:forEach>
                                         </select>
                                     </div>
+                                    
+                                    <label for="forml" ><strong>Data da Realizada</strong></label>
+                                    <input type="textarea" name="dt_realizada" id="dt_realizada" value="${consultaos.rows[0].DT_REALIZADA}"></input>                                 
+                                    <label for="cometario"><strong>Situação Analizada</strong></label> 
+                                    <textarea class="campo" name="situacao_analizada" id="situacao_analizada" value="${consultaos.rows[0].SITUACAO_ANALIZADA}"></textarea>
+                                    <label for="cometario"><strong>Responsavel</strong></label> 
+                                    <input name="responsavel" id="responsavel" value="${consultaos.rows[0].RESPONSAVEL}"></input></br>
+
                                     <div>
                                         <input name="Ok" value="Enviar" type="submit" class="buttonGradientSubmit" id="Ok" />
                                         <input name="Limpar" value="Limpar" type="reset" class="buttonGradientSubmit" id="Limpar" />

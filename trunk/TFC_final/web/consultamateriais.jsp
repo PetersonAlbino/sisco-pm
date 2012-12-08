@@ -24,20 +24,6 @@
             </script>
         </c:if>
 
-        <c:if test="${param.acao=='delete'}">
-            <c:catch var="erro">
-                <sql:update dataSource="${conexao}">
-                    DELETE FROM MATERIAL WHERE COD_MATERIAL = ${param.id}
-
-                </sql:update>
-                <script> alert('Material  Removido')</script>
-            </c:catch>
-
-            <c:if test="${not empty erro}">
-                <script> alert('Não foi possivel remover o material selecionado')</script>    
-            </c:if>
-
-
         <sql:query var="material" dataSource="${conexao}">
             SELECT * FROM MATERIAL
             where TIPO_MATERIAL = 'Material' 
@@ -101,7 +87,7 @@
                                             </tr>
                                             <c:forEach var="material" items="${material.rows}">
                                                 <tr>
-                                                    <td class="td1"><a href="CadastroMateriais.jsp?id=${material.COD_MATERIAL}"><img src="images/woofunction-icons/pencil_32.png" value="submit" width="20" height="20"/></a></td>
+                                                    <td class="td1"><a href="CadastroMateriais.jsp?id=${material.COD_MATERIAL}&acao=editar"><img src="images/woofunction-icons/pencil_32.png" value="submit" width="20" height="20"/></a></td>
                                                     <td class="td1"><a href="ConsultaMateriais.jsp?id=${material.COD_MATERIAL}&acao=delete"><img src="images/woofunction-icons/close_16.png" value="submit" width="20" height="20"/></a></td>
 
 

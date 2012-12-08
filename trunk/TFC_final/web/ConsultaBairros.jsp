@@ -54,12 +54,11 @@
                     SELECT COD_BAIRRO,NOME_BAIRRO,COD_MUN FROM BAIRRO 
                     WHERE COD_MUN = ${municipio.COD_MUN} 
                     ORDER BY NOME_BAIRRO
-             
                 </sql:query>
                     bairros['${municipio.COD_MUN}'] = new Array(
                 <c:forEach var="bairro" items="${bairros.rows}">
                     '${bairro.NOME_BAIRRO}',
-                </c:forEach>
+                </c:forEach> 
                     ''); 
                     cod_bairros['${municipio.COD_MUN}'] = new Array(
                 <c:forEach var="bairro" items="${bairros.rows}">
@@ -81,7 +80,7 @@
                     if (nomebairro != null){
                         for (i = 0; i < nomebairro.length - 1 ; i++) {
                             //alert(html);
-                            html = html + '<option value="'+codbairro[i]+'">'+nomebairro[i]+'</option>';
+                            html = html + '<input type="text" name="des_tipo" id="des_tipo" value="${editar.rows[0].DES_TIPO}">';
                              
                                                   
                         }
@@ -90,7 +89,7 @@
                         $(selBairros).html(html).selectmenu('refresh', true);
                         alert(html);
                     }else{
-                        html = html + '<option></option>';
+                        html = html + '<input type="text" name="des_tipo" id="des_tipo" value="Nenhum bairro cadastrado para esse município">';
                         $(selBairros).html(html).selectmenu('refresh', true);     
                     }                    
                 };
