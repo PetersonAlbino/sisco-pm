@@ -40,7 +40,7 @@
 
         <c:if test="${param.acao=='edit'}">
             <sql:query var="editar" dataSource="${conexao}">
-                SELECT COD_MATERIAL,DES_MATERIAL,STATUS_MATERIAL,RACA,ESPECIE,SEXO,TIPO_MATERIAL FROM MATERIAL
+                SELECT COD_MATERIAL,DES_MATERIAL,STATUS_MATERIAL,TIPO_MATERIAL FROM MATERIAL
                 WHERE COD_MATERIAL = ${param.id}
             </sql:query>
 
@@ -48,7 +48,6 @@
 
 
         <c:if test="${not empty param.des_material}">
-            <c:catch var="erro">
                 <sql:update dataSource="${conexao}">
                     INSERT INTO MATERIAL (DES_MATERIAL,STATUS_MATERIAL,TIPO_MATERIAL) 
                     VALUES (?,?,?)
@@ -57,7 +56,6 @@
                     <sql:param value="${param.tipo_material}"/>
                 </sql:update>
                 <script> alert('Material cadastrado com sucesso')</script>
-            </c:catch>
 
         </c:if>
     </head>
@@ -96,7 +94,7 @@
                             <form  name="form1" method="post" action="">
                                 <ul>
                                     <li>
-                                        <label for="email" ><strong>Descricao</strong></label> <input type="textarea" name="des_material" id="des_material" value="${material.rows[0].DES_MATERIAL}">
+                                        <label for="email" ><strong>Descrição</strong></label> <input type="textarea" name="des_material" id="des_material" value="${editar.rows[0].DES_MATERIAL}">
                                             <label for="email" ><strong>Status</strong></label>
                                             <select name="status_material"> 
                                                 <option>Avariado</option> 
@@ -105,8 +103,7 @@
                                                 <option>Ótimo Estado</option> 
                                             </select>
                                             <label for="email" ><strong>Tipo</strong></label> 
-                                            <select name="tipo_material"> 
-                                                <option>Animal</option> 
+                                            <select name="tipo_material" readonly="true">  
                                                 <option>Material</option> 
                                             </select>
                                             <div>

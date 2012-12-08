@@ -4,8 +4,7 @@
 <%@page import="java.util.Map"%>  
 <%@page import="java.util.HashMap"%>  
 <%@page import="java.io.File"%>  
-<%@page contentType="text/html" pageEncoding="UTF-8"%>  
-
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%> 
 
 
@@ -17,14 +16,10 @@
         <title>${param.reportTitle}</title>  
     </head>  
     <body>  
-       <sql:setDataSource 
-  driver="org.firebirdsql.jdbc.FBDriver" 
-  url="jdbc:firebirdsql:localhost/3050:D:\TCC\Banco de Dados\BD_TFC.FDB"
-  user="SYSDBA" 
-  password="masterkey" 
-  var="conexao" 
-   /> 
-    
+        <sql:setDataSource driver="org.firebirdsql.jdbc.FBDriver" 
+                           url="jdbc:firebirdsql:localhost/3050:C:/ACADEMIA WEB/TFC/SISTEMA/Banco de Dados Academia Web/academia.fdb?encoding=UTF8"
+                           user="sysdba" password="masterkey"
+                           var="conexao" />
 
         <c:if test="${not empty param.reportName}" >
 
