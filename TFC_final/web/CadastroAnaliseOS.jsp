@@ -22,56 +22,34 @@
         <%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%> 
 
         <%@ include file="conexao.jsp" %>
-        <%-- <c:if test="${not empty param.mensagem}">
-            <script>
-                alert('${param.mensagem}')
-            </script>
-        </c:if>
-
-        <c:if test="${param.acao=='delete'}">
-            <c:catch var="erro">
-                <sql:update dataSource="${conexao}">
-                    DELETE FROM OCORRENCIA WHERE COD_OCOR = ${param.id}
-
-                </sql:update>
-                <script> alert('Ocorrencia  Removido')</script>
-            </c:catch>
-
-            <c:if test="${not empty erro}">
-                <script> alert('Não foi possivel remover a ocorrencia selecionado')</script>    
-            </c:if>
-        </c:if>
-
-        <c:if test="${param.acao=='edit'}">
-            <sql:query var="editar" dataSource="${conexao}">
-                COD_OCOR, COD_MATERIAL, COD_OS, COD_TIPO, COD_SITUACAO, COD_ENDERECO, DES_OCOR, DT_OCOR, COD_DENUNCIANTE FROM OCORRENCIA
-                WHERE COD_OCOR = ${param.id}
-            </sql:query>
-
-        </c:if> --%>
         <c:if test="${param.acao=='analise'}">
             <sql:query var="consultaos" dataSource="${conexao}">
                 SELECT ORDEMSERVICO.COD_OS,ORDEMSERVICO.DES_OS,ORDEMSERVICO.DT_GERACAO,ORDEMSERVICO.COD_OCORRENCIA,
-                ORDEMSERVICO.DT_AGENDA,ORDEMSERVICO.SITUACAO,ORDEMSERVICO.DT_REALIZADA,ORDEMSERVICO.COD_MATERIAL,
+                ORDEMSERVICO.DT_AGENDA,ORDEMSERVICO.COD_SITUACAO,ORDEMSERVICO.DT_REALIZADA,ORDEMSERVICO.COD_MATERIAL,
                 ORDEMSERVICO.RESPONSAVEL,ORDEMSERVICO.SITUACAO_ANALIZADA
                 FROM ORDEMSERVICO WHERE COD_OS = ${param.id}
             </sql:query>
+            <c:if test="${not empty param.situacao_analizada}">
+                <sql:update dataSource="${conexao}">
+                    UPDATE ORDEMSERVICO SET SITUACAO_ANALIZADA = ?, DT_REALIZADA = ?, COD_MATERIAL = ?, COD_SITUACAO = ?
+                    WHERE COD_OS = ${param.id};
+                    <sql:param value="${param.situacao_analizada}" />
+                    <sql:param value="${param.dt_realizada}" />
+                    <sql:param value="${param.material}" />
+                    <sql:param value="${param.situacao}" />
+                </sql:update>
+                <script> alert('Análise Cadastrada')</script>
+            </c:if>
         </c:if>
-                
+
+        <sql:query var="situacao" dataSource="${conexao}">
+            SELECT * FROM SITUACAO
+        </sql:query>
         <sql:query var="material" dataSource="${conexao}">
             SELECT * FROM MATERIAL
         </sql:query> 
 
-        <c:if test="${not empty param.des_os}">
-            <sql:update dataSource="${conexao}">
-                UPDATE ORDEMSERVICO SET SITUACAO_ANALIZADA = ?, DT_REALIZADA = ?, COD_MATERIAL =? , RESPONSAVEL
-                WHERE COD_OCOR = ${param.id};
-                <sql:param value="${param.des_ocor}" />
-                <sql:param value="${param.cod_situacao}" />
-                <sql:param value="${param.cod_material}" />
-            </sql:update>
-            <script> alert('Análise Cadastrada')</script>
-        </c:if>
+
 
 
     </head>                
@@ -82,32 +60,77 @@
     <div id="container">
         <header>
             <div id="header">
-
                 <div id="logo"><a href="Principal.jsp"><img src="images/logo.png" alt="peterson" /></a></div>
-
-
-
                 <div id="wrapper-menu">
                     <ul id="nav" name="nav">
-                        <li id="item1" class="fade"><a class="cadastro-basico"  href="#" 
-                                                       title="Cadastros BÃ¡sicos"><img src="images/woofunction-icons/folder_add_32.png" width="20" height="20"	alt="cadastro" /> Cadastro</a></li>
-
+                        <li id="item1" class="fade"><a class="cadastro-basico"  href="#"
+                                                       title="Cadastros Básicos"><img src="images/woofunction-icons/folder_add_32.png" width="20" height="20" alt="cadastro" /> Cadastro</a></li>
                         <li id="item2" class="fade"><a  class="cadastro-basico2" href="#" title="Consultas Gerenciais"><img src="images/woofunction-icons/folder_chart_32.png" width="20" height="20" alt="consulta" /> Consultas</a></li>
+                        <li id="item3" class="fade"><a href="relatorio.jsp" title="Impressão de Relatórios"><img src="images/woofunction-icons/folder_page_32.png" width="20" height="20" alt="relatorio" /> Relatórios</a></li>
+                        <li id="item5" class="fade"><a href="ajuda.jsp"     title="Portal de Ajuda"><img src="images/woofunction-icons/folder_warning_32.png" width="20" height="20" alt="ajuda" />Ajuda</a></li>
+                    </ul>
+                    <!--end nav--> 
 
-                        <li id="item3" class="fade"><a class="cadastro-basico3" href="#" title="ImpressÃ£o de Relatorios"><img src="images/woofunction-icons/folder_page_32.png" width="20" height="20" alt="relatorio" /> Relatorios</a></li>
+                    <!--Inicio - Menu de Cadastros-->
+                    <div id="big-menu-hidden">
+                        <div id="product-list"> <span class="btn-close"><a class="cadastro-basico" href="#">close</a></span>
+                            <h2 id="li-item1" title="SEO KEYWORDS"><strong>Cadastros Básicos</strong></h2>
+                            <ul id="cadastro">
+                                <li><a href="CadastroBairro.jsp" title="Cadastro de novos Bairros">Bairros</a></li>
+                                <li><a href="CadastroMunicipio.jsp" title="Cadastro de Municípios">Municípios</a></li>
+                                <li><a href="CadastroAnimais.jsp" title="Cadastro de Animais">Animais</a></li>
+                                <li><a href="CadastroOcorrencias.jsp" title="Cadastro de Ocorrência">Ocorrência</a></li>
+                                <li class="view-all"></li>
+                            </ul>
 
-                        <li id="item5" class="fade"><a href="ajuda.jsp" title="Portal de Ajuda"><img src="images/woofunction-icons/folder_warning_32.png" width="20" height="20" alt="ajuda" />Ajuda</a></li>
-                    </ul><!--end nav-->
+                            <ul id="Ocorrencia">
+                                <li><a href="CadastroSituacao.jsp" title="Cadastro de Situação de Ocorrências">Situação</a></li>
+                                <li><a href="CadastroTipo.jsp" title="Cadastro de Tipo de Ocorrências">Tipo</a></li>
+                                <li><a href="CadastroMateriais.jsp" title="Cadastro de Materiais">Materiais</a></li>
+
+                                <li class="view-all"></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--Fim Menu de Cadastros--> 
+                    <!--Inicio menu de Consultas-->
+                    <div id="big-menu-hidden2"> 
+                        <!--  <div id="cart">
+                          <div id="counter-cart">
+                          <p>0 items in</p>
+                          <p id="btn-go-cart"><a href="" title="keywords for SEO">YOUR CART</a></p>
+                         <span id="img-empty-cart"><img src="images/ico-empty-cart.png" alt="keyword for SEO" width="109" height="131"/></span> </div>
+                      </div>-->
+                        <div id="product-list"> <span class="btn-close"><a class="cadastro-basico2" href="#">close</a></span>
+                            <h2 id="li-item1" title="SEO KEYWORDS"><strong>Consultas</strong></h2>
+                            <ul id="Consultas">
+                                <li><a href="ConsultaBairros.jsp" title="Consulta de Bairros">Bairros</a></li>
+                                <li><a href="ConsultaMunicipios.jsp" title="Consulta de Municípios">Municípios</a></li>
+                                <li><a href="ConsultaOcorrencias.jsp" title="Consulta de Ocorrências">Ocorrências</a></li>
+                                <li><a href="ConsultaTipo.jsp" title="Consulta de Tipos da Ocorrência">Tipo</a></li>
+                                <li class="view-all"></li>
+                            </ul>
+
+                            <ul id="Consultas2">
+                                <li><a href="consultamateriais.jsp" title="Consulta de Materiais Apreendidos">Materiais</a></li>
+                                <li><a href="consultaAnimais.jsp" title="Consulta de Animais Apreendidos">Animais</a></li>
+                                <li><a href="ConsultaSituacao.jsp" title="Consulta de Situações da Ocorrência">Situação</a></li>
+                                <li><a href="ConsultaOS.jsp" title="Consulta de Ordens de Serviço">Ordem de Serviço</a></li>
+                                <li class="view-all"></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--Fim Menu de Consultas-->  
 
                 </div>
-
+            </div>
         </header>
         <div id="content">
             <div id="content_head"></div>
             <div id="content_main">
 
                 <div id="content_data">
-                    <h1>Análise de Ocorrências</h1>
+                    <h1>Análise de Ocorrências da Ordem de Serviço</h1>
                     <div >
                         <form  name="form1" method="post" action="">
                             <ul>
@@ -116,41 +139,43 @@
                                     <input type="textarea" name="cod_os" id="cod_os" readonly="true" value="${consultaos.rows[0].COD_OS}"></input>
 
                                     <label  for="email"><strong>Descrição da OS</strong></label>
-                                    <input type="textarea" name="des_os" id="des_os" readonly="true" value="${consultaos.rows[0].DES_OS}"></input>
+                                    <textarea name="des_os" id="des_os" readonly="true">${consultaos.rows[0].DES_OS}</textarea>
 
                                     <label for="cometario"><strong>Data de Abertura</strong></label> 
                                     <input type="textarea" name="dt_geracao" id="dt_geracao" readonly="true" value="${consultaos.rows[0].DT_GERACAO}"></input>
 
                                     <label for="cometario"><strong>Código da Ocorrência</strong></label> 
                                     <input type="textarea" name="cod_ocorrencia" id="cod_ocorrencia" readonly="true" value="${consultaos.rows[0].COD_OCORRENCIA}"></input>
-                                    
+
                                     <label for="cometario"><strong>Data Agendada</strong></label> 
                                     <input type="textarea" name="dt_agenda" id="dt_agenda" readonly="true" value="${consultaos.rows[0].DT_AGENDA}"></input>
-                                    
+
                                     <label for="comentario" ><strong>Situação</strong></label>
-                                    <div>
-                                        <select name="situacao"> 
-                                            <option>Pendente</option>
-                                            <option>Atrasada</option>
-                                            <option>Finalizada</option>
+                                    <div class="">
+                                        <select name="situacao" id="COD_SITUACAO"> 
+                                            <c:forEach items="${situacao.rows}" var="situacao">
+                                                <c:set var="selected" value="${ situacao.COD_SITUACAO == consultaos.rows[0].COD_SITUACAO ? 'selected' : ''}"/>
+                                                <option value="${situacao.COD_SITUACAO}" ${selected}>${situacao.DES_SITUACAO} </option>
+                                            </c:forEach>
                                         </select>
                                     </div>
-
+                                    <p></p>
                                     <label for="forml" ><strong>Material</strong></label>
                                     <div class="">
                                         <select name="material" id="COD_MATERIAL"> 
                                             <c:forEach items="${material.rows}" var="material">
-                                                <option value="${material.rows[0].COD_MATERIAL}" >${material.DES_MATERIAL} </option>
+                                                <option value="${material.COD_MATERIAL}" >${material.DES_MATERIAL} </option>
                                             </c:forEach>
                                         </select>
                                     </div>
-                                    
-                                    <label for="forml" ><strong>Data da Realizada</strong></label>
-                                    <input type="textarea" name="dt_realizada" id="dt_realizada" value="${consultaos.rows[0].DT_REALIZADA}"></input>                                 
+                                    <p></p>
+                                    <label for="forml" ><strong>Data Realizada</strong></label>
+                                    <input type="date" name="dt_realizada" id="dt_realizada"></input>
+
                                     <label for="cometario"><strong>Situação Analizada</strong></label> 
                                     <textarea class="campo" name="situacao_analizada" id="situacao_analizada" value="${consultaos.rows[0].SITUACAO_ANALIZADA}"></textarea>
-                                    <label for="cometario"><strong>Responsavel</strong></label> 
-                                    <input name="responsavel" id="responsavel" value="${consultaos.rows[0].RESPONSAVEL}"></input></br>
+                                    <label for="cometario"><strong>Responsável</strong></label> 
+                                    <input name="responsavel" id="responsavel" readonly="true" value="${consultaos.rows[0].RESPONSAVEL}"></input></br>
 
                                     <div>
                                         <input name="Ok" value="Enviar" type="submit" class="buttonGradientSubmit" id="Ok" />

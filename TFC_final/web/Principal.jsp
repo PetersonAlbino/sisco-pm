@@ -13,7 +13,7 @@
         <script src="js/functions.js" type="text/javascript"></script>
 
         <!--Titulo-->
-        <title>Cadastro de Ocorrï¿½ncias</title>
+        <title>Cadastro de Ocorrências</title>
         <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
         <%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 
@@ -38,7 +38,7 @@
                         <li id="item1" class="fade"><a class="cadastro-basico"  href="#"
                                                        title="Cadastros Básicos"><img src="images/woofunction-icons/folder_add_32.png" width="20" height="20" alt="cadastro" /> Cadastro</a></li>
                         <li id="item2" class="fade"><a  class="cadastro-basico2" href="#" title="Consultas Gerenciais"><img src="images/woofunction-icons/folder_chart_32.png" width="20" height="20" alt="consulta" /> Consultas</a></li>
-                        <li id="item3" class="fade"><a href="relatorio.jsp" title="ImpressÃ£o de RelatÃ³rios"><img src="images/woofunction-icons/folder_page_32.png" width="20" height="20" alt="relatorio" /> Relatórios</a></li>
+                        <li id="item3" class="fade"><a href="relatorio.jsp" title="Impressão de Relatórios"><img src="images/woofunction-icons/folder_page_32.png" width="20" height="20" alt="relatorio" /> Relatórios</a></li>
                         <li id="item5" class="fade"><a href="ajuda.jsp"     title="Portal de Ajuda"><img src="images/woofunction-icons/folder_warning_32.png" width="20" height="20" alt="ajuda" />Ajuda</a></li>
                     </ul>
                     <!--end nav--> 
@@ -57,7 +57,7 @@
 
                             <ul id="Ocorrencia">
                                 <li><a href="CadastroSituacao.jsp" title="Cadastro de Situação de Ocorrências">Situação</a></li>
-                                <li><a href="CadastroTipo.jsp" title="Cadastro de Tipo de Ocorrï¿½ncias">Tipo</a></li>
+                                <li><a href="CadastroTipo.jsp" title="Cadastro de Tipo de Ocorrências">Tipo</a></li>
                                 <li><a href="CadastroMateriais.jsp" title="Cadastro de Materiais">Materiais</a></li>
 
                                 <li class="view-all"></li>
@@ -77,7 +77,7 @@
                             <h2 id="li-item1" title="SEO KEYWORDS"><strong>Consultas</strong></h2>
                             <ul id="Consultas">
                                 <li><a href="ConsultaBairros.jsp" title="Consulta de Bairros">Bairros</a></li>
-                                <li><a href="ConsultaMunicipio.jsp" title="Consulta de Municípios">Municípios</a></li>
+                                <li><a href="ConsultaMunicipios.jsp" title="Consulta de Municípios">Municípios</a></li>
                                 <li><a href="ConsultaOcorrencias.jsp" title="Consulta de Ocorrências">Ocorrências</a></li>
                                 <li><a href="ConsultaTipo.jsp" title="Consulta de Tipos da Ocorrência">Tipo</a></li>
                                 <li class="view-all"></li>
@@ -91,7 +91,7 @@
                                 <li class="view-all"></li>
                             </ul>
                         </div>
-                    </div>
+                    </div> 
                     <!--Fim Menu de Consultas-->  
 
                 </div>
@@ -102,9 +102,9 @@
             <div id="content_main">
                 <div id="container">
                     <div class="tmplapps">
-                        <div class="floatsection col0"><a href="ConsultaOcorrencias.jsp"title="" style="background-image:url(img/apps_page_synotes__1339059658.png)"></a></div>
-                        <div class="floatsection col0"><a href="consultaAnimais.jsp"title="" style="background-image:url(img/apps_page_birder__1339081919-1221.png)"></a></div>
-                        <div class="floatsection col0"><a href="ConsultaBairros.jsp"title="" style="background-image:url(img/swapped_coming_soon_1343809493-outra%20opcion.png)"></a></div>
+                        <div class="floatsection col0"><a href="CadastroOcorrencias.jsp"title="" style="background-image:url(img/apps_page_synotes__1339059658.png)"></a></div>
+                        <div class="floatsection col0"><a href="CadastroAnimais.jsp"title="" style="background-image:url(img/apps_page_birder__1339081919-1221.png)"></a></div>
+                        <div class="floatsection col0"><a href="CadastroMateriais.jsp"title="" style="background-image:url(img/swapped_coming_soon_1343809493-outra%20opcion.png)"></a></div>
                     </div>
                     <div class="clear"></div>
                     <!--  <div class="floatsection col0">
@@ -118,7 +118,7 @@
                 <div id="footer">
                     <div id="icons"> <a href="https://www.facebook.com/"> <img src="img/facebook_icon.png" alt="Facebook" /> </a> <a href="https://twitter.com"> <img src="img/footer_twitter.png" alt="Twitter" /> </a> <a href="mailto:peh.ty2@gmail.com.br"> <img src="img/footer_email.png" alt="Email Syncode" /> </a> </div>
                     <div id="links"> </div>
-                    <div id="copy"> &copy; 2012 <a href="https://www.ace.br">SISCO</a> </div>
+                    <div id="copy"> &copy; 2012 <a href="http://www.ace.br">SISCO</a> </div>
                 </div>
             </footer>
     </body>

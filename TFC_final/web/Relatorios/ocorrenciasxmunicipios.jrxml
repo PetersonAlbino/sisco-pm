@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.4641000000000006"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     OCORRENCIA."COD_OCOR" AS OCORRENCIA_COD_OCOR,
+     OCORRENCIA."COD_MATERIAL" AS OCORRENCIA_COD_MATERIAL,
+     OCORRENCIA."COD_OS" AS OCORRENCIA_COD_OS,
+     OCORRENCIA."COD_SITUACAO" AS OCORRENCIA_COD_SITUACAO,
+     OCORRENCIA."COD_ENDERECO" AS OCORRENCIA_COD_ENDERECO,
+     OCORRENCIA."DES_OCOR" AS OCORRENCIA_DES_OCOR,
+     OCORRENCIA."DT_OCOR" AS OCORRENCIA_DT_OCOR,
+     OCORRENCIA."COD_DENUNCIANTE" AS OCORRENCIA_COD_DENUNCIANTE,
+     SITUACAO."DES_SITUACAO" AS SITUACAO_DES_SITUACAO,
+     ENDERECO."QUADRA_LOCAL" AS ENDERECO_QUADRA_LOCAL,
+     ENDERECO."LOTE_LOCAL" AS ENDERECO_LOTE_LOCAL,
+     ENDERECO."NUM_LOCAL" AS ENDERECO_NUM_LOCAL,
+     ENDERECO."CEP_LOCAL" AS ENDERECO_CEP_LOCAL,
+     ENDERECO."COD_MUN" AS ENDERECO_COD_MUN,
+     ENDERECO."COD_ENDERECO" AS ENDERECO_COD_ENDERECO,
+     SITUACAO."COD_SITUACAO" AS SITUACAO_COD_SITUACAO,
+     ENDERECO."COD_BAIRRO" AS ENDERECO_COD_BAIRRO,
+     ENDERECO."NM_RUA" AS ENDERECO_NM_RUA,
+     ENDERECO."DES_LOCAL" AS ENDERECO_DES_LOCAL,
+     MUNICIPIO."COD_MUN" AS MUNICIPIO_COD_MUN,
+     MUNICIPIO."DES_MUN" AS MUNICIPIO_DES_MUN
+FROM
+     "SITUACAO" SITUACAO INNER JOIN "OCORRENCIA" OCORRENCIA ON SITUACAO."COD_SITUACAO" = OCORRENCIA."COD_SITUACAO"
+     INNER JOIN "ENDERECO" ENDERECO ON OCORRENCIA."COD_ENDERECO" = ENDERECO."COD_ENDERECO"
+     INNER JOIN "MUNICIPIO" MUNICIPIO ON ENDERECO."COD_MUN" = MUNICIPIO."COD_MUN"]]>
+	</queryString>
+	<field name="OCORRENCIA_COD_OCOR" class="java.lang.Integer"/>
+	<field name="OCORRENCIA_DES_OCOR" class="java.lang.String"/>
+	<field name="OCORRENCIA_DT_OCOR" class="java.sql.Date"/>
+	<field name="MUNICIPIO_DES_MUN" class="java.lang.String"/>
+	<field name="MUNICIPIO_COD_MUN" class="java.lang.Integer"/>
+	<group name="MUNICIPIO_COD_MUN">
+		<groupExpression><![CDATA[$F{MUNICIPIO_COD_MUN}]]></groupExpression>
+		<groupHeader>
+			<band height="40">
+				<textField>
+					<reportElement style="SubTitle" x="47" y="13" width="506" height="24" forecolor="#006600"/>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{MUNICIPIO_DES_MUN}]]></textFieldExpression>
+				</textField>
+				<rectangle>
+					<reportElement mode="Opaque" x="0" y="13" width="36" height="24" forecolor="#CCCCCC" backcolor="#CCCCCC"/>
+				</rectangle>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="6"/>
+		</groupFooter>
+	</group>
+	<group name="OCORRENCIA_COD_OCOR">
+		<groupExpression><![CDATA[$F{OCORRENCIA_COD_OCOR}]]></groupExpression>
+		<groupHeader>
+			<band height="30">
+				<textField>
+					<reportElement style="SubTitle" x="0" y="4" width="460" height="20"/>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{OCORRENCIA_COD_OCOR}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="0" y="13" width="263" height="33"/>
+				<textElement verticalAlignment="Middle">
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[Ocorrências por Município]]></text>
+			</staticText>
+			<image>
+				<reportElement x="488" y="6" width="64" height="64"/>
+				<imageExpression><![CDATA["LogoPM.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="19" width="138" height="15"/>
+				<textElement/>
+				<text><![CDATA[Descrição]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="224" y="21" width="138" height="15"/>
+				<textElement/>
+				<text><![CDATA[Data da Ocorrência]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="361" y="21" width="138" height="15"/>
+				<textElement/>
+				<text><![CDATA[Município]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement style="Detail" x="0" y="0" width="224" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{OCORRENCIA_DES_OCOR}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="224" y="1" width="137" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{OCORRENCIA_DT_OCOR}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="361" y="1" width="191" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{MUNICIPIO_DES_MUN}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
