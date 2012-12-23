@@ -47,9 +47,9 @@
         <c:if test="${not empty param.des_situacao}">
             <c:if test="${param.alteracao=='sim'}">
                 <sql:update dataSource="${conexao}">
-                    UPDATE TIPO SET DES_SITUACAO = ? 
-                    WHERE COD_TIPO = ${param.id};
-                    <sql:param value="${param.des_situaxao}" />
+                    UPDATE SITUACAO SET DES_SITUACAO = ? 
+                    WHERE COD_SITUACAO = ${param.id};
+                    <sql:param value="${param.des_situacao}" />
                 </sql:update>
                 <script> alert('Situação Atualizada')</script>
             </c:if>
@@ -59,7 +59,7 @@
                     VALUES (?)
                     <sql:param value="${param.des_situacao}" />
                 </sql:update>
-                <script> alert('Situacao Cadastrada')</script>
+                <script> alert('Situação Cadastrada')</script>
             </c:if>
         </c:if>
 
@@ -75,28 +75,70 @@
         <div id="container">
             <header>
                 <div id="header">
-
                     <div id="logo"><a href="Principal.jsp"><img src="images/logo.png" alt="peterson" /></a></div>
-
-
-
-                    <!--Following code is all you need for the menu-->
-                    <div id="wrapper-menu"><!--container for this menu. With this container you can position it where you want in your layaout-->
+                    <div id="wrapper-menu">
                         <ul id="nav" name="nav">
-                            <li id="item1" class="fade"><a class="cadastro-basico"  href="#" title="Cadastros Basicos"><img src="images/woofunction-icons/folder_add_32.png" width="20" height="20" alt="cadastro" /> Cadastro</a></li>
-
+                            <li id="item1" class="fade"><a class="cadastro-basico"  href="#"
+                                                           title="Cadastros Básicos"><img src="images/woofunction-icons/folder_add_32.png" width="20" height="20" alt="cadastro" /> Cadastro</a></li>
                             <li id="item2" class="fade"><a  class="cadastro-basico2" href="#" title="Consultas Gerenciais"><img src="images/woofunction-icons/folder_chart_32.png" width="20" height="20" alt="consulta" /> Consultas</a></li>
+                            <li id="item3" class="fade"><a href="relatorio.jsp" title="Impressão de Relatórios"><img src="images/woofunction-icons/folder_page_32.png" width="20" height="20" alt="relatorio" /> Relatórios</a></li>
+                            <li id="item5" class="fade"><a href="ajuda.jsp"     title="Portal de Ajuda"><img src="images/woofunction-icons/folder_warning_32.png" width="20" height="20" alt="ajuda" />Ajuda</a></li>
+                        </ul>
+                        <!--end nav--> 
 
-                            <li id="item3" class="fade"><a class="big-menu-launcher" href="#" title="ImpressÃ£o de Relatorios"><img src="images/woofunction-icons/folder_page_32.png" width="20" height="20" alt="relatorio" /> Relatorios</a></li>
+                        <!--Inicio - Menu de Cadastros-->
+                        <div id="big-menu-hidden">
+                            <div id="product-list"> <span class="btn-close"><a class="cadastro-basico" href="#">close</a></span>
+                                <h2 id="li-item1" title="SEO KEYWORDS"><strong>Cadastros Básicos</strong></h2>
+                                <ul id="cadastro">
+                                    <li><a href="CadastroBairro.jsp" title="Cadastro de novos Bairros">Bairros</a></li>
+                                    <li><a href="CadastroMunicipio.jsp" title="Cadastro de Municípios">Municípios</a></li>
+                                    <li><a href="CadastroAnimais.jsp" title="Cadastro de Animais">Animais</a></li>
+                                    <li><a href="CadastroOcorrencias.jsp" title="Cadastro de Ocorrência">Ocorrência</a></li>
+                                    <li class="view-all"></li>
+                                </ul>
 
-                            <li id="item5" class="fade"><a href="ajuda.jsp" title="Portal de Ajuda"><img src="images/woofunction-icons/folder_warning_32.png" width="20" height="20" alt="ajuda" />Ajuda</a></li>
-                        </ul><!--end nav-->
+                                <ul id="Ocorrencia">
+                                    <li><a href="CadastroSituacao.jsp" title="Cadastro de Situação de Ocorrências">Situação</a></li>
+                                    <li><a href="CadastroTipo.jsp" title="Cadastro de Tipo de Ocorrências">Tipo</a></li>
+                                    <li><a href="CadastroMateriais.jsp" title="Cadastro de Materiais">Materiais</a></li>
 
-                        <!--here starts hiden menus-->
-                        <!--endBigMenuHidden-stores--><!--end wrapper-menu-->
-                        <!--end HTML code for this menu-->
+                                    <li class="view-all"></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--Fim Menu de Cadastros--> 
+                        <!--Inicio menu de Consultas-->
+                        <div id="big-menu-hidden2"> 
+                            <!--  <div id="cart">
+                              <div id="counter-cart">
+                              <p>0 items in</p>
+                              <p id="btn-go-cart"><a href="" title="keywords for SEO">YOUR CART</a></p>
+                             <span id="img-empty-cart"><img src="images/ico-empty-cart.png" alt="keyword for SEO" width="109" height="131"/></span> </div>
+                          </div>-->
+                            <div id="product-list"> <span class="btn-close"><a class="cadastro-basico2" href="#">close</a></span>
+                                <h2 id="li-item1" title="SEO KEYWORDS"><strong>Consultas</strong></h2>
+                                <ul id="Consultas">
+                                    <li><a href="ConsultaBairros.jsp" title="Consulta de Bairros">Bairros</a></li>
+                                    <li><a href="ConsultaMunicipios.jsp" title="Consulta de Municípios">Municípios</a></li>
+                                    <li><a href="ConsultaOcorrencias.jsp" title="Consulta de Ocorrências">Ocorrências</a></li>
+                                    <li><a href="ConsultaTipo.jsp" title="Consulta de Tipos da Ocorrência">Tipo</a></li>
+                                    <li class="view-all"></li>
+                                </ul>
+
+                                <ul id="Consultas2">
+                                    <li><a href="consultamateriais.jsp" title="Consulta de Materiais Apreendidos">Materiais</a></li>
+                                    <li><a href="consultaAnimais.jsp" title="Consulta de Animais Apreendidos">Animais</a></li>
+                                    <li><a href="ConsultaSituacao.jsp" title="Consulta de Situações da Ocorrência">Situação</a></li>
+                                    <li><a href="ConsultaOS.jsp" title="Consulta de Ordens de Serviço">Ordem de Serviço</a></li>
+                                    <li class="view-all"></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--Fim Menu de Consultas-->  
 
                     </div>
+                </div>
             </header>
             <div id="content">
                 <div id="content_head"></div>
@@ -105,25 +147,25 @@
                     <div id="content_data">
                         <h1>Cadastro de Situação</h1>
                         <div >
-                                <form  name="form1" method="post" action="">
-                                    <c:if test="${param.acao=='edit'}">
-                                        <input type="hidden" name="id" value="${param.id}"/>
-                                        <input type="hidden" name="alteracao" value="sim"/>
-                                    </c:if>
+                            <form  name="form1" method="post" action="">
+                                <c:if test="${param.acao=='edit'}">
+                                    <input type="hidden" name="id" value="${param.id}"/>
+                                    <input type="hidden" name="alteracao" value="sim"/>
+                                </c:if>
 
-                                    <ul>
-                                        <li>
+                                <ul>
+                                    <li>
 
-                                            <label for="email" ><strong>Descrição da Situação da Ocorrência</strong></label>
-                                            <input type="text" name="des_situacao" id="des_situacao" value="${editar.rows[0].DES_SITUACAO}">
-                                        </li>
+                                        <label for="email" ><strong>Descrição da Situação da Ocorrência</strong></label>
+                                        <input type="text" name="des_situacao" id="des_situacao" value="${editar.rows[0].DES_SITUACAO}">
+                                    </li>
+                                    <p></p>
+                                    <p>
                                         <input name="Ok" value="Enviar" type="submit" class="buttonGradientSubmit" id="Ok" />
                                         <input name="Ok" value="Limpar" type="reset" class="buttonGradientSubmit" id="Ok" />
-
-                                    </ul>
-
-
-                                </form>  
+                                    </p>    
+                                </ul>
+                            </form>  
                         </div>
 
                     </div>

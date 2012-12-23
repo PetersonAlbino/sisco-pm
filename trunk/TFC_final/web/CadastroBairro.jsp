@@ -17,25 +17,43 @@
         <script src="js/functions.js" type="text/javascript"></script>
 
 
-        <title>Cadastro de Ocorrencias</title>
+        <title>Cadastro de Bairros</title>
         <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
         <%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%> 
 
         <%@ include file="conexao.jsp" %>
+        <c:if test="${not empty param.nome_bairro}">
+            <c:if test="${param.alteracao=='sim'}">
+                <sql:update dataSource="${conexao}">
+                    UPDATE BAIRRO SET NOME_BAIRRO = ?, COD_MUN = ? 
+                    WHERE COD_BAIRRO = ${param.id};
+                    <sql:param value="${param.nome_bairro}" />
+                    <sql:param value="${param.municipios}"/>
+                </sql:update>
+                <script> alert('Bairro Atualizado com Sucesso!')</script>
+            </c:if>
+            <c:if test="${empty param.alteracao}">
+                <sql:update dataSource="${conexao}">
+                    INSERT INTO BAIRRO (COD_MUN,NOME_BAIRRO) 
+                    VALUES (?,?)
+                    <sql:param value="${param.municipios}" />
+                    <sql:param value="${param.nome_bairro}" />
+                </sql:update> 
+                <script> alert('Bairro Cadastrado com sucesso!')</script>
+            </c:if>
+        </c:if>
 
-        <c:if test="${not empty param.cod_mun}">
-            <sql:update dataSource="${conexao}">
-                INSERT INTO BAIRRO (COD_MUN,NOME_BAIRRO) 
-                VALUES (?,?)
-
-                <sql:param value="${param.nome_bairro}" />
-                <sql:param value="${param.cod_mun}" />
-            </sql:update> 
+        <c:if test="${param.acao=='edit'}">
+            <sql:query var="editar" dataSource="${conexao}">
+                SELECT * FROM BAIRRO LEFT JOIN MUNICIPIO ON BAIRRO.COD_MUN = MUNICIPIO.COD_MUN
+                WHERE COD_BAIRRO = ${param.id}
+            </sql:query>
         </c:if>
 
         <sql:query var="municipios" dataSource="${conexao}">
-            SELECT COD_MUN,DES_MUN FROM MUNICIPIO
+            SELECT * FROM MUNICIPIO
         </sql:query>
+
 
     </head>
 
@@ -43,28 +61,70 @@
         <div id="container">
             <header>
                 <div id="header">
-
                     <div id="logo"><a href="Principal.jsp"><img src="images/logo.png" alt="peterson" /></a></div>
-
-
-
-                    <!--Following code is all you need for the menu-->
-                    <div id="wrapper-menu"><!--container for this menu. With this container you can position it where you want in your layaout-->
+                    <div id="wrapper-menu">
                         <ul id="nav" name="nav">
-                            <li id="item1" class="fade"><a class="cadastro-basico"  href="#" title="Cadastros Basicos"><img src="images/woofunction-icons/folder_add_32.png" width="20" height="20" alt="cadastro" /> Cadastro</a></li>
-
+                            <li id="item1" class="fade"><a class="cadastro-basico"  href="#"
+                                                           title="Cadastros Básicos"><img src="images/woofunction-icons/folder_add_32.png" width="20" height="20" alt="cadastro" /> Cadastro</a></li>
                             <li id="item2" class="fade"><a  class="cadastro-basico2" href="#" title="Consultas Gerenciais"><img src="images/woofunction-icons/folder_chart_32.png" width="20" height="20" alt="consulta" /> Consultas</a></li>
+                            <li id="item3" class="fade"><a href="relatorio.jsp" title="Impressão de Relatórios"><img src="images/woofunction-icons/folder_page_32.png" width="20" height="20" alt="relatorio" /> Relatórios</a></li>
+                            <li id="item5" class="fade"><a href="ajuda.jsp"     title="Portal de Ajuda"><img src="images/woofunction-icons/folder_warning_32.png" width="20" height="20" alt="ajuda" />Ajuda</a></li>
+                        </ul>
+                        <!--end nav--> 
 
-                            <li id="item3" class="fade"><a class="big-menu-launcher" href="#" title="ImpressÃ£o de Relatorios"><img src="images/woofunction-icons/folder_page_32.png" width="20" height="20" alt="relatorio" /> Relatorios</a></li>
+                        <!--Inicio - Menu de Cadastros-->
+                        <div id="big-menu-hidden">
+                            <div id="product-list"> <span class="btn-close"><a class="cadastro-basico" href="#">close</a></span>
+                                <h2 id="li-item1" title="SEO KEYWORDS"><strong>Cadastros Básicos</strong></h2>
+                                <ul id="cadastro">
+                                    <li><a href="CadastroBairro.jsp" title="Cadastro de novos Bairros">Bairros</a></li>
+                                    <li><a href="CadastroMunicipio.jsp" title="Cadastro de Municípios">Municípios</a></li>
+                                    <li><a href="CadastroAnimais.jsp" title="Cadastro de Animais">Animais</a></li>
+                                    <li><a href="CadastroOcorrencias.jsp" title="Cadastro de Ocorrência">Ocorrência</a></li>
+                                    <li class="view-all"></li>
+                                </ul>
 
-                            <li id="item5" class="fade"><a href="ajuda.jsp" title="Portal de Ajuda"><img src="images/woofunction-icons/folder_warning_32.png" width="20" height="20" alt="ajuda" />Ajuda</a></li>
-                        </ul><!--end nav-->
+                                <ul id="Ocorrencia">
+                                    <li><a href="CadastroSituacao.jsp" title="Cadastro de Situação de Ocorrências">Situação</a></li>
+                                    <li><a href="CadastroTipo.jsp" title="Cadastro de Tipo de Ocorrências">Tipo</a></li>
+                                    <li><a href="CadastroMateriais.jsp" title="Cadastro de Materiais">Materiais</a></li>
 
-                        <!--here starts hiden menus-->
-                        <!--endBigMenuHidden-stores--><!--end wrapper-menu-->
-                        <!--end HTML code for this menu-->
+                                    <li class="view-all"></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--Fim Menu de Cadastros--> 
+                        <!--Inicio menu de Consultas-->
+                        <div id="big-menu-hidden2"> 
+                            <!--  <div id="cart">
+                              <div id="counter-cart">
+                              <p>0 items in</p>
+                              <p id="btn-go-cart"><a href="" title="keywords for SEO">YOUR CART</a></p>
+                             <span id="img-empty-cart"><img src="images/ico-empty-cart.png" alt="keyword for SEO" width="109" height="131"/></span> </div>
+                          </div>-->
+                            <div id="product-list"> <span class="btn-close"><a class="cadastro-basico2" href="#">close</a></span>
+                                <h2 id="li-item1" title="SEO KEYWORDS"><strong>Consultas</strong></h2>
+                                <ul id="Consultas">
+                                    <li><a href="ConsultaBairros.jsp" title="Consulta de Bairros">Bairros</a></li>
+                                    <li><a href="ConsultaMunicipio.jsp" title="Consulta de Municípios">Municípios</a></li>
+                                    <li><a href="ConsultaOcorrencias.jsp" title="Consulta de Ocorrências">Ocorrências</a></li>
+                                    <li><a href="ConsultaTipo.jsp" title="Consulta de Tipos da Ocorrência">Tipo</a></li>
+                                    <li class="view-all"></li>
+                                </ul>
+
+                                <ul id="Consultas2">
+                                    <li><a href="consultamateriais.jsp" title="Consulta de Materiais Apreendidos">Materiais</a></li>
+                                    <li><a href="consultaAnimais.jsp" title="Consulta de Animais Apreendidos">Animais</a></li>
+                                    <li><a href="ConsultaSituacao.jsp" title="Consulta de Situações da Ocorrência">Situação</a></li>
+                                    <li><a href="ConsultaOS.jsp" title="Consulta de Ordens de Serviço">Ordem de Serviço</a></li>
+                                    <li class="view-all"></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--Fim Menu de Consultas-->  
 
                     </div>
+                </div>
             </header>
             <div id="content">
                 <div id="content_head"></div>
@@ -74,32 +134,30 @@
                         <h1>Cadastro de Bairros</h1>
                         <div >
                             <form  name="form1" method="post" action="">
+                                <c:if test="${param.acao=='edit'}">
+                                    <input type="hidden" name="id" value="${param.id}"/>
+                                    <input type="hidden" name="alteracao" value="sim"/>
+                                </c:if>
                                 <ul>
                                     <li>
                                         <label  for="email"><strong>Bairro</strong></label>
-                                        <input type="text" name="nome_bairro" id="nome_bairro" value="${BAIRRO.rows[0].NOME_BAIRRO}">
-                                        <label for="email"><strong>Cidade</strong></label>
+                                        <input type="textarea" name="nome_bairro" id="nome_bairro" value="${editar.rows[0].NOME_BAIRRO}"</input>
+                                            <label for="email"><strong>Cidade</strong></label>
 
                                     </li>
 
                                     <div>
-                                        <select name="cod_municipio"> 
-                                            <c:forEach items="${municipios.rows}" var="municipio">
-
-                                                <option value="${municipio.COD_MUN}" >${municipio.DES_MUN} </option>
+                                        <select name="municipios" id="COD_MUN"> 
+                                            <c:forEach items="${municipios.rows}" var="municipios">
+                                                <c:set var="selected" value="${ municipios.COD_MUN == editar.rows[0].COD_MUN ? 'selected' : ''}"/>
+                                                <option value="${municipios.COD_MUN}" ${selected}>${municipios.DES_MUN} </option>
                                             </c:forEach>
                                         </select>
-
-
-
                                     </div>
-
-
                                     <p>&nbsp;                                        </p>
                                     <p>
                                         <input name="Ok" value="Enviar" type="submit" class="buttonGradientSubmit" id="Ok" />
-                                        <input name="Ok" value="Limpar" type="submit" class="buttonGradientSubmit" id="Ok" />
-                                        <input name="Ok" value="Cancelar" type="submit" class="buttonGradientSubmit" id="Cancelar"/>
+                                        <input name="Limpar" value="Limpar" type="reset" class="buttonGradientSubmit" id="Limpar" />
                                     </p>
                                 </ul>
                             </form>  
@@ -128,7 +186,7 @@
 
                 </div>
                 <div id="copy">
-                    &copy; 2012 <a href="https://www.ace.br">SISCO</a>
+                    &copy; 2012 <a href="http://www.ace.br">SISCO</a>
                 </div>
             </div>
         </footer>

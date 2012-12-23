@@ -54,7 +54,7 @@
             SELECT  COD_SITUACAO, DES_SITUACAO FROM SITUACAO
         </sql:query>
         <sql:query var="ocorrencia" dataSource="${conexao}">
-            SELECT OCORRENCIA.COD_OCOR,OCORRENCIA.DT_OCOR,TIPO.DES_TIPO,SITUACAO.DES_SITUACAO,MUNICIPIO.DES_MUN 
+            SELECT OCORRENCIA.COD_OCOR,OCORRENCIA.DT_OCOR,TIPO.DES_TIPO,SITUACAO.DES_SITUACAO,MUNICIPIO.DES_MUN,DENUNCIANTE.NM_DENUNCIANTE,ORDEMSERVICO.COD_OCORRENCIA 
             FROM OCORRENCIA LEFT JOIN TIPO 
             ON OCORRENCIA.COD_TIPO = TIPO.COD_TIPO
             LEFT JOIN SITUACAO
@@ -63,6 +63,10 @@
             ON OCORRENCIA.COD_ENDERECO = ENDERECO.COD_ENDERECO
             LEFT JOIN MUNICIPIO
             ON ENDERECO.COD_MUN = MUNICIPIO.COD_MUN
+            LEFT JOIN DENUNCIANTE
+            ON OCORRENCIA.COD_DENUNCIANTE = DENUNCIANTE.COD_DENUNCIANTE
+            LEFT JOIN ORDEMSERVICO
+            ON OCORRENCIA.COD_OCOR = ORDEMSERVICO.COD_OCORRENCIA
             order by COD_OCOR
         </sql:query>
 
@@ -75,24 +79,70 @@
     <div id="container">
         <header>
             <div id="header">
-
                 <div id="logo"><a href="Principal.jsp"><img src="images/logo.png" alt="peterson" /></a></div>
-
-
-
                 <div id="wrapper-menu">
                     <ul id="nav" name="nav">
-                        <li id="item1" class="fade"><a class="cadastro-basico"  href="#" 
-                                                       title="Cadastros BÃ¡sicos"><img src="images/woofunction-icons/folder_add_32.png" width="20" height="20" 							                alt="cadastro" /> Cadastro</a></li>
-
+                        <li id="item1" class="fade"><a class="cadastro-basico"  href="#"
+                                                       title="Cadastros Básicos"><img src="images/woofunction-icons/folder_add_32.png" width="20" height="20" alt="cadastro" /> Cadastro</a></li>
                         <li id="item2" class="fade"><a  class="cadastro-basico2" href="#" title="Consultas Gerenciais"><img src="images/woofunction-icons/folder_chart_32.png" width="20" height="20" alt="consulta" /> Consultas</a></li>
+                        <li id="item3" class="fade"><a href="relatorio.jsp" title="Impressão de Relatórios"><img src="images/woofunction-icons/folder_page_32.png" width="20" height="20" alt="relatorio" /> Relatórios</a></li>
+                        <li id="item5" class="fade"><a href="ajuda.jsp"     title="Portal de Ajuda"><img src="images/woofunction-icons/folder_warning_32.png" width="20" height="20" alt="ajuda" />Ajuda</a></li>
+                    </ul>
+                    <!--end nav--> 
 
-                        <li id="item3" class="fade"><a class="cadastro-basico3" href="#" title="ImpressÃ£o de Relatorios"><img src="images/woofunction-icons/folder_page_32.png" width="20" height="20" alt="relatorio" /> Relatorios</a></li>
+                    <!--Inicio - Menu de Cadastros-->
+                    <div id="big-menu-hidden">
+                        <div id="product-list"> <span class="btn-close"><a class="cadastro-basico" href="#">close</a></span>
+                            <h2 id="li-item1" title="SEO KEYWORDS"><strong>Cadastros Básicos</strong></h2>
+                            <ul id="cadastro">
+                                <li><a href="CadastroBairro.jsp" title="Cadastro de novos Bairros">Bairros</a></li>
+                                <li><a href="CadastroMunicipio.jsp" title="Cadastro de Municípios">Municípios</a></li>
+                                <li><a href="CadastroAnimais.jsp" title="Cadastro de Animais">Animais</a></li>
+                                <li><a href="CadastroOcorrencias.jsp" title="Cadastro de Ocorrência">Ocorrência</a></li>
+                                <li class="view-all"></li>
+                            </ul>
 
-                        <li id="item5" class="fade"><a href="ajuda.jsp" title="Portal de Ajuda"><img src="images/woofunction-icons/folder_warning_32.png" width="20" height="20" alt="ajuda" />Ajuda</a></li>
-                    </ul><!--end nav-->
+                            <ul id="Ocorrencia">
+                                <li><a href="CadastroSituacao.jsp" title="Cadastro de Situação de Ocorrências">Situação</a></li>
+                                <li><a href="CadastroTipo.jsp" title="Cadastro de Tipo de Ocorrências">Tipo</a></li>
+                                <li><a href="CadastroMateriais.jsp" title="Cadastro de Materiais">Materiais</a></li>
+
+                                <li class="view-all"></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--Fim Menu de Cadastros--> 
+                    <!--Inicio menu de Consultas-->
+                    <div id="big-menu-hidden2"> 
+                        <!--  <div id="cart">
+                          <div id="counter-cart">
+                          <p>0 items in</p>
+                          <p id="btn-go-cart"><a href="" title="keywords for SEO">YOUR CART</a></p>
+                         <span id="img-empty-cart"><img src="images/ico-empty-cart.png" alt="keyword for SEO" width="109" height="131"/></span> </div>
+                      </div>-->
+                        <div id="product-list"> <span class="btn-close"><a class="cadastro-basico2" href="#">close</a></span>
+                            <h2 id="li-item1" title="SEO KEYWORDS"><strong>Consultas</strong></h2>
+                            <ul id="Consultas">
+                                <li><a href="ConsultaBairros.jsp" title="Consulta de Bairros">Bairros</a></li>
+                                <li><a href="ConsultaMunicipios.jsp" title="Consulta de Municípios">Municípios</a></li>
+                                <li><a href="ConsultaOcorrencias.jsp" title="Consulta de Ocorrências">Ocorrências</a></li>
+                                <li><a href="ConsultaTipo.jsp" title="Consulta de Tipos da Ocorrência">Tipo</a></li>
+                                <li class="view-all"></li>
+                            </ul>
+
+                            <ul id="Consultas2">
+                                <li><a href="consultamateriais.jsp" title="Consulta de Materiais Apreendidos">Materiais</a></li>
+                                <li><a href="consultaAnimais.jsp" title="Consulta de Animais Apreendidos">Animais</a></li>
+                                <li><a href="ConsultaSituacao.jsp" title="Consulta de Situações da Ocorrência">Situação</a></li>
+                                <li><a href="ConsultaOS.jsp" title="Consulta de Ordens de Serviço">Ordem de Serviço</a></li>
+                                <li class="view-all"></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--Fim Menu de Consultas-->  
 
                 </div>
+            </div>
         </header>
         <div id="content">
             <div id="content_head"></div>
@@ -121,10 +171,11 @@
                                     <table width="100%" border="0">
 
                                         <tr>
-                                            <th>Edita</th>
-                                            <th>Deleta</th>
+                                            <th>Excluir</th>
+                                            <th>Código</th>
                                             <th>Emitir OS</th>
-                                            <th>Analise</th>
+                                            <!--<th>OS</th> -->
+                                            <th>Análise</th>
                                             <th>Tipo</th>
                                             <th>Situação</th>
                                             <th>Endereco</th>
@@ -134,16 +185,17 @@
                                         </tr>
                                         <c:forEach var="ocorrencia" items="${ocorrencia.rows}">
                                             <tr>
-                                                <td class="td1"><a href="CadastroOcorrencias.jsp?id=${ocorrencia.COD_OCOR}"><img src="images/woofunction-icons/pencil_32.png" value="submit" width="20" height="20"/></a></td>
-                                                <td class="td1"><a href="ConsultaOcorrencias.jsp?id=${ocorrencia.COD_OCOR}&acao=delete"><img src="images/woofunction-icons/close_16.png" value="submit" width="20" height="20"/></a></td>
+                                                <td class="td1"><a href="ConsultaOcorrencias.jsp?id=${ocorrencia.COD_OCOR}&acao=delete" onclick="return confirm('Deseja excluir o registro?')"><img src="images/woofunction-icons/close_16.png" value="submit" width="20" height="20"/></a></td>
+                                                <td class="td1"><c:out value="${ocorrencia.COD_OCOR}"/></td>
                                                 <td class="td1"><a href="ordemdeservico.jsp?id=${ocorrencia.COD_OCOR}&acao=geraos"><img src="images/woofunction-icons/page_table_add_32.png" value="submit" width="20" height="20"/></a></td>
+                                                <%--<td class="td1"><c:out value="${ocorrencia.COD_OS}"/></td> --%>
                                                 <td class="td1"><a href="CadastroAnalise.jsp?id=${ocorrencia.COD_OCOR}&acao=analise"><img src="images/woofunction-icons/book_add_32.png" value="submit" width="20" height="20"/></a></td>
                                                 <td class="td1"><c:out value="${ocorrencia.DES_TIPO}"/></td>
                                                 <%--<td class="td1"><c:out value="${ocorrencia.COD_OS}"/></td>--%>
                                                 <td class="td1"><c:out value="${ocorrencia.DES_SITUACAO}"/></td>
                                                 <td class="td1"><c:out value="${ocorrencia.DES_MUN}"/></td>
                                                 <td class="td1"><c:out value="${ocorrencia.DT_OCOR}"/></td>
-                                                <td class="td1"><c:out value="${ocorrencia.COD_DENUNCIANTE}"/></td>
+                                                <td class="td1"><c:out value="${ocorrencia.NM_DENUNCIANTE}"/></td>
 
                                             </tr>
                                         </c:forEach> 

@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+        OCORRENCIA."COD_OCOR" AS OCORRENCIA_COD_OCOR,
+        OCORRENCIA."COD_MATERIAL" AS OCORRENCIA_COD_MATERIAL,
+        OCORRENCIA."COD_OS" AS OCORRENCIA_COD_OS,
+        OCORRENCIA."COD_TIPO" AS OCORRENCIA_COD_TIPO,
+        OCORRENCIA."COD_SITUACAO" AS OCORRENCIA_COD_SITUACAO,
+        OCORRENCIA."COD_ENDERECO" AS OCORRENCIA_COD_ENDERECO,
+        OCORRENCIA."DES_OCOR" AS OCORRENCIA_DES_OCOR,
+        OCORRENCIA."DT_OCOR" AS OCORRENCIA_DT_OCOR,
+        OCORRENCIA."COD_DENUNCIANTE" AS OCORRENCIA_COD_DENUNCIANTE,
+        ORDEMSERVICO."COD_OS" AS ORDEMSERVICO_COD_OS,
+        ORDEMSERVICO."DES_OS" AS ORDEMSERVICO_DES_OS,
+        ORDEMSERVICO."DT_GERACAO" AS ORDEMSERVICO_DT_GERACAO,
+        ORDEMSERVICO."SITUACAO_ANALIZADA" AS ORDEMSERVICO_SITUACAO_ANALIZADA,
+        ORDEMSERVICO."COD_MATERIAL" AS ORDEMSERVICO_COD_MATERIAL,
+        ORDEMSERVICO."DT_AGENDA" AS ORDEMSERVICO_DT_AGENDA,
+        ORDEMSERVICO."DT_REALIZADA" AS ORDEMSERVICO_DT_REALIZADA,
+        ORDEMSERVICO."RESPONSAVEL" AS ORDEMSERVICO_RESPONSAVEL,
+        ORDEMSERVICO."COD_OCORRENCIA" AS ORDEMSERVICO_COD_OCORRENCIA,
+        ORDEMSERVICO."COD_SITUACAO" AS ORDEMSERVICO_COD_SITUACAO,
+        ENDERECO."COD_ENDERECO" AS ENDERECO_COD_ENDERECO,
+        ENDERECO."COD_MUN" AS ENDERECO_COD_MUN,
+        ENDERECO."COD_BAIRRO" AS ENDERECO_COD_BAIRRO,
+        ENDERECO."NM_RUA" AS ENDERECO_NM_RUA,
+        ENDERECO."DES_LOCAL" AS ENDERECO_DES_LOCAL,
+        ENDERECO."QUADRA_LOCAL" AS ENDERECO_QUADRA_LOCAL,
+        ENDERECO."LOTE_LOCAL" AS ENDERECO_LOTE_LOCAL,
+        ENDERECO."NUM_LOCAL" AS ENDERECO_NUM_LOCAL,
+        ENDERECO."CEP_LOCAL" AS ENDERECO_CEP_LOCAL,
+        BAIRRO."COD_BAIRRO" AS BAIRRO_COD_BAIRRO,
+        BAIRRO."COD_MUN" AS BAIRRO_COD_MUN,
+        BAIRRO."NOME_BAIRRO" AS BAIRRO_NOME_BAIRRO,
+        MUNICIPIO."COD_MUN" AS MUNICIPIO_COD_MUN,
+        MUNICIPIO."DES_MUN" AS MUNICIPIO_DES_MUN
+        FROM
+        "OCORRENCIA" OCORRENCIA INNER JOIN "ORDEMSERVICO" ORDEMSERVICO ON OCORRENCIA."COD_OCOR" = ORDEMSERVICO."COD_OCORRENCIA"
+        INNER JOIN "ENDERECO" ENDERECO ON OCORRENCIA."COD_ENDERECO" = ENDERECO."COD_ENDERECO"
+        INNER JOIN "BAIRRO" BAIRRO ON ENDERECO."COD_BAIRRO" = BAIRRO."COD_BAIRRO"
+        INNER JOIN "MUNICIPIO" MUNICIPIO ON ENDERECO."COD_MUN" = MUNICIPIO."COD_MUN"]]>
+	</queryString>
+	<field name="OCORRENCIA_COD_OCOR" class="java.lang.Integer"/>
+	<field name="OCORRENCIA_COD_OS" class="java.lang.Integer"/>
+	<field name="OCORRENCIA_DES_OCOR" class="java.lang.String"/>
+	<field name="OCORRENCIA_DT_OCOR" class="java.sql.Date"/>
+	<field name="ORDEMSERVICO_DES_OS" class="java.lang.String"/>
+	<field name="ORDEMSERVICO_DT_GERACAO" class="java.sql.Date"/>
+	<field name="ORDEMSERVICO_SITUACAO_ANALIZADA" class="java.lang.String"/>
+	<field name="ORDEMSERVICO_DT_AGENDA" class="java.sql.Date"/>
+	<field name="ORDEMSERVICO_DT_REALIZADA" class="java.sql.Date"/>
+	<field name="ORDEMSERVICO_RESPONSAVEL" class="java.lang.String"/>
+	<field name="ENDERECO_NM_RUA" class="java.lang.String"/>
+	<field name="ENDERECO_DES_LOCAL" class="java.lang.String"/>
+	<field name="ENDERECO_QUADRA_LOCAL" class="java.lang.String"/>
+	<field name="ENDERECO_LOTE_LOCAL" class="java.lang.String"/>
+	<field name="ENDERECO_NUM_LOCAL" class="java.lang.String"/>
+	<field name="BAIRRO_NOME_BAIRRO" class="java.lang.String"/>
+	<field name="MUNICIPIO_DES_MUN" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="136" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="164" height="126"/>
+				<imageExpression><![CDATA["LogoPM.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="270" y="0" width="490" height="62"/>
+				<textElement verticalAlignment="Middle">
+					<font pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Ordem de Serviço]]></text>
+			</staticText>
+			<image>
+				<reportElement x="633" y="-18" width="187" height="154"/>
+				<imageExpression><![CDATA["coffee_stain.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Column header" x="270" y="69" width="131" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[Código Ocorrência]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="401" y="69" width="47" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{OCORRENCIA_COD_OCOR}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="270" y="99" width="131" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[Código OS:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="401" y="99" width="47" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{OCORRENCIA_COD_OS}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="802" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="270" y="1" width="94" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[Data Ocorrência]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="513" y="1" width="120" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[Data Geração da OS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="709" y="0" width="93" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[Data Realizada]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="0" y="1" width="88" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[Data Agendada]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="802" height="15"/>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="159" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="802" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="-1" y="34" width="188" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[Descrição da Ocorrência]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="190" y="34" width="612" height="41"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{OCORRENCIA_DES_OCOR}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="0" y="4" width="88" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ORDEMSERVICO_DT_AGENDA}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="270" y="4" width="94" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{OCORRENCIA_DT_OCOR}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="-1" y="87" width="188" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[Descrição da OS]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="190" y="87" width="612" height="40"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ORDEMSERVICO_DES_OS}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="513" y="4" width="120" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ORDEMSERVICO_DT_GERACAO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="244" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-23" y="220" width="843" height="24" forecolor="#D0B48E" backcolor="#F2EBDF"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="783" y="1" width="40" height="20" forecolor="#736343"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="703" y="1" width="80" height="20" forecolor="#736343"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+			<staticText>
+				<reportElement style="Column header" x="3" y="91" width="113" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[Situação analisada]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="116" y="91" width="686" height="56"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ORDEMSERVICO_SITUACAO_ANALIZADA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="226" y="205" width="82" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[Responsável]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="340" y="205" width="119" height="15"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ORDEMSERVICO_RESPONSAVEL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="0" y="0" width="88" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[Rua:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="94" y="0" width="439" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ENDERECO_NM_RUA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="-1" y="-15" width="188" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[Endereço da Ocorrência:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="0" y="30" width="88" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[Local:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="94" y="30" width="307" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ENDERECO_DES_LOCAL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="0" y="60" width="88" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[Quadra:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="94" y="60" width="307" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ENDERECO_QUADRA_LOCAL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="0" y="45" width="88" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[Lote:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="94" y="45" width="307" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ENDERECO_LOTE_LOCAL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="551" y="0" width="27" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[Nº:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="578" y="0" width="166" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ENDERECO_NUM_LOCAL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="0" y="15" width="88" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[Bairro:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="94" y="15" width="307" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{BAIRRO_NOME_BAIRRO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="401" y="60" width="132" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[Município:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="551" y="60" width="248" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{MUNICIPIO_DES_MUN}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
